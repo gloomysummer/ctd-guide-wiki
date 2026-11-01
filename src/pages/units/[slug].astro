@@ -126,6 +126,7 @@ const jsonLd = [
           <h2>Combat Profile & Stats</h2>
           <p>{unit.description}</p>
           <div class="table-responsive">
+            <div class="table-scroll">
             <table class="specs-table">
               <tbody>
                 <tr>
@@ -148,12 +149,13 @@ const jsonLd = [
                 </tr>
                 <tr>
                   <th>Market Trend</th>
-                  <td>{unit.trend === 'Rising' ? '▲ Rising Demand' : unit.trend === 'Falling' ? '▼ Falling Demand' : '● Stable Liquid'}</td>
+                  <td>{unit.trend === 'Rising' ? '▲ Rising' : unit.trend === 'Dropping' ? '▼ Dropping' : unit.trend === 'Unstable' ? '◆ Unstable' : unit.trend === 'Volatile' ? '◇ Volatile' : unit.trend === 'Stable' ? '● Stable' : '— Unknown'}</td>
                   <th>Calculator Integration</th>
                   <td><a href="/values/" style="color: #38bdf8;">Add to Trade Calculator →</a></td>
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
         </section>
 
@@ -167,7 +169,7 @@ const jsonLd = [
             <h3>Trading Recommendations:</h3>
             <ul>
               {unit.value > 0 && <li><strong>Fair Parity Range:</strong> When exchanging for {unit.name}, ensure incoming offers evaluate within ±10% ({Math.round(unit.value * 0.9).toLocaleString()} – {Math.round(unit.value * 1.1).toLocaleString()} pts).</li>}
-              <li><strong>Market Trend ({unit.trend}):</strong> {unit.trend === 'Rising' ? 'Demand is active and rising due to recent meta buffs or event scarcity.' : unit.trend === 'Falling' ? 'Demand is cooling down as newer units eclipse its raw DPS output.' : 'Consistent market liquidity with stable trade volume across Roblox community servers.'}</li>
+              <li><strong>Market Trend ({unit.trend}):</strong> {unit.trend === 'Rising' ? 'Demand is active and rising on the current community list.' : unit.trend === 'Dropping' ? 'Value has fallen since the last patch and the list marks it as dropping.' : unit.trend === 'Unstable' ? 'The source marks this unit as unstable, so re-check before trading.' : unit.trend === 'Volatile' ? 'The source marks this unit as volatile; value has swung sharply.' : unit.trend === 'Stable' ? 'Holding steady on the current community list.' : 'The source does not publish a trend for this unit.'}</li>
               <li><strong>Test Before Trading:</strong> Use our <a href="/values/" style="color: #38bdf8;">Interactive Trade Calculator</a> to verify Win/Fair/Lose balance before finalizing in-game swaps.</li>
             </ul>
           </div>

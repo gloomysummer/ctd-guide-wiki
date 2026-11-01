@@ -4269,3 +4269,12 @@ body {
     position: static;
   }
 }
+
+
+/* 表格横向滚动兜底：窄屏下不裁切列 */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll > table { min-width: 720px; }

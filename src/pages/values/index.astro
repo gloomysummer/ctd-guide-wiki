@@ -198,7 +198,8 @@ const jsonLd = [
           </div>
 
           <div class="table-responsive">
-            <table class="values-data-table" id="values-table-el">
+            <div class="table-scroll">
+              <table class="values-data-table" id="values-table-el">
               <thead>
                 <tr>
                   <th>Unit</th>
@@ -236,7 +237,12 @@ const jsonLd = [
                     </td>
                     <td>
                       <span class={`trend-badge trend-${u.trend.toLowerCase()}`}>
-                        {u.trend === 'Rising' ? '▲ Rising' : u.trend === 'Falling' ? '▼ Falling' : '● Stable'}
+                        {u.trend === 'Rising' ? '▲ Rising'
+                          : u.trend === 'Dropping' ? '▼ Dropping'
+                          : u.trend === 'Unstable' ? '◆ Unstable'
+                          : u.trend === 'Volatile' ? '◇ Volatile'
+                          : u.trend === 'Stable' ? '● Stable'
+                          : '— Unknown'}
                       </span>
                     </td>
                     <td>
@@ -252,6 +258,7 @@ const jsonLd = [
                 ))}
               </tbody>
             </table>
+              </div>
           </div>
         </section>
 
@@ -913,5 +920,21 @@ const jsonLd = [
     color: #94a3b8;
     font-size: 0.85rem;
     font-style: italic;
+  }
+
+  .table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0.75rem;
+  }
+  .table-scroll table { min-width: 860px; }
+  .trend-dropping { color: #f87171; }
+  .trend-unstable { color: #fbbf24; }
+  .trend-volatile { color: #c084fc; }
+  .trend-unknown  { color: #64748b; }
+  .value-number.na { color: #64748b; }
+  @media (max-width: 900px) {
+    .table-scroll table { min-width: 760px; }
   }
 </style>
