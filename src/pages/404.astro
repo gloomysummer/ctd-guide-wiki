@@ -1,0 +1,60 @@
+---
+// ============================================================
+// [Code 层] 404.astro — 真实 404 页（防 soft-404）
+//
+// 为什么必须有这个文件：
+//   Cloudflare Pages 只有在输出根目录存在 404.html 时，
+//   才会对未匹配的路由返回 **真正的 404 状态码**。
+//   没有它 → 未知路径返回 200 + 兜底内容 = soft-404，
+//   会浪费抓取预算并造成索引膨胀。
+//
+// 本文件对所有站通用：品牌名取自 site.config.ts，
+// 推荐入口只指向 / 与 /guide/（两者在模板中恒存在），
+// 因此不需要按游戏改内容 —— 起站后无需再动。
+// ============================================================
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site.config";
+
+const gameName = siteConfig.gameName;
+const siteName = siteConfig.siteName;
+---
+
+<BaseLayout
+  title="404: Page Not Found"
+  description={`The page you requested could not be found on ${siteName}. Browse the guide index or return to the homepage.`}
+  canonical="/404/"
+>
+  <div class="container" style="max-width: 800px; margin: 4rem auto; text-align: center; padding: 0 1.5rem;">
+    <div style="font-family: var(--font-mono, monospace); font-size: 0.875rem; color: var(--color-accent, #22d3ee); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem;">
+      [ Error 404: Page Not Found ]
+    </div>
+
+    <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 1rem; color: #fff; letter-spacing: -0.02em;">
+      Page not found
+    </h1>
+
+    <p style="font-size: 1.125rem; color: var(--color-text-muted, #94a3b8); line-height: 1.7; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+      We could not find that page on {siteName}. It may have been renamed, moved, or never existed.
+      Use the links below to get back to our {gameName} guides.
+    </p>
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
+      <a href="/" class="btn btn-primary" style="display: inline-flex; align-items: center; justify-content: center; background: var(--color-accent, #38bdf8); color: #020617; font-weight: 700; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none;">
+        Return to Home
+      </a>
+      <a href="/units/" class="btn btn-outline" style="display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none;">
+        Browse All Units
+      </a>
+      <a href="/values/" class="btn btn-outline" style="display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none;">
+        Trade Calculator
+      </a>
+    </div>
+
+    <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem;">
+      <p style="font-size: 0.9375rem; color: var(--color-text-muted, #94a3b8); margin: 0;">
+        If you followed a link from another page and landed here, the link is out of date —
+        tell us via the <a href="/contact/" style="color: var(--color-accent, #22d3ee); text-decoration: none;">contact page</a> and we will fix it.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

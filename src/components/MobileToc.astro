@@ -1,0 +1,38 @@
+---
+export interface TocHeading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+export interface Props {
+  tocHeadings: TocHeading[];
+}
+
+const { tocHeadings = [] } = Astro.props;
+---
+
+{tocHeadings.length > 0 && (
+  <details class="mobile-toc" aria-label="Table of Contents Mobile Accordion">
+    <summary>
+      <span>Table of Contents ({tocHeadings.length} sections)</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </summary>
+    <div class="mobile-toc-inner">
+      <ul class="mobile-toc-list" style="list-style: none; padding: 0; margin: 0;">
+        {tocHeadings.map((h, idx) => (
+          <li class={`mobile-toc-item depth-${h.depth}`} style={`margin-bottom: 8px; ${h.depth === 3 ? 'padding-left: 14px;' : ''}`}>
+            <a href={`#${h.slug}`} class="mobile-toc-link" style="color: var(--muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: baseline; gap: 8px;">
+              <span class="mobile-toc-num" style="color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;">
+                {String(idx + 1).padStart(2, '0')}.
+              </span>
+              <span class="mobile-toc-title">{h.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </details>
+)}

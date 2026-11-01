@@ -1,0 +1,177 @@
+---
+/**
+ * AdSlot — Adsterra v2 自托管 iframe 广告槽（规范：game-wiki-builder/references/adsterra_monetization_sop.md）
+ *
+ * 架构：主页面零广告脚本，进入视口（IntersectionObserver, 800px rootMargin）后
+ *       动态 append 同域 iframe → /ads/banner-<size>.html，广告代码全部关在 iframe 里。
+ *
+ * 三重防护：① 爬虫/Bot 屏蔽（保 PageSpeed 与收录） ② 零 CLS（容器固定尺寸）
+ *           ③ 占位符防御 —— key 非 32 位 hex 时整槽不渲染，占位串严禁落线上 HTML。
+ *
+ * ⚠️ 同页同 Zone Key 只计一次展示（Adsterra 去重）——同页多槽必须用不同尺寸/Key。
+ * ⚠️ SocialBar / Popunder 永久关闭（老大 2026-10-05 定案）。
+ */
+import { siteConfig } from '../config/site.config';
+
+export type ZoneKey = 'banner-300x250' | 'banner-728x90' | 'banner-320x50';
+
+interface Props {
+  zone: ZoneKey;
+  className?: string;
+  label?: string;
+}
+
+const { zone, className = '', label = 'Advertisement' } = Astro.props;
+
+const DIMS: Record<ZoneKey, { w: number; h: number }> = {
+  'banner-300x250': { w: 300, h: 250 },
+  'banner-728x90': { w: 728, h: 90 },
+  'banner-320x50': { w: 320, h: 50 },
+};
+const dim = DIMS[zone];
+
+// 占位符防御（SOP 七.3 红线）：key 必须是 32 位小写 hex，否则整个槽位不渲染
+const KEY_RE = /^[a-f0-9]{32}$/;
+/**
+ * 兼容两种配置位置（2026-10-14 统一）：
+ *   - 顶层  siteConfig.adsterra          ← invokyr.wiki / themakerway.wiki 用这种
+ *   - 嵌套  siteConfig.ads.adsterra      ← 模板早期形状
+ * 此前模板只认嵌套形状，而矩阵其他站都用顶层 → 新站照抄顶层配置会**静默不渲染**。
+ * 两种都读，消除这个不一致。
+ */
+const adsterra = ((siteConfig as any).adsterra || (siteConfig.ads as any)?.adsterra) as
+  | { enabled: boolean; banners: Record<string, { key: string; enabled: boolean }> }
+  | undefined;
+const banner = adsterra?.banners?.[zone];
+const slotKey = banner?.key || '';
+const isValid = Boolean(
+  adsterra?.enabled &&
+    banner?.enabled &&
+    KEY_RE.test(slotKey)
+);
+
+const uniqueId = `ad-${zone}-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+{isValid && (
+  <aside
+    class={`ad-slot-wrapper ad-slot-${zone} ${className}`}
+    aria-label={label}
+    id={uniqueId}
+    data-zone={zone}
+  >
+    <div class="ad-slot-header">
+      <span class="ad-slot-tag">{label}</span>
+    </div>
+    <div
+      class="ad-slot-container"
+      style={`min-height:${dim.h}px;min-width:${dim.w}px;`}
+      id={`box-${uniqueId}`}
+    >
+      <!-- 客户端视口触达后注入同域 iframe（/ads/banner-<size>.html） -->
+    </div>
+  </aside>
+)}
+
+{isValid && (
+  <script is:inline define:vars={{ uniqueId, zone, w: dim.w, h: dim.h }}>
+    (function () {
+      var el = document.getElementById(uniqueId);
+      if (!el) return;
+
+      // 1. 爬虫 / 审核蜘蛛屏蔽（保 PageSpeed、收录与页面质量评估）
+      if (/bot|googlebot|crawler|spider|mediapartners-google|adsbot-google|google-read-aloud|lighthouse/i.test(navigator.userAgent)) {
+        el.style.display = 'none';
+        return;
+      }
+
+      var box = document.getElementById('box-' + uniqueId);
+      if (!box) return;
+
+      var injected = false;
+      function loadAd() {
+        if (injected) return;
+        injected = true;
+        var f = document.createElement('iframe');
+        f.src = '/ads/' + zone + '.html';
+        f.width = String(w);
+        f.height = String(h);
+        f.scrolling = 'no';
+        f.frameBorder = '0';
+        f.title = 'Advertisement';
+        f.setAttribute('loading', 'lazy');
+        f.style.border = 'none';
+        f.style.overflow = 'hidden';
+        f.style.maxWidth = '100%';
+        f.style.display = 'block';
+        box.appendChild(f);
+      }
+
+      // 2. 视口触达 800px 预加载，零 CLS、零顿挫
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              io.disconnect();
+              loadAd();
+            }
+          });
+        }, { rootMargin: '800px 0px' });
+        io.observe(el);
+      } else {
+        setTimeout(loadAd, 1000);
+      }
+    })();
+  </script>
+)}
+
+<style>
+  .ad-slot-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+    padding: 0.85rem 1rem;
+    background: rgba(18, 20, 22, 0.7);
+    border: 1px solid var(--line, rgba(255, 255, 255, 0.07));
+    border-radius: 8px;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  .ad-slot-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  .ad-slot-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted, #7e8790);
+    opacity: 0.8;
+    user-select: none;
+    font-family: var(--font-mono, monospace);
+  }
+  .ad-slot-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+  }
+  .ad-slot-banner-300x250 .ad-slot-container { width: 300px; height: 250px; }
+  .ad-slot-banner-728x90 .ad-slot-container { width: 728px; height: 90px; max-width: 100%; }
+  .ad-slot-banner-320x50 .ad-slot-container { width: 320px; height: 50px; max-width: 100%; }
+  /* 移动端：728x90 物理放不下（iframe 固定 728px），隐藏整槽防横向溢出与变形。
+     调用方应同时挂一个 320x50 窄幅位做切换（见 global.css 的 .ad-slot-footer 编排块）。
+     2026-10-14 对标 invokyr.wiki 补齐。 */
+  @media (max-width: 768px) {
+    .ad-slot-banner-728x90 {
+      display: none;
+    }
+  }
+</style>

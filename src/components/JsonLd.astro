@@ -1,0 +1,8 @@
+---
+// [Code 层] JSON-LD 注入组件（构建期生成，无运行时 JS）
+interface Props {
+  data: Record<string, unknown>;
+}
+const { data } = Astro.props;
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

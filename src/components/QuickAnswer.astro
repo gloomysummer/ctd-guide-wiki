@@ -1,0 +1,23 @@
+---
+// [Code 层] QuickAnswer — 40-60 词直答块
+// AI Overviews / featured snippet 的第一抓取位。
+// 写作规则：答案紧跟 H2 问题，禁止铺垫（AnvilWiki seo.md 同款标准）。
+interface Props {
+  summary: string;
+}
+const { summary } = Astro.props;
+---
+<section class="quick-answer" aria-label="Quick answer">
+  <h2>Quick Answer</h2>
+  <p>{summary}</p>
+</section>
+<style>
+  .quick-answer {
+    border-left: 3px solid #4a90d9;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    background: rgba(74, 144, 217, 0.06);
+  }
+  .quick-answer h2 { font-size: 0.9rem; text-transform: uppercase; margin: 0 0 0.4rem; }
+  .quick-answer p { margin: 0; font-weight: 500; }
+</style>

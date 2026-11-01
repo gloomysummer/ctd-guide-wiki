@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../config/site.config";
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `About ${siteConfig.siteName}`,
+    description: `About the independent, player-led ${siteConfig.siteName} project: verified unit stats, trade calculators, and factual game data.`,
+    url: `${siteConfig.siteUrl}/about/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${siteConfig.siteUrl}/about/` },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="About CTD Guide: Editorial Standards & Mission"
+  description="About CTD Guide: an independent, player-led resource for Cameraman Tower Defense delivering verified unit stats, trade calculators, and promo codes."
+  canonical="/about/"
+  jsonLd={jsonLd}
+>
+  <div class="container" style="max-width: 860px; margin: 3rem auto; padding: 0 1.5rem;">
+    <article>
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <span class="current">About</span>
+      </nav>
+
+      <h1 style="font-family: var(--font-display, sans-serif); font-size: 2.2rem; color: #f8fafc; margin: 1rem 0 0.5rem 0;">About CTD Guide & Editorial Team</h1>
+      <div class="meta-bar" style="color: #64748b; font-family: var(--font-mono, monospace); font-size: 0.85rem; margin-bottom: 2rem;">
+        <span>Editorial Desk · Independent Roblox Resource · Established November 1, 2026</span>
+      </div>
+
+      <p style="font-size: 1.05rem; color: #cbd5e1; line-height: 1.7;">
+        <strong>CTD Guide</strong> (<a href={siteConfig.siteUrl} style="color: #38bdf8;">{siteConfig.siteUrl}</a>) is an independent, community-driven database and trade analysis engine built for players of the Roblox experience <em>Cameraman Tower Defense</em> (Universe ID: 10762636904) by Aligators Games.
+      </p>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">Our Data Discipline & Verification</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        Unlike generic wiki content, CTD Guide approaches the game as a data-driven utility. We maintain a three-tier evidence verification model:
+      </p>
+      <ul style="color: #cbd5e1; line-height: 1.7; padding-left: 1.5rem;">
+        <li><strong>Roblox Official APIs</strong>: Game naming, player concurrency, visit metrics, and patch metadata are pulled directly via official Roblox Web APIs.</li>
+        <li><strong>Live Server Verification</strong>: Codes, 3-win unlock gates, DPS scaling, and solo Nightmare wave strategies are tested directly in live game matches.</li>
+        <li><strong>Trade Floor Consensus</strong>: Unit market valuations are benchmarked against Vaulted Values X logs and verified community trading records.</li>
+      </ul>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">Editorial Independence & Disclaimers</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        CTD Guide is an independent player resource. We are not affiliated with, sponsored by, or endorsed by Roblox Corporation or Aligators Games. All game characters, assets, and trademarks belong to their respective copyright owners.
+      </p>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">Contact & Editorial Inquiries</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        Have a trading value update or mechanics correction? Contact our editorial team directly at <a href={`mailto:${siteConfig.contactEmail}`} style="color: #38bdf8;">{siteConfig.contactEmail}</a> or visit our <a href="/contact/" style="color: #38bdf8;">Contact page</a>.
+      </p>
+    </article>
+  </div>
+</BaseLayout>

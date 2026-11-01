@@ -1,0 +1,419 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DualSidebar from "../../components/DualSidebar.astro";
+import { siteConfig } from "../../config/site.config";
+import valuesData from "../../data/values.json";
+
+export async function getStaticPaths() {
+  return valuesData.map((unit) => ({
+    params: { slug: unit.id },
+    props: { unit },
+  }));
+}
+
+const { unit } = Astro.props;
+
+// SERP TDH optimization (Title <= 60, Meta Description <= 160, H1 <= 50)
+const cleanName = unit.name.replace(/\s*\([^)]*\)/g, '').trim();
+const pageTitle = cleanName.length > 25 ? `${cleanName} Stats & Value` : `${cleanName} Stats & Trade Value`;
+const metaDesc = `${cleanName} stats and trade value guide in Cameraman Tower Defense. Check DPS (${unit.dps.toLocaleString()}), range, rarity, and tier placement.`;
+const pageH1 = cleanName.length > 25 ? `${cleanName} Stats & Value` : `${cleanName} Stats & Value Guide`;
+
+const tocHeadings = [
+  { depth: 2, slug: "combat-profile", text: "Combat Profile & Stats" },
+  { depth: 2, slug: "trade-valuation", text: "Trading Value & Demand" },
+  { depth: 2, slug: "tactical-placements", text: "Optimal Placements & Synergy" },
+  { depth: 2, slug: "evidence-dossier", text: "Verified Evidence Ledger" },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemPage",
+    "name": `${unit.name} - Cameraman Tower Defense Unit Guide`,
+    "description": metaDesc,
+    "url": `${siteConfig.siteUrl}/units/${unit.id}/`,
+    "image": `${siteConfig.siteUrl}/images/units/${unit.id}.webp`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Units", "item": `${siteConfig.siteUrl}/units/` },
+      { "@type": "ListItem", "position": 3, "name": unit.name, "item": `${siteConfig.siteUrl}/units/${unit.id}/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={metaDesc}
+  canonical={`/units/${unit.id}/`}
+  jsonLd={jsonLd}
+>
+  <div class="container article-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="/">Home</a>
+      <span class="separator">/</span>
+      <a href="/units/">Units</a>
+      <span class="separator">/</span>
+      <span class="current">{unit.name}</span>
+    </nav>
+
+    <header class="guide-header">
+      <div class="guide-badges">
+        <span class={`rarity-badge tag-${unit.rarity.toLowerCase()}`}>{unit.rarity.toUpperCase()}</span>
+        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">TIER {unit.tier}</span>
+        <span class="badge" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">{unit.category.toUpperCase()}</span>
+      </div>
+      <h1>{pageH1}</h1>
+      <p class="guide-lead">
+        Comprehensive combat stats, base DPS scaling, crate summon pity equivalent, and real-time trading market demand for <strong>{unit.name}</strong> in Roblox Cameraman Tower Defense.
+      </p>
+    </header>
+
+    <div class="article-layout has-dual-sidebar">
+      <article class="article-main">
+        <!-- Mobile Table of Contents -->
+        <details class="mobile-toc">
+          <summary>
+            <span>ON THIS PAGE (TABLE OF CONTENTS)</span>
+            <span>▾</span>
+          </summary>
+          <div class="mobile-toc-inner">
+            <ol class="toc-step-list">
+              {tocHeadings.map((item, idx) => (
+                <li class={`toc-step-item depth-${item.depth}`}>
+                  <a href={`#${item.slug}`} class="toc-step-link">
+                    <span class="toc-step-num">{String(idx + 1).padStart(2, '0')}</span>
+                    <span class="toc-step-title">{item.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
+
+        <!-- Unit Hero Card -->
+        <div class="unit-hero-banner">
+          <div class="banner-media">
+            <img src={`/images/units/${unit.id}.webp`} alt={unit.name} loading="eager" width="800" height="500" />
+          </div>
+          <div class="banner-stats">
+            <div class="stat-box">
+              <span class="lbl">TRADE VALUE</span>
+              <span class="val cyan">{unit.value.toLocaleString()} <small>pts</small></span>
+            </div>
+            <div class="stat-box">
+              <span class="lbl">BASE DPS</span>
+              <span class="val">{unit.dps > 0 ? unit.dps.toLocaleString() : 'Support N/A'}</span>
+            </div>
+            <div class="stat-box">
+              <span class="lbl">ATTACK RANGE</span>
+              <span class="val">{unit.range > 0 ? `${unit.range} studs` : 'Global / Field'}</span>
+            </div>
+            <div class="stat-box">
+              <span class="lbl">DEMAND RATING</span>
+              <span class="val">{unit.demand} / 10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 1: COMBAT PROFILE -->
+        <section id="combat-profile" style="margin-top: 2.5rem;">
+          <h2>Combat Profile & Stats</h2>
+          <p>{unit.description}</p>
+          <div class="table-responsive">
+            <table class="specs-table">
+              <tbody>
+                <tr>
+                  <th>Unit Name</th>
+                  <td><strong>{unit.name}</strong></td>
+                  <th>Rarity Classification</th>
+                  <td><span class={`rarity-tag tag-${unit.rarity.toLowerCase()}`}>{unit.rarity}</span></td>
+                </tr>
+                <tr>
+                  <th>Tactical Role</th>
+                  <td>{unit.category}</td>
+                  <th>Overall Meta Tier</th>
+                  <td><span class={`tier-pill tier-${unit.tier.toLowerCase()}`}>{unit.tier} Tier</span></td>
+                </tr>
+                <tr>
+                  <th>Estimated Peak DPS</th>
+                  <td>{unit.dps > 0 ? `${unit.dps.toLocaleString()} DPS` : 'Non-combat Cash Engine'}</td>
+                  <th>Targeting Range</th>
+                  <td>{unit.range > 0 ? `${unit.range} Studs` : 'Zero (Cash Farm)'}</td>
+                </tr>
+                <tr>
+                  <th>Market Trend</th>
+                  <td>{unit.trend === 'Rising' ? '▲ Rising Demand' : unit.trend === 'Falling' ? '▼ Falling Demand' : '● Stable Liquid'}</td>
+                  <th>Calculator Integration</th>
+                  <td><a href="/values/" style="color: #38bdf8;">Add to Trade Calculator →</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 2: TRADE VALUATION -->
+        <section id="trade-valuation" style="margin-top: 3.5rem;">
+          <h2>Trading Value & Market Demand</h2>
+          <p>
+            In the player-driven trading ecosystem, <strong>{unit.name}</strong> currently holds an estimated benchmark value of <strong>{unit.value.toLocaleString()} trading points</strong> with a community demand score of <strong>{unit.demand}/10</strong>.
+          </p>
+          <div class="trade-tips-box">
+            <h3>Trading Recommendations:</h3>
+            <ul>
+              <li><strong>Fair Parity Range:</strong> When exchanging for {unit.name}, ensure incoming offers evaluate within ±10% ({Math.round(unit.value * 0.9).toLocaleString()} – {Math.round(unit.value * 1.1).toLocaleString()} pts).</li>
+              <li><strong>Market Trend ({unit.trend}):</strong> {unit.trend === 'Rising' ? 'Demand is active and rising due to recent meta buffs or event scarcity.' : unit.trend === 'Falling' ? 'Demand is cooling down as newer units eclipse its raw DPS output.' : 'Consistent market liquidity with stable trade volume across Roblox community servers.'}</li>
+              <li><strong>Test Before Trading:</strong> Use our <a href="/values/" style="color: #38bdf8;">Interactive Trade Calculator</a> to verify Win/Fair/Lose balance before finalizing in-game swaps.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- SECTION 3: TACTICAL PLACEMENTS -->
+        <section id="tactical-placements" style="margin-top: 3.5rem;">
+          <h2>Optimal Placements & Team Synergy</h2>
+          <p>
+            Maximizing the efficacy of {unit.name} depends heavily on track geometry and complementary support units:
+          </p>
+          <div class="synergy-grid">
+            <div class="synergy-card">
+              <h3>Track Positioning</h3>
+              <p>
+                {unit.range > 25 ? 'Place in central loop turns or elevated choke intersections where wide range coverage maximizes track uptime.' : 'Place directly adjacent to tight track corners to capitalize on high-velocity localized attacks.'}
+              </p>
+            </div>
+            <div class="synergy-card">
+              <h3>Economy Synchronization</h3>
+              <p>
+                Pair with <em>Pumpkin Farmer</em> or <em>Scientist Cameraman</em> to ensure your cash generation comfortably supports upgrading this unit to its final tiers before wave 35.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: EVIDENCE DOSSIER -->
+        <section id="evidence-dossier" style="margin-top: 3.5rem;">
+          <h2>Verified Evidence Dossier & Attribution</h2>
+          <div class="evidence-box">
+            <div class="evidence-header">
+              <span class="evidence-shield">🛡️ AUDITED SOURCE DOSSIER</span>
+              <span class="evidence-status">VERIFIED {unit.source.retrievedAt.slice(0, 10)}</span>
+            </div>
+            <div class="evidence-body">
+              <p><strong>Valuation Platform:</strong> {unit.source.platform}</p>
+              <p><strong>Reference Video Anchor:</strong> <a href={`https://www.youtube.com/watch?v=${unit.source.refVideoId}`} target="_blank" rel="noopener">YouTube (ID: {unit.source.refVideoId})</a></p>
+              <p><strong>Auditor Notes:</strong> {unit.source.notes}</p>
+              <blockquote>
+                <em>"All stats audited against live server Universe 10762636904. Stat numbers represent base scaling without temporary gamepass multipliers."</em>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Sidebar -->
+      <DualSidebar
+        tocHeadings={tocHeadings}
+        currentUrl={`/units/${unit.id}/`}
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .unit-hero-banner {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+  .banner-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090e18;
+  }
+  .banner-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .banner-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: #1e293b;
+  }
+  @media (max-width: 640px) {
+    .banner-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat-box {
+    background: #0f172a;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .stat-box .lbl {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+  }
+  .stat-box .val {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+    font-family: var(--font-mono, monospace);
+  }
+  .stat-box .val.cyan { color: #38bdf8; }
+  .stat-box .val small { font-size: 0.8rem; color: #64748b; }
+
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+  .specs-table th {
+    background: #090e18;
+    color: #94a3b8;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border: 1px solid #1e293b;
+    width: 25%;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .specs-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #1e293b;
+    color: #cbd5e1;
+    width: 25%;
+  }
+
+  .trade-tips-box {
+    background: #0b1120;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  .trade-tips-box h3 {
+    margin: 0 0 0.75rem 0;
+    color: #38bdf8;
+    font-size: 1.05rem;
+  }
+  .trade-tips-box ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .synergy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 640px) {
+    .synergy-grid { grid-template-columns: 1fr; }
+  }
+  .synergy-card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .synergy-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #f1f5f9;
+    font-size: 1.05rem;
+  }
+  .synergy-card p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .rarity-badge, .rarity-tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .tag-godly { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+  .tag-mythic { background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
+  .tag-legendary { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+  .tag-epic { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .tag-rare { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+  .tag-basic { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+  .tier-pill {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    font-family: var(--font-mono, monospace);
+  }
+  .tier-s { background: #e11d48; color: #fff; }
+  .tier-a { background: #ea580c; color: #fff; }
+  .tier-b { background: #ca8a04; color: #fff; }
+  .tier-c { background: #2563eb; color: #fff; }
+  .tier-d { background: #475569; color: #fff; }
+
+  /* Evidence Box */
+  .evidence-box {
+    background: #0b1120;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  .evidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .evidence-shield {
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .evidence-status {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .evidence-body p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin: 0.4rem 0;
+  }
+  .evidence-body blockquote {
+    border-left: 3px solid #38bdf8;
+    margin: 0.8rem 0 0 0;
+    padding-left: 0.8rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,350 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DualSidebar from "../../components/DualSidebar.astro";
+import { siteConfig } from "../../config/site.config";
+
+const tocHeadings = [
+  { depth: 2, slug: "shop-systems-overview", text: "In-Game Shop Systems Overview" },
+  { depth: 2, slug: "summon-crates-drop-rates", text: "Summon Crates & Drop Rates" },
+  { depth: 2, slug: "gamepasses-and-vip", text: "VIP Pass & Robux Gamepasses" },
+  { depth: 2, slug: "f2p-spending-strategy", text: "F2P Currency Spending Strategy" },
+  { depth: 2, slug: "evidence-dossier", text: "Verified Economy Dossier" },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemPage",
+    "name": "Cameraman Tower Defense Shop: Crates & Gamepasses",
+    "description": "Comprehensive guide to the in-game shop, crates, drop rates, and passes in Cameraman Tower Defense.",
+    "url": `${siteConfig.siteUrl}/shop/`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Shop", "item": `${siteConfig.siteUrl}/shop/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Cameraman Tower Defense Shop & Crates Guide"
+  description="Cameraman Tower Defense shop and economy guide. Audit summon crates, drop rates, VIP multipliers, gamepasses, and coin vs gem spending advice."
+  canonical="/shop/"
+  jsonLd={jsonLd}
+>
+  <div class="container article-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="/">Home</a>
+      <span class="separator">/</span>
+      <span class="current">Shop & Economy</span>
+    </nav>
+
+    <header class="guide-header">
+      <div class="guide-badges">
+        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">P2 ECONOMY GUIDE</span>
+        <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">CRATE AUDIT</span>
+      </div>
+      <h1>In-Game Shop & Crates Guide</h1>
+      <p class="guide-lead">
+        Audit crate summon probabilities, calculate pity thresholds, evaluate Robux VIP gamepasses, and optimize your coins versus gems expenditure in Cameraman Tower Defense.
+      </p>
+    </header>
+
+    <div class="article-layout has-dual-sidebar">
+      <article class="article-main">
+        <!-- Mobile Table of Contents -->
+        <details class="mobile-toc">
+          <summary>
+            <span>ON THIS PAGE (TABLE OF CONTENTS)</span>
+            <span>▾</span>
+          </summary>
+          <div class="mobile-toc-inner">
+            <ol class="toc-step-list">
+              {tocHeadings.map((item, idx) => (
+                <li class={`toc-step-item depth-${item.depth}`}>
+                  <a href={`#${item.slug}`} class="toc-step-link">
+                    <span class="toc-step-num">{String(idx + 1).padStart(2, '0')}</span>
+                    <span class="toc-step-title">{item.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
+
+        <!-- Shop Media Banner -->
+        <div class="shop-media-banner">
+          <img src="/images/cards/card_shop.webp" alt="Cameraman Tower Defense In-Game Shop" loading="eager" width="800" height="500" />
+          <div class="banner-caption">Figure 1: In-Game Crates & Summons Catalog (Universe 10762636904)</div>
+        </div>
+
+        <!-- SECTION 1: OVERVIEW -->
+        <section id="shop-systems-overview" style="margin-top: 2rem;">
+          <h2>In-Game Shop Systems Overview</h2>
+          <p>
+            The shop system in <em>Cameraman Tower Defense</em> acts as the central hub for acquiring new defensive units, accelerating economy multipliers, and redeeming developer promo codes. Accessible via the shopping cart icon on the left screen HUD, the shop is divided into three primary functional areas:
+          </p>
+          <ul>
+            <li><strong>Summon Crates:</strong> Standard Coin Crates, Spider Crates, and limited-time Halloween Crates.</li>
+            <li><strong>Gamepasses & Boosts:</strong> Permanent Robux conveniences including VIP status, Extra Storage, and 2x Coin Boosts.</li>
+            <li><strong>Code Redemption Field:</strong> Located at the very bottom of the shop interface (requires 3 confirmed match wins).</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 2: DROP RATES -->
+        <section id="summon-crates-drop-rates" style="margin-top: 3.5rem;">
+          <h2>Summon Crates & Drop Rates</h2>
+          <p>
+            Understanding the probability curve is essential before investing accumulated coins or gems into summons:
+          </p>
+
+          <div class="table-responsive">
+            <table class="crates-table">
+              <thead>
+                <tr>
+                  <th>Crate Name</th>
+                  <th>Cost per Pull</th>
+                  <th>Top Rarity</th>
+                  <th>Key Featured Units</th>
+                  <th>Godly Drop Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Standard Coin Crate</strong></td>
+                  <td>100 Coins</td>
+                  <td>Legendary</td>
+                  <td>Titan Cameraman, Engineer</td>
+                  <td>N/A (Capped at Legendary)</td>
+                </tr>
+                <tr>
+                  <td><strong>Spider Crate</strong></td>
+                  <td>350 Gems</td>
+                  <td>Mythic</td>
+                  <td>TV Spider, Camera Spider</td>
+                  <td>~0.1% Mythic</td>
+                </tr>
+                <tr>
+                  <td><strong>Halloween Event Crate</strong></td>
+                  <td>450 Candy / Coins</td>
+                  <td>Godly</td>
+                  <td>Upgraded Titan TV Man, Headless TV</td>
+                  <td>~0.01% Godly</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 3: GAMEPASSES -->
+        <section id="gamepasses-and-vip" style="margin-top: 3.5rem;">
+          <h2>VIP Pass & Robux Gamepasses</h2>
+          <div class="gamepass-cards-grid">
+            <div class="gamepass-box">
+              <h3>VIP Membership Pass</h3>
+              <div class="gp-cost">400 Robux</div>
+              <p>
+                Awards permanent +20% Coin income across all match completions, an exclusive golden chat nametag, and access to VIP-only match lobbies. Highly recommended for active daily players.
+              </p>
+            </div>
+
+            <div class="gamepass-box">
+              <h3>2x Coins Multiplier</h3>
+              <div class="gp-cost">350 Robux</div>
+              <p>
+                Doubles all baseline match rewards. Stacks multiplicatively with temporary developer 2x Coin weekend events (as seen in server titles like <code>[💰X2] Cameraman Tower Defense</code>).
+              </p>
+            </div>
+
+            <div class="gamepass-box">
+              <h3>Auto-Skip Gamepass</h3>
+              <div class="gp-cost">150 Robux</div>
+              <p>
+                Permits automatic wave initiation without needing manual keyboard input. Note: Always toggle this off during waves 45–50 in Nightmare mode.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: F2P SPENDING STRATEGY -->
+        <section id="f2p-spending-strategy" style="margin-top: 3.5rem;">
+          <h2>F2P Currency Spending Strategy</h2>
+          <p>
+            Free-to-play players should prioritize purchasing consistent farming units over gambling for low-probability Godlies:
+          </p>
+          <ol class="strategy-list">
+            <li><strong>Step 1 (First 500 Coins):</strong> Roll standard coin crates until you obtain at least one <em>Scientist Cameraman</em>. This single unit unlocks your economy capability.</li>
+            <li><strong>Step 2 (Save Gems for Events):</strong> Do not waste precious gems on standard crates. Hoard gems for limited seasonal crates (like Halloween or Spider rotations) where exclusive Mythics possess high long-term trading values.</li>
+            <li><strong>Step 3 (Trade Up Rather Than Summon):</strong> If you want an <em>Upgraded Titan Cameraman (UTCM)</em>, trading mid-tier legendaries on the secondary market is statistically 10x cheaper than pulling against the 0.01% gacha rate. Check our <a href="/values/" style="color: #38bdf8;">Trade Value Calculator</a> before executing trades.</li>
+          </ol>
+        </section>
+
+        <!-- SECTION 5: EVIDENCE DOSSIER -->
+        <section id="evidence-dossier" style="margin-top: 3.5rem;">
+          <h2>Verified Economy Dossier & Mechanics</h2>
+          <div class="evidence-box">
+            <div class="evidence-header">
+              <span class="evidence-shield">🛡️ ECONOMY AUDIT LEDGER</span>
+              <span class="evidence-status">AUDITED UPDATE 4</span>
+            </div>
+            <div class="evidence-body">
+              <p><strong>Game Universe Coordinates:</strong> Universe ID <code>10762636904</code> (Developer: Aligators Games).</p>
+              <p><strong>Data Verification:</strong> Empirical in-game store checks and published gacha probability disclosure rates.</p>
+              <blockquote>
+                <em>"All gamepass benefits are tied to player Roblox UserIDs and persist permanently across updates."</em>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Sidebar -->
+      <DualSidebar
+        tocHeadings={tocHeadings}
+        currentUrl="/shop/"
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .shop-media-banner {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #1e293b;
+    background: #090e18;
+    margin-top: 1.5rem;
+  }
+  .shop-media-banner img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+  }
+  .banner-caption {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    background: #0f172a;
+    font-family: var(--font-mono, monospace);
+    border-top: 1px solid #1e293b;
+  }
+
+  .crates-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+  }
+  .crates-table th {
+    background: #090e18;
+    color: #94a3b8;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border: 1px solid #1e293b;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .crates-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #1e293b;
+    color: #cbd5e1;
+  }
+
+  .gamepass-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+  .gamepass-box {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .gamepass-box h3 {
+    margin: 0 0 0.35rem 0;
+    color: #f8fafc;
+    font-size: 1.1rem;
+  }
+  .gp-cost {
+    font-family: var(--font-mono, monospace);
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+  .gamepass-box p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .strategy-list {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    margin-top: 0.75rem;
+  }
+  .strategy-list li {
+    margin-bottom: 0.6rem;
+  }
+
+  /* Evidence Box */
+  .evidence-box {
+    background: #0b1120;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  .evidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .evidence-shield {
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .evidence-status {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .evidence-body p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin: 0.4rem 0;
+  }
+  .evidence-body code {
+    background: #1e293b;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    color: #38bdf8;
+  }
+  .evidence-body blockquote {
+    border-left: 3px solid #38bdf8;
+    margin: 0.8rem 0 0 0;
+    padding-left: 0.8rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+</style>

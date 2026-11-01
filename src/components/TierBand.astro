@@ -1,0 +1,98 @@
+---
+import type { EnrichedWeapon, TierBand as TierBandType } from "../lib/tier-compute";
+
+interface Props {
+  band: TierBandType;
+  pillClass: string;
+  title: string;
+  description: string;
+  weapons: EnrichedWeapon[];
+}
+
+const { band, pillClass, title, description, weapons } = Astro.props;
+---
+
+<div class="tier-band-block" style="margin-bottom: 2.5rem; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-card); overflow: hidden;">
+  <div class="tier-band-header" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; gap: 0.75rem;">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <span class={`tier-pill ${pillClass}`} style="font-size: 0.85rem; padding: 4px 12px;">{band} TIER</span>
+      <h3 style="margin: 0; font-size: 1.15rem; color: var(--ink);">{title}</h3>
+    </div>
+    <span style="font-size: 0.85rem; color: var(--muted);">{weapons.length} {weapons.length === 1 ? 'Weapon' : 'Weapons'}</span>
+  </div>
+
+  <div class="tier-band-body" style="padding: 1.25rem;">
+    <p style="margin: 0 0 1rem 0; font-size: 0.92rem; color: var(--muted); line-height: 1.5;">
+      {description}
+    </p>
+
+    {weapons.length > 0 ? (
+      <div class="table-responsive">
+        <table class="data-table" style="margin: 0;">
+          <thead>
+            <tr>
+              <th>Weapon</th>
+              <th>Rarity</th>
+              <th>Acquisition Route</th>
+              <th>Drop Rate</th>
+              <th>Pity Guarantee</th>
+              <th>AD Score</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {weapons.map((w) => (
+              <tr>
+                <td>
+                  <a href={`/weapons/${w.slug}/`} style="font-weight: 600; color: var(--ink); text-decoration: none;">
+                    {w.name}
+                  </a>
+                </td>
+                <td>
+                  {w.rarity ? (
+                    <span class="badge gold">{w.rarity}</span>
+                  ) : (
+                    <span style="font-size: 0.8rem; color: var(--muted);">Featured</span>
+                  )}
+                </td>
+                <td>
+                  <span style="font-size: 0.88rem;">{w.acquisition.mode}</span>
+                </td>
+                <td>
+                  {w.acquisition.dropRatePercent != null ? (
+                    <strong>{w.acquisition.dropRatePercent}%</strong>
+                  ) : (
+                    <span style="color: var(--muted);">Standard</span>
+                  )}
+                </td>
+                <td>
+                  {w.acquisition.pity?.runs ? (
+                    <span>{w.acquisition.pity.runs} Runs</span>
+                  ) : w.rarityPitySpins != null ? (
+                    <span>{w.rarityPitySpins} Spins</span>
+                  ) : (
+                    <span style="color: var(--muted);">Drop-only</span>
+                  )}
+                </td>
+                <td>
+                  <span style="font-family: var(--font-mono, monospace); font-weight: 700; color: var(--accent);">
+                    {w.tierMetric.availabilityIndex}
+                  </span>
+                </td>
+                <td>
+                  <a href={`/weapons/${w.slug}/`} class="btn btn-secondary" style="font-size: 0.78rem; padding: 4px 10px;">
+                    Dossier →
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <p style="margin: 0; font-size: 0.88rem; color: var(--muted); font-style: italic;">
+        No weapons currently documented in this tier band.
+      </p>
+    )}
+  </div>
+</div>

@@ -1,0 +1,338 @@
+[
+  {
+    "file": "public/images/roblox_icon.webp",
+    "sourceChannel": "Roblox Official API",
+    "sourceUrl": "https://tr.rbxcdn.com/180DAY-6310045d94ff1c3588b28610f167a5bb/512/512/Image/Png/noFilter",
+    "verified": true
+  },
+  {
+    "file": "public/images/screenshots/scene_0.webp",
+    "sourceChannel": "Roblox Official API Thumbnails",
+    "sourceUrl": "https://tr.rbxcdn.com/180DAY-79397bc7face69991021c23a891347b1/768/432/Image/Png/noFilter",
+    "verified": true
+  },
+  {
+    "file": "public/images/screenshots/scene_1.webp",
+    "sourceChannel": "Roblox Official API Thumbnails",
+    "sourceUrl": "https://tr.rbxcdn.com/180DAY-aaf489886a7632f5928cf179b121b3a0/768/432/Image/Png/noFilter",
+    "verified": true
+  },
+  {
+    "file": "public/images/screenshots/scene_2.webp",
+    "sourceChannel": "Roblox Official API Thumbnails",
+    "sourceUrl": "https://tr.rbxcdn.com/180DAY-390bc4d0b7b70cf2cc7227d172b8e82f/768/432/Image/Png/noFilter",
+    "verified": true
+  },
+  {
+    "file": "public/images/screenshots/scene_3.webp",
+    "sourceChannel": "Roblox Official API Thumbnails",
+    "sourceUrl": "https://tr.rbxcdn.com/180DAY-4a0e2535bcf79dfc637f852af7bf5a2e/768/432/Image/Png/noFilter",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_values.webp",
+    "sourceChannel": "YouTube Verified (7QBiS599euI - Vaulted Values X Value List)",
+    "sourceUrl": "https://www.youtube.com/watch?v=7QBiS599euI",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_tier_list.webp",
+    "sourceChannel": "YouTube Verified (zASCkcH9SEI - Vaulted Values X Tier List)",
+    "sourceUrl": "https://www.youtube.com/watch?v=zASCkcH9SEI",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_units.webp",
+    "sourceChannel": "YouTube Verified (g-XI7aSS9Mo - Halloween Update & Units)",
+    "sourceUrl": "https://www.youtube.com/watch?v=g-XI7aSS9Mo",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_nightmare.webp",
+    "sourceChannel": "YouTube Verified (90Qol2O2TjI - Cero Solo Nightmare Mode Tutorial)",
+    "sourceUrl": "https://www.youtube.com/watch?v=90Qol2O2TjI",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_discord.webp",
+    "sourceChannel": "YouTube Verified (PXzBzNPSOjo - Trading DEV Units Community Hub)",
+    "sourceUrl": "https://www.youtube.com/watch?v=PXzBzNPSOjo",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_executioner.webp",
+    "sourceChannel": "YouTube Verified (b3KnkQCX1zE - Devexx Beat Nightmare Mode)",
+    "sourceUrl": "https://www.youtube.com/watch?v=b3KnkQCX1zE",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_uttvm.webp",
+    "sourceChannel": "YouTube Verified (Z2AzGkbFE8c - Robzi Halloween Max Difficulty)",
+    "sourceUrl": "https://www.youtube.com/watch?v=Z2AzGkbFE8c",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_utcm.webp",
+    "sourceChannel": "YouTube Verified (FathIYwv7BY - CruffyTD Noob to Pro UTCM Run)",
+    "sourceUrl": "https://www.youtube.com/watch?v=FathIYwv7BY",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_chaos.webp",
+    "sourceChannel": "YouTube Verified (9Uy21InVSL4 - Blitz Jack Noob to Pro Day 5)",
+    "sourceUrl": "https://www.youtube.com/watch?v=9Uy21InVSL4",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_shop.webp",
+    "sourceChannel": "YouTube Verified (qvm57nKAOGA - Cero Solo Nightmare 2x Health)",
+    "sourceUrl": "https://www.youtube.com/watch?v=qvm57nKAOGA",
+    "verified": true
+  },
+  {
+    "file": "public/images/cards/card_codes.webp",
+    "sourceChannel": "Roblox Official Scene + HUD Overlay",
+    "sourceUrl": "https://tr.rbxcdn.com/180DAY-79397bc7face69991021c23a891347b1/768/432/Image/Png/noFilter",
+    "verified": true
+  },
+  {
+    "file": "public/og-cover.jpg",
+    "sourceChannel": "CTD Custom Asset Compositor",
+    "sourceUrl": "https://ctd-guide.wiki",
+    "verified": true
+  },
+  {
+    "file": "public/images/hero/hero_bg.webp",
+    "sourceChannel": "Roblox Official Scene + Lens Vignette",
+    "sourceUrl": "https://tr.rbxcdn.com/180DAY-390bc4d0b7b70cf2cc7227d172b8e82f/768/432/Image/Png/noFilter",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/upgraded-titan-tv-man.webp",
+    "sourceChannel": "Unit Card Compositor (Godly Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/upgraded-titan-tv-man/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/upgraded-titan-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Godly Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/upgraded-titan-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/upgraded-titan-speakerman.webp",
+    "sourceChannel": "Unit Card Compositor (Godly Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/upgraded-titan-speakerman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/chaos-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Mythic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/chaos-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/executioner-tv-man.webp",
+    "sourceChannel": "Unit Card Compositor (Mythic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/executioner-tv-man/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/headless-tv-man.webp",
+    "sourceChannel": "Unit Card Compositor (Mythic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/headless-tv-man/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/tv-spider.webp",
+    "sourceChannel": "Unit Card Compositor (Mythic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/tv-spider/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/upgraded-brute-prototype.webp",
+    "sourceChannel": "Unit Card Compositor (Mythic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/upgraded-brute-prototype/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/upgraded-videotapper-prototype.webp",
+    "sourceChannel": "Unit Card Compositor (Mythic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/upgraded-videotapper-prototype/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/titan-cinemaman.webp",
+    "sourceChannel": "Unit Card Compositor (Mythic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/titan-cinemaman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/engineer-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/engineer-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/glitch-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/glitch-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/dragon-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/dragon-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/jetpack-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/jetpack-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/werewolf-speakerman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/werewolf-speakerman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/clown-speakerman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/clown-speakerman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/titan-tv-man.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/titan-tv-man/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/titan-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/titan-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/titan-speakerman.webp",
+    "sourceChannel": "Unit Card Compositor (Legendary Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/titan-speakerman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/pumpkin-farmer.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/pumpkin-farmer/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/large-scientist-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/large-scientist-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/camera-repair-drone.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/camera-repair-drone/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/scientist-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/scientist-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/tv-woman.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/tv-woman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/speakerwoman.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/speakerwoman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/laser-cameraman-car.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/laser-cameraman-car/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/camera-spider.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/camera-spider/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/speaker-spider.webp",
+    "sourceChannel": "Unit Card Compositor (Epic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/speaker-spider/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/ninja-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Rare Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/ninja-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/dark-camerawoman.webp",
+    "sourceChannel": "Unit Card Compositor (Rare Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/dark-camerawoman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/camera-helicopter.webp",
+    "sourceChannel": "Unit Card Compositor (Rare Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/camera-helicopter/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/large-tv-man.webp",
+    "sourceChannel": "Unit Card Compositor (Rare Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/large-tv-man/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/large-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Rare Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/large-cameraman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/large-speakerman.webp",
+    "sourceChannel": "Unit Card Compositor (Rare Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/large-speakerman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/car-speakerman.webp",
+    "sourceChannel": "Unit Card Compositor (Rare Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/car-speakerman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/tv-man.webp",
+    "sourceChannel": "Unit Card Compositor (Basic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/tv-man/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/speakerman.webp",
+    "sourceChannel": "Unit Card Compositor (Basic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/speakerman/",
+    "verified": true
+  },
+  {
+    "file": "public/images/units/brown-cameraman.webp",
+    "sourceChannel": "Unit Card Compositor (Basic Rarity)",
+    "sourceUrl": "https://ctd-guide.wiki/units/brown-cameraman/",
+    "verified": true
+  }
+]

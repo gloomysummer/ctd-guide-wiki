@@ -1,0 +1,56 @@
+{
+  "gameName": "[💰X2] Cameraman Tower Defense",
+  "platform": "Roblox",
+  "universeId": "10762636904",
+  "placeId": "132929771812494",
+  "fetchedAt": "2026-11-01T06:46:37.433971+00:00",
+  "metadata": {
+    "name": "[💰X2] Cameraman Tower Defense",
+    "namingNote": "游戏名随版本频繁改名，必须从 API name 字段动态读取，严禁写死",
+    "developer": "Aligators Games (Group 1111394813)",
+    "creatorGroup": "1111394813",
+    "genre_l1": "Strategy",
+    "genre_l2": "Tower Defense",
+    "created": "2026-08-26T16:15:32.992Z",
+    "publicRelease": "2026-10-01",
+    "maxPlayers": 30,
+    "officialDescription": "📸 Cameraman Tower Defense ⚔️\n\n👀 Legends came back..\n\n🌟 Step on a platform to start a match!\n⚔️ Place cameraman and powerful units to fight back against invading toilets!\n🏆 Beat waves to win\n\n❗ All assets was made by us\n\nMade by aibat303e and iop_dev!"
+  },
+  "liveStats": {
+    "fetchedAt": "2026-11-01T06:46:37.433971+00:00",
+    "playing": 40027,
+    "peak24h": null,
+    "visits": 69798144,
+    "favoritedCount": 220451,
+    "upVotes": 230817,
+    "downVotes": 3295,
+    "rating": 0.986,
+    "averageSessionMinutes": 13.5
+  },
+  "stats": {
+    "fetchedAt": "2026-11-01T06:46:37.433971+00:00",
+    "playing": 40027,
+    "peak24h": null,
+    "visits": 69798144,
+    "favoritedCount": 220451,
+    "upVotes": 230817,
+    "downVotes": 3295,
+    "rating": 0.986,
+    "averageSessionMinutes": 13.5
+  },
+  "systemRequirements": {},
+  "achievements": [],
+  "announcements": [],
+  "fandomData": {},
+  "searchKeywords": [],
+  "media": {
+    "icon": "https://tr.rbxcdn.com/180DAY-6310045d94ff1c3588b28610f167a5bb/512/512/Image/Png/noFilter",
+    "thumbnails": [
+      "https://tr.rbxcdn.com/180DAY-79397bc7face69991021c23a891347b1/768/432/Image/Png/noFilter",
+      "https://tr.rbxcdn.com/180DAY-aaf489886a7632f5928cf179b121b3a0/768/432/Image/Png/noFilter",
+      "https://tr.rbxcdn.com/180DAY-390bc4d0b7b70cf2cc7227d172b8e82f/768/432/Image/Png/noFilter",
+      "https://tr.rbxcdn.com/180DAY-4a0e2535bcf79dfc637f852af7bf5a2e/768/432/Image/Png/noFilter"
+    ]
+  },
+  "systems": {}
+}

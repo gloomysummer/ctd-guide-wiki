@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "fetchedAt": "2026-10-14T00:00:00Z",
+  "gameName": "Game Name Example",
+  "codes": [
+    {
+      "code": "EXAMPLE_PROMO_CODE",
+      "rewards": "100x Lucky Spins, 50,000 Coins",
+      "levelReq": "None",
+      "status": "active",
+      "firstSeen": "2026-10-01",
+      "lastVerified": "2026-10-14",
+      "sourceUrl": "https://discord.gg/official-example",
+      "sourceType": "T1_OFFICIAL_DISCORD"
+    },
+    {
+      "code": "EXPIRED_BETA_CODE",
+      "rewards": "20 Gems",
+      "levelReq": "Level 10+",
+      "status": "expired",
+      "firstSeen": "2026-09-01",
+      "lastVerified": "2026-10-01",
+      "expiredReason": "Expired in Update 2",
+      "sourceUrl": "https://www.ign.com/wikis/example",
+      "sourceType": "T2_EDITORIAL_WIKI"
+    }
+  ]
+}

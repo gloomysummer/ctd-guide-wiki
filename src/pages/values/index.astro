@@ -1,0 +1,917 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DualSidebar from "../../components/DualSidebar.astro";
+import { siteConfig } from "../../config/site.config";
+import valuesData from "../../data/values.json";
+
+const tocHeadings = [
+  { depth: 2, slug: "trade-calculator", text: "Interactive Trade Calculator" },
+  { depth: 2, slug: "value-table", text: "Unit Trading Value Table" },
+  { depth: 2, slug: "fairness-methodology", text: "Fairness Band Methodology" },
+  { depth: 2, slug: "evidence-dossier", text: "Verified Evidence Dossier" },
+];
+
+const totalUnits = valuesData.length;
+const godlyUnits = valuesData.filter(u => u.rarity === 'Godly').length;
+const mythicUnits = valuesData.filter(u => u.rarity === 'Mythic').length;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Cameraman Tower Defense Trade Calculator & Value List",
+    "applicationCategory": "GameUtility",
+    "operatingSystem": "Web",
+    "url": `${siteConfig.siteUrl}/values/`,
+    "description": "Interactive trade calculator and trading value directory for Cameraman Tower Defense on Roblox.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Values", "item": `${siteConfig.siteUrl}/values/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Cameraman Tower Defense Value List & Calculator"
+  description="Authoritative Cameraman Tower Defense value list and trade calculator. Compare unit values, compute Win, Fair, or Lose margins, and inspect demand."
+  canonical="/values/"
+  jsonLd={jsonLd}
+>
+  <div class="container article-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="/">Home</a>
+      <span class="separator">/</span>
+      <span class="current">Values</span>
+    </nav>
+
+    <header class="guide-header">
+      <div class="guide-badges">
+        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">P0 INTERACTIVE TOOL</span>
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">UTTVM UPDATE 4 INDEX</span>
+        <span class="badge" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">{totalUnits} UNITS AUDITED</span>
+      </div>
+      <h1>Cameraman Tower Defense Value List & Calculator</h1>
+      <p class="guide-lead">
+        Audit real-time trading values, calculate Win / Fair / Lose trade balance across 4 offer slots, and reference demand ratings for all 38 units in Roblox Cameraman Tower Defense.
+      </p>
+    </header>
+
+    <div class="article-layout has-dual-sidebar">
+      <article class="article-main">
+        <!-- Mobile Table of Contents -->
+        <details class="mobile-toc">
+          <summary>
+            <span>ON THIS PAGE (TABLE OF CONTENTS)</span>
+            <span>▾</span>
+          </summary>
+          <div class="mobile-toc-inner">
+            <ol class="toc-step-list">
+              {tocHeadings.map((item, idx) => (
+                <li class={`toc-step-item depth-${item.depth}`}>
+                  <a href={`#${item.slug}`} class="toc-step-link">
+                    <span class="toc-step-num">{String(idx + 1).padStart(2, '0')}</span>
+                    <span class="toc-step-title">{item.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
+
+        <!-- SECTION 1: INTERACTIVE TRADE CALCULATOR -->
+        <section id="trade-calculator" class="calc-section">
+          <div class="section-title-wrap">
+            <h2>Interactive 4-Slot Trade Calculator</h2>
+            <p class="section-desc">Select units for your side and their side. The calculator sums points, measures net difference, and evaluates the trade against the ±10% fairness band.</p>
+          </div>
+
+          <div class="calculator-card">
+            <!-- Verdict Banner -->
+            <div id="calc-verdict-banner" class="verdict-banner status-even">
+              <div class="verdict-status" id="verdict-text">EQUAL / FAIR (±0 PTS)</div>
+              <div class="verdict-diff" id="verdict-sub">Add units to both sides to compute trade equity</div>
+            </div>
+
+            <div class="calc-grid">
+              <!-- YOUR OFFER (LEFT) -->
+              <div class="calc-column side-yours">
+                <div class="column-header">
+                  <h3>Your Offer (Give)</h3>
+                  <div class="side-total-badge"><span id="your-total">0</span> pts</div>
+                </div>
+                <div class="slots-container" id="your-slots">
+                  {[0, 1, 2, 3].map((slotIdx) => (
+                    <div class="slot-row" data-side="your" data-slot={slotIdx}>
+                      <span class="slot-number">#{slotIdx + 1}</span>
+                      <select class="unit-select" aria-label={`Your Slot ${slotIdx + 1} Unit`}>
+                        <option value="">-- Empty Slot --</option>
+                        {valuesData.map((u) => (
+                          <option value={u.id} data-val={u.value} data-rarity={u.rarity}>
+                            {u.name} ({u.rarity} - {u.value.toLocaleString()} pts)
+                          </option>
+                        ))}
+                      </select>
+                      <input type="number" class="unit-qty" min="1" max="10" value="1" aria-label="Quantity" />
+                      <div class="slot-subtotal">0</div>
+                    </div>
+                  ))}
+                </div>
+                <button type="button" class="btn-clear-side" id="clear-your-btn">Clear Your Side</button>
+              </div>
+
+              <!-- THEIR OFFER (RIGHT) -->
+              <div class="calc-column side-theirs">
+                <div class="column-header">
+                  <h3>Their Offer (Receive)</h3>
+                  <div class="side-total-badge"><span id="their-total">0</span> pts</div>
+                </div>
+                <div class="slots-container" id="their-slots">
+                  {[0, 1, 2, 3].map((slotIdx) => (
+                    <div class="slot-row" data-side="their" data-slot={slotIdx}>
+                      <span class="slot-number">#{slotIdx + 1}</span>
+                      <select class="unit-select" aria-label={`Their Slot ${slotIdx + 1} Unit`}>
+                        <option value="">-- Empty Slot --</option>
+                        {valuesData.map((u) => (
+                          <option value={u.id} data-val={u.value} data-rarity={u.rarity}>
+                            {u.name} ({u.rarity} - {u.value.toLocaleString()} pts)
+                          </option>
+                        ))}
+                      </select>
+                      <input type="number" class="unit-qty" min="1" max="10" value="1" aria-label="Quantity" />
+                      <div class="slot-subtotal">0</div>
+                    </div>
+                  ))}
+                </div>
+                <button type="button" class="btn-clear-side" id="clear-their-btn">Clear Their Side</button>
+              </div>
+            </div>
+
+            <!-- Trade Stats Summary -->
+            <div class="calc-summary-bar">
+              <div class="stat-pill">
+                <span class="lbl">Your Total:</span>
+                <strong id="summary-your">0</strong>
+              </div>
+              <div class="stat-pill">
+                <span class="lbl">Their Total:</span>
+                <strong id="summary-their">0</strong>
+              </div>
+              <div class="stat-pill">
+                <span class="lbl">Difference:</span>
+                <strong id="summary-diff">+0</strong>
+              </div>
+              <div class="stat-pill">
+                <span class="lbl">Profit Margin:</span>
+                <strong id="summary-margin">0.0%</strong>
+              </div>
+              <button type="button" class="btn-reset-all" id="reset-all-btn">Reset All</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: VALUE TABLE -->
+        <section id="value-table" style="margin-top: 3.5rem;">
+          <div class="section-title-wrap">
+            <h2>Complete Unit Trading Value Table</h2>
+            <p class="section-desc">Search units, filter by rarity tier, and inspect official liquidity and demand ratings benchmarked after Update 4.</p>
+          </div>
+
+          <!-- Controls -->
+          <div class="table-controls">
+            <div class="search-box">
+              <input type="text" id="unit-table-search" placeholder="Search unit by name (e.g. Titan, Chaos, Glitch)..." />
+            </div>
+            <div class="filter-pills" id="rarity-filters">
+              <button type="button" class="pill active" data-filter="all">All ({totalUnits})</button>
+              <button type="button" class="pill" data-filter="Godly">Godly ({godlyUnits})</button>
+              <button type="button" class="pill" data-filter="Mythic">Mythic ({mythicUnits})</button>
+              <button type="button" class="pill" data-filter="Legendary">Legendary</button>
+              <button type="button" class="pill" data-filter="Epic">Epic</button>
+              <button type="button" class="pill" data-filter="Rare">Rare</button>
+              <button type="button" class="pill" data-filter="Basic">Basic</button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="values-data-table" id="values-table-el">
+              <thead>
+                <tr>
+                  <th>Unit</th>
+                  <th>Rarity</th>
+                  <th>Trade Value</th>
+                  <th>Demand</th>
+                  <th>Trend</th>
+                  <th>Tier</th>
+                  <th>Quick Add</th>
+                </tr>
+              </thead>
+              <tbody>
+                {valuesData.map((u) => (
+                  <tr data-name={u.name.toLowerCase()} data-rarity={u.rarity} data-id={u.id} data-val={u.value}>
+                    <td>
+                      <div class="unit-cell">
+                        <img src={`/images/units/${u.id}.webp`} alt={u.name} class="unit-mini-thumb" loading="lazy" width="48" height="30" />
+                        <div>
+                          <a href={`/units/${u.id}/`} class="unit-table-link"><strong>{u.name}</strong></a>
+                          <div class="unit-cat-hint">{u.category}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class={`rarity-tag tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span>
+                    </td>
+                    <td>
+                      <span class="value-number">{u.value.toLocaleString()}</span> <small class="pts-lbl">pts</small>
+                    </td>
+                    <td>
+                      <div class="demand-meter">
+                        <span class="demand-val">{u.demand}/10</span>
+                        <div class="bar-bg"><div class="bar-fill" style={`width: ${u.demand * 10}%;`}></div></div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class={`trend-badge trend-${u.trend.toLowerCase()}`}>
+                        {u.trend === 'Rising' ? '▲ Rising' : u.trend === 'Falling' ? '▼ Falling' : '● Stable'}
+                      </span>
+                    </td>
+                    <td>
+                      <span class={`tier-pill tier-${u.tier.toLowerCase()}`}>{u.tier}</span>
+                    </td>
+                    <td>
+                      <div class="quick-add-group">
+                        <button type="button" class="btn-add-calc btn-add-you" data-id={u.id} title="Add to Your Offer">+You</button>
+                        <button type="button" class="btn-add-calc btn-add-them" data-id={u.id} title="Add to Their Offer">+Them</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 3: FAIRNESS METHODOLOGY -->
+        <section id="fairness-methodology" style="margin-top: 3.5rem;">
+          <h2>Fairness Band Methodology & Trade Rules</h2>
+          <div class="methodology-grid">
+            <div class="method-card">
+              <h3>Fairness Band (±10%)</h3>
+              <p>
+                Roblox Cameraman Tower Defense item liquidity fluctuates based on summon crates and patch notes. A trade within <strong>±10% net point parity</strong> is considered mutually equitable (Fair Trade).
+              </p>
+            </div>
+            <div class="method-card">
+              <h3>Win / Big Win Thresholds</h3>
+              <p>
+                Trades yielding a <strong>+10% to +30% profit margin</strong> qualify as a <strong>Win (W)</strong>. Any exchange yielding <strong>&gt; +30%</strong> represents an overwhelming <strong>Big Win (BW)</strong>.
+              </p>
+            </div>
+            <div class="method-card">
+              <h3>Overpay vs Demand</h3>
+              <p>
+                High-demand Godlies (like <em>Upgraded Titan TV Man</em> or <em>UTCM</em>) command an inherent 10%–15% overpay premium. Do not trade high-demand Godlies for low-demand fodder epics at raw value parity.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: EVIDENCE DOSSIER -->
+        <section id="evidence-dossier" style="margin-top: 3.5rem;">
+          <h2>Verified Evidence Dossier & Ledger</h2>
+          <div class="evidence-box">
+            <div class="evidence-header">
+              <span class="evidence-shield">🛡️ OFFICIAL AUDIT LEDGER</span>
+              <span class="evidence-status">VERIFIED MATCH</span>
+            </div>
+            <div class="evidence-body">
+              <p><strong>Primary Valuation Source:</strong> Vaulted Values X Index (Update 4) & Aligators Games Official Trading Discord.</p>
+              <p><strong>Cross-Verification Video Anchor:</strong> <a href="https://www.youtube.com/watch?v=7QBiS599euI" target="_blank" rel="noopener">YouTube (Vaulted Values X Update 4 Valuation Ledger, ID: 7QBiS599euI)</a>.</p>
+              <p><strong>Patch Alignment:</strong> Synchronized with Roblox Universe <code>10762636904</code> update timestamp <code>2026-10-31 22:25 UTC</code> (UTTVM release).</p>
+              <blockquote>
+                <em>"Trading point valuations are anchored to spin pity equivalents, crate drop rates (0.01% Godly, 0.1% Mythic), and active secondary market exchange ratios."</em>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Sidebar -->
+      <DualSidebar
+        tocHeadings={tocHeadings}
+        currentUrl="/values/"
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  // Interactive Trade Calculator Client Logic
+  (function() {
+    const valuesMap = {};
+    document.querySelectorAll('#values-table-el tbody tr').forEach(tr => {
+      const id = tr.dataset.id;
+      const val = parseInt(tr.dataset.val, 10) || 0;
+      valuesMap[id] = val;
+    });
+
+    const yourSlots = document.querySelectorAll('#your-slots .slot-row');
+    const theirSlots = document.querySelectorAll('#their-slots .slot-row');
+    const yourTotalEl = document.getElementById('your-total');
+    const theirTotalEl = document.getElementById('their-total');
+    const summaryYour = document.getElementById('summary-your');
+    const summaryTheir = document.getElementById('summary-their');
+    const summaryDiff = document.getElementById('summary-diff');
+    const summaryMargin = document.getElementById('summary-margin');
+    const verdictBanner = document.getElementById('calc-verdict-banner');
+    const verdictText = document.getElementById('verdict-text');
+    const verdictSub = document.getElementById('verdict-sub');
+
+    function calculateTrade() {
+      let yourSum = 0;
+      let theirSum = 0;
+
+      yourSlots.forEach(row => {
+        const sel = row.querySelector('.unit-select');
+        const qty = parseInt(row.querySelector('.unit-qty').value, 10) || 1;
+        const val = sel.value ? (valuesMap[sel.value] || 0) : 0;
+        const sub = val * qty;
+        row.querySelector('.slot-subtotal').textContent = sub > 0 ? sub.toLocaleString() : '0';
+        yourSum += sub;
+      });
+
+      theirSlots.forEach(row => {
+        const sel = row.querySelector('.unit-select');
+        const qty = parseInt(row.querySelector('.unit-qty').value, 10) || 1;
+        const val = sel.value ? (valuesMap[sel.value] || 0) : 0;
+        const sub = val * qty;
+        row.querySelector('.slot-subtotal').textContent = sub > 0 ? sub.toLocaleString() : '0';
+        theirSum += sub;
+      });
+
+      yourTotalEl.textContent = yourSum.toLocaleString();
+      theirTotalEl.textContent = theirSum.toLocaleString();
+      summaryYour.textContent = yourSum.toLocaleString() + ' pts';
+      summaryTheir.textContent = theirSum.toLocaleString() + ' pts';
+
+      const diff = theirSum - yourSum;
+      summaryDiff.textContent = (diff >= 0 ? '+' : '') + diff.toLocaleString() + ' pts';
+
+      let margin = 0;
+      if (yourSum > 0) {
+        margin = (diff / yourSum) * 100;
+      }
+      summaryMargin.textContent = (margin >= 0 ? '+' : '') + margin.toFixed(1) + '%';
+
+      // Verdict evaluation
+      verdictBanner.className = 'verdict-banner';
+      if (yourSum === 0 && theirSum === 0) {
+        verdictBanner.classList.add('status-even');
+        verdictText.textContent = 'EQUAL / FAIR (±0 PTS)';
+        verdictSub.textContent = 'Add units to both sides to compute trade equity';
+      } else if (yourSum === 0) {
+        verdictBanner.classList.add('status-bw');
+        verdictText.textContent = 'FREE GIFT / MASSIVE WIN';
+        verdictSub.textContent = `Receiving ${theirSum.toLocaleString()} pts for free`;
+      } else if (theirSum === 0) {
+        verdictBanner.classList.add('status-bl');
+        verdictText.textContent = 'GIVING AWAY / UNBALANCED';
+        verdictSub.textContent = `Giving away ${yourSum.toLocaleString()} pts without return`;
+      } else {
+        const absDiff = Math.abs(diff);
+        const ratio = margin;
+
+        if (Math.abs(ratio) <= 10) {
+          verdictBanner.classList.add('status-fair');
+          verdictText.textContent = `FAIR TRADE (±${absDiff.toLocaleString()} PTS)`;
+          verdictSub.textContent = `Within the standard ±10% fairness corridor (${margin >= 0 ? '+' : ''}${margin.toFixed(1)}%)`;
+        } else if (ratio > 30) {
+          verdictBanner.classList.add('status-bw');
+          verdictText.textContent = `BIG WIN (+${diff.toLocaleString()} PTS)`;
+          verdictSub.textContent = `Massive advantage! You gain +${margin.toFixed(1)}% extra market value`;
+        } else if (ratio > 10) {
+          verdictBanner.classList.add('status-win');
+          verdictText.textContent = `WIN (+${diff.toLocaleString()} PTS)`;
+          verdictSub.textContent = `Profitable offer with a +${margin.toFixed(1)}% surplus`;
+        } else if (ratio < -30) {
+          verdictBanner.classList.add('status-bl');
+          verdictText.textContent = `BIG LOSE (${diff.toLocaleString()} PTS)`;
+          verdictSub.textContent = `Severe overpay! You are losing ${Math.abs(margin).toFixed(1)}% value`;
+        } else {
+          verdictBanner.classList.add('status-lose');
+          verdictText.textContent = `LOSE (${diff.toLocaleString()} PTS)`;
+          verdictSub.textContent = `Underpaid offer. You are taking a ${Math.abs(margin).toFixed(1)}% deficit`;
+        }
+      }
+    }
+
+    // Attach listeners to slots
+    document.querySelectorAll('.calc-column .unit-select, .calc-column .unit-qty').forEach(el => {
+      el.addEventListener('change', calculateTrade);
+      el.addEventListener('input', calculateTrade);
+    });
+
+    document.getElementById('clear-your-btn').addEventListener('click', () => {
+      yourSlots.forEach(row => {
+        row.querySelector('.unit-select').value = '';
+        row.querySelector('.unit-qty').value = '1';
+      });
+      calculateTrade();
+    });
+
+    document.getElementById('clear-their-btn').addEventListener('click', () => {
+      theirSlots.forEach(row => {
+        row.querySelector('.unit-select').value = '';
+        row.querySelector('.unit-qty').value = '1';
+      });
+      calculateTrade();
+    });
+
+    document.getElementById('reset-all-btn').addEventListener('click', () => {
+      document.querySelectorAll('.unit-select').forEach(s => s.value = '');
+      document.querySelectorAll('.unit-qty').forEach(q => q.value = '1');
+      calculateTrade();
+    });
+
+    // Quick Add buttons from Table
+    function findEmptySlot(slots) {
+      for (let row of slots) {
+        const sel = row.querySelector('.unit-select');
+        if (!sel.value) return row;
+      }
+      return null;
+    }
+
+    document.querySelectorAll('.btn-add-you').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const uid = btn.dataset.id;
+        const target = findEmptySlot(yourSlots) || yourSlots[0];
+        target.querySelector('.unit-select').value = uid;
+        calculateTrade();
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+
+    document.querySelectorAll('.btn-add-them').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const uid = btn.dataset.id;
+        const target = findEmptySlot(theirSlots) || theirSlots[0];
+        target.querySelector('.unit-select').value = uid;
+        calculateTrade();
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+
+    // Table Search and Rarity Filter
+    const searchInput = document.getElementById('unit-table-search');
+    const rarityBtns = document.querySelectorAll('#rarity-filters .pill');
+    const tableRows = document.querySelectorAll('#values-table-el tbody tr');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function filterTable() {
+      tableRows.forEach(tr => {
+        const name = tr.dataset.name;
+        const rarity = tr.dataset.rarity;
+        const matchSearch = !searchQuery || name.includes(searchQuery);
+        const matchRarity = currentFilter === 'all' || rarity.toLowerCase() === currentFilter.toLowerCase();
+        tr.style.display = (matchSearch && matchRarity) ? '' : 'none';
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        filterTable();
+      });
+    }
+
+    rarityBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        rarityBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        filterTable();
+      });
+    });
+  })();
+</script>
+
+<style>
+  .calc-section {
+    background: #0d1525;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .section-title-wrap h2 {
+    margin: 0 0 0.5rem 0;
+    font-family: var(--font-display, sans-serif);
+    font-size: 1.75rem;
+    color: #f8fafc;
+  }
+  .section-desc {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .verdict-banner {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+  }
+  .verdict-status {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    font-family: var(--font-display, sans-serif);
+  }
+  .verdict-diff {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    opacity: 0.9;
+  }
+  .status-even { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+  .status-fair { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+  .status-win { background: rgba(34, 197, 94, 0.18); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
+  .status-bw { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.5); }
+  .status-lose { background: rgba(249, 115, 22, 0.18); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); }
+  .status-bl { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.5); }
+
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .calc-grid { grid-template-columns: 1fr; }
+  }
+
+  .calc-column {
+    background: #111a2e;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.75rem;
+  }
+  .column-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #f1f5f9;
+  }
+  .side-total-badge {
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .slot-row {
+    display: grid;
+    grid-template-columns: 32px 1fr 60px 80px;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.6rem;
+  }
+  .slot-number {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-family: var(--font-mono, monospace);
+  }
+  .unit-select {
+    background: #090e18;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    padding: 0.45rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    width: 100%;
+  }
+  .unit-qty {
+    background: #090e18;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    padding: 0.45rem 0.3rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .slot-subtotal {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-align: right;
+  }
+
+  .btn-clear-side, .btn-reset-all {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.15s ease;
+  }
+  .btn-clear-side:hover, .btn-reset-all:hover {
+    color: #f8fafc;
+    border-color: #64748b;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .calc-summary-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #1e293b;
+  }
+  .stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+  }
+  .stat-pill strong {
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+  }
+
+  /* Table Controls */
+  .table-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .search-box input {
+    width: 100%;
+    background: #111a2e;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: #f8fafc;
+    font-size: 0.95rem;
+  }
+  .filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .filter-pills .pill {
+    background: #111a2e;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-pills .pill.active, .filter-pills .pill:hover {
+    background: #38bdf8;
+    color: #080c14;
+    border-color: #38bdf8;
+    font-weight: 600;
+  }
+
+  .values-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  .values-data-table th {
+    background: #090e18;
+    color: #94a3b8;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1e293b;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .values-data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1e293b;
+    vertical-align: middle;
+  }
+  .values-data-table tr:hover {
+    background: rgba(56, 189, 248, 0.04);
+  }
+
+  .unit-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .unit-mini-thumb {
+    width: 48px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #334155;
+  }
+  .unit-table-link {
+    color: #f8fafc;
+    text-decoration: none;
+  }
+  .unit-table-link:hover {
+    color: #38bdf8;
+  }
+  .unit-cat-hint {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  .rarity-tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .tag-godly { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+  .tag-mythic { background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
+  .tag-legendary { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+  .tag-epic { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .tag-rare { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+  .tag-basic { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+  .value-number {
+    font-family: var(--font-mono, monospace);
+    font-weight: 700;
+    color: #38bdf8;
+    font-size: 0.95rem;
+  }
+  .pts-lbl { color: #64748b; }
+
+  .demand-meter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 90px;
+  }
+  .demand-val {
+    font-size: 0.75rem;
+    font-family: var(--font-mono, monospace);
+    color: #cbd5e1;
+  }
+  .bar-bg {
+    width: 100%;
+    height: 4px;
+    background: #1e293b;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: #38bdf8;
+  }
+
+  .trend-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .trend-rising { color: #4ade80; }
+  .trend-falling { color: #f87171; }
+  .trend-stable { color: #94a3b8; }
+
+  .tier-pill {
+    display: inline-block;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    font-family: var(--font-mono, monospace);
+  }
+  .tier-s { background: #e11d48; color: #fff; }
+  .tier-a { background: #ea580c; color: #fff; }
+  .tier-b { background: #ca8a04; color: #fff; }
+  .tier-c { background: #2563eb; color: #fff; }
+  .tier-d { background: #475569; color: #fff; }
+
+  .quick-add-group {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .btn-add-calc {
+    background: #111a2e;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-add-you:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: #38bdf8;
+    color: #38bdf8;
+  }
+  .btn-add-them:hover {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: #10b981;
+    color: #10b981;
+  }
+
+  /* Methodology */
+  .methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+  .method-card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .method-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #38bdf8;
+    font-size: 1.05rem;
+  }
+  .method-card p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  /* Evidence Box */
+  .evidence-box {
+    background: #0b1120;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  .evidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .evidence-shield {
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .evidence-status {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .evidence-body p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin: 0.4rem 0;
+  }
+  .evidence-body code {
+    background: #1e293b;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    color: #38bdf8;
+  }
+  .evidence-body blockquote {
+    border-left: 3px solid #38bdf8;
+    margin: 0.8rem 0 0 0;
+    padding-left: 0.8rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+</style>

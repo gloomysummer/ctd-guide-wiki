@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../config/site.config";
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `Privacy Policy | ${siteConfig.siteName}`,
+    description: `Privacy policy and cookie disclosures for ${siteConfig.siteName}.`,
+    url: `${siteConfig.siteUrl}/privacy-policy/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: `${siteConfig.siteUrl}/privacy-policy/` },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="CTD Guide Privacy Policy & Cookie Disclosures"
+  description="Privacy policy and cookie disclosures for CTD Guide, covering analytics data, server logs, user privacy, and Google publisher compliance guidelines."
+  canonical="/privacy-policy/"
+  jsonLd={jsonLd}
+>
+  <div class="container" style="max-width: 860px; margin: 3rem auto; padding: 0 1.5rem;">
+    <article>
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <span class="current">Privacy Policy</span>
+      </nav>
+
+      <h1 style="font-family: var(--font-display, sans-serif); font-size: 2.2rem; color: #f8fafc; margin: 1rem 0 0.5rem 0;">CTD Guide Privacy Policy</h1>
+      <div class="meta-bar" style="color: #64748b; font-family: var(--font-mono, monospace); font-size: 0.85rem; margin-bottom: 2rem;">
+        <span>Last Updated: November 1, 2026 · Legal & Compliance</span>
+      </div>
+
+      <p style="font-size: 1.05rem; color: #cbd5e1; line-height: 1.7;">
+        At <strong>CTD Guide</strong> (accessible from <a href={siteConfig.siteUrl} style="color: #38bdf8;">{siteConfig.siteUrl}</a>), user privacy is paramount. This Privacy Policy details the types of information recorded and how we utilize it.
+      </p>
+
+      <p style="color: #94a3b8; line-height: 1.6;">
+        For questions or requests concerning our privacy standards, contact us directly at <a href={`mailto:${siteConfig.contactEmail}`} style="color: #38bdf8;">{siteConfig.contactEmail}</a>.
+      </p>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">1. Log Files & Edge CDN Analytics</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        CTD Guide utilizes standard edge server log files via Cloudflare. Log details include IP addresses, browser agents, operating systems, date/time stamps, referring URLs, and requested asset paths. This data is processed purely for network security, DDoS prevention, and performance caching, and is not tied to personally identifiable identities.
+      </p>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">2. Cookies & Measurement Guidelines</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        We may deploy anonymous telemetry (such as Google Analytics 4) to monitor guide popularity, search intent, and tool utility performance.
+      </p>
+      <ul style="color: #cbd5e1; line-height: 1.7; padding-left: 1.5rem;">
+        <li><strong>Functional Storage</strong>: Browser local storage may be used to save your selected units in the trade calculator.</li>
+        <li><strong>Analytics Cookies</strong>: Measure aggregate sessions without recording personal data.</li>
+        <li><strong>Opt-Out Options</strong>: Users can disable Google Analytics tracking via the official <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" style="color: #38bdf8;">Google Analytics Opt-out Browser Add-on</a>.</li>
+      </ul>
+
+      <div style="background: #0f172a; border-left: 4px solid #38bdf8; padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0;">
+        <strong style="color: #38bdf8; font-size: 0.95rem; text-transform: uppercase; display: block; margin-bottom: 0.4rem;">
+          Google Publisher & Partner Policy Disclosure
+        </strong>
+        <span style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; display: block;">
+          To understand how Google manages information gathered across partner platforms, consult the official documentation: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-weight: 600;">How Google uses information from sites or apps that use our services</a>.
+        </span>
+      </div>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">3. Third-Party Web Links</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        Our site contains external links to Roblox, Discord, and YouTube. CTD Guide's Privacy Policy does not extend to third-party domains. Please review the privacy terms of external platforms when leaving our website.
+      </p>
+    </article>
+  </div>
+</BaseLayout>

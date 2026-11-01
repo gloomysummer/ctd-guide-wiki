@@ -1,0 +1,959 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../config/site.config";
+import { CHANNELS, TOTAL_GUIDES_COUNT } from "../config/channels";
+import dossier from "../data/dossier.json";
+import valuesData from "../data/values.json";
+import codesData from "../data/verified-codes.json";
+
+// Dynamic Roblox game name from API (strictly not hardcoded)
+const dynamicGameName = dossier.metadata?.name || "[💰X2] Cameraman Tower Defense";
+const developerName = dossier.metadata?.developer || "Aligators Games (Group 1111394813)";
+const livePlaying = dossier.liveStats?.playing ?? 40000;
+const totalVisits = dossier.liveStats?.visits ?? 69798000;
+const ratingPercent = ((dossier.liveStats?.rating ?? 0.986) * 100).toFixed(1);
+
+const totalUnitsCount = valuesData.length;
+const activeCodesCount = codesData.activeCodes.length;
+
+const CHANNEL_CARDS: Record<string, { image: string; alt: string }> = {
+  values: { image: "/images/cards/card_values.webp", alt: "Cameraman Tower Defense Trade Calculator & Value List" },
+  codes: { image: "/images/cards/card_codes.webp", alt: "Cameraman Tower Defense Promo Codes November 2026" },
+  units: { image: "/images/cards/card_units.webp", alt: "Cameraman Tower Defense 38 Units Roster & Database" },
+  "tier-list": { image: "/images/cards/card_tier_list.webp", alt: "Cameraman Tower Defense Meta Tier List Ranking" },
+  guides: { image: "/images/cards/card_nightmare.webp", alt: "How to Solo Nightmare Mode in Cameraman Tower Defense" },
+};
+
+const CHANNEL_SUMMARIES: Record<string, string> = {
+  values: "Real-time trading point valuations, 4-slot Win/Fair/Lose balance calculator, and liquidity demand ratings.",
+  codes: "Daily verified working coin codes, one-click copy, and the mandatory 3-win redemption gate explanation.",
+  units: "Complete stat index, summon drop rates, and DPS benchmarks for all 38 Godly, Mythic, and Legendary units.",
+  "tier-list": "Comprehensive S-to-D meta tier list ranked after the Halloween Update 4 and UTTVM patch buffs.",
+  guides: "Proven tactical blueprints for clearing 50-wave Nightmare mode solo, official Discord links, and shop guides.",
+};
+
+const OFFICIAL_SCREENSHOTS = [
+  { src: "/images/screenshots/scene_0.webp", alt: "Cameraman Tower Defense Battle Arena and Track Defense" },
+  { src: "/images/screenshots/scene_1.webp", alt: "Cameraman Tower Defense Toilet Invasions and Tower Placements" },
+  { src: "/images/screenshots/scene_2.webp", alt: "Cameraman Tower Defense High Wave Action and Titan Blasters" },
+  { src: "/images/screenshots/scene_3.webp", alt: "Cameraman Tower Defense Unit Upgrades and Co-op Gameplay" },
+];
+
+const faqItems = [
+  {
+    question: "What is Cameraman Tower Defense on Roblox?",
+    answer: "Cameraman Tower Defense (Universe ID: 10762636904) is a strategic tower defense experience created by Aligators Games (aibat303e & iop_dev). Players place defensive cameramen, speakermen, and high-tech TV titans along the lane to stop waves of invading toilet swarms across multiple map difficulties.",
+  },
+  {
+    question: "What is the newest unit in the latest update?",
+    answer: "The latest Halloween 2026 Update 4 introduced the Upgraded Titan TV Man (UTTVM), an S-Tier Godly unit featuring high-damage conical radiation screen pulses capable of clearing dense late-game Nightmare waves.",
+  },
+  {
+    question: "How does the trading calculator and value list work?",
+    answer: "Our interactive trade calculator lets you place up to 4 units on each side to compare total market points. If the difference between offers is within ±10%, it is classified as a Fair Trade. Offers exceeding +10% to +30% represent a Win (W), while over +30% is a Big Win (BW).",
+  },
+  {
+    question: "Why does the game say I cannot redeem promo codes?",
+    answer: "Cameraman Tower Defense has an anti-bot rule: you must achieve at least 3 match wins before code redemption unlocks. Once you have 3 wins on your account, open the in-game Shop and scroll to the bottom to input your codes.",
+  },
+  {
+    question: "How do you solo Nightmare Mode in Cameraman Tower Defense?",
+    answer: "Soloing Nightmare mode requires early farming with Pumpkin Farmers or Scientist Cameramen, slowing crowd-control from Glitch Cameraman, base restoration from Camera Repair Drones, and heavy AoE damage from Titan Cinemaman or Upgraded Titans.",
+  },
+  {
+    question: "How many total units are currently in the game?",
+    answer: "Following the Halloween and Spider content patches, Cameraman Tower Defense features 38 distinct units ranging from Basic starters up to Godlies like Upgraded Titan Cameraman (UTCM) and Upgraded Titan TV Man (UTTVM).",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.siteName,
+  url: siteConfig.siteUrl,
+  description: "Authoritative wiki, interactive trade calculator, unit value list, and promo codes for Cameraman Tower Defense on Roblox.",
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    logo: `${siteConfig.siteUrl}/favicon-96x96.png`,
+  },
+};
+---
+
+<BaseLayout
+  title="CTD Guide | Cameraman Tower Defense Wiki"
+  description="Authoritative Cameraman Tower Defense wiki. Interactive trade value calculator, active promo codes, 38 units roster, and solo Nightmare mode guide."
+  canonical="/"
+  jsonLd={[websiteJsonLd, faqJsonLd]}
+>
+  <!-- HERO SECTION: CINEMA FULL-BLEED SPLIT -->
+  <header class="hero-bleed">
+    <div class="hero-bg-media" style="background-image: url('/images/hero/hero_bg.webp');"></div>
+    <div class="hero-lens-flare"></div>
+    <div class="container hero-content">
+      <div class="hero-grid">
+        <!-- Left 58%: Authority Content & Triple CTA -->
+        <div class="hero-copy">
+          <div class="hero-live-pill">
+            <span class="pulse-indicator"></span>
+            <span class="live-title">{dynamicGameName}</span>
+            <span class="live-sep">•</span>
+            <span class="live-playing">{livePlaying.toLocaleString()} Playing</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Tactical Intel, Unit Values & Trade Calculator
+          </h1>
+
+          <p class="hero-lead">
+            The definitive resource for <strong>{dynamicGameName}</strong> by {developerName}. Compute fair trade parity, redeem audited codes, and inspect full stats across 38 units.
+          </p>
+
+          <!-- Triple CTA Matrix -->
+          <div class="hero-cta-matrix">
+            <a href="/values/" class="btn-cta btn-primary-cta">
+              <span class="cta-icon">⚖️</span>
+              <span class="cta-text">
+                <strong>Trade Calculator</strong>
+                <small>4-Slot W/F/L Values Tool</small>
+              </span>
+            </a>
+
+            <a href="/codes/" class="btn-cta btn-secondary-cta">
+              <span class="cta-icon">🎁</span>
+              <span class="cta-text">
+                <strong>Redeem Codes</strong>
+                <small>{activeCodesCount} Active • November 2026</small>
+              </span>
+            </a>
+
+            <a href="/units/" class="btn-cta btn-outline-cta">
+              <span class="cta-icon">📸</span>
+              <span class="cta-text">
+                <strong>Units Database</strong>
+                <small>All {totalUnitsCount} Units Roster</small>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right 42%: Official Showcase & Live Game Stats Card -->
+        <div class="hero-aside">
+          <div class="tactical-terminal-card">
+            <div class="terminal-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">ROBLOX // UNIVERSE 10762636904</span>
+            </div>
+
+            <div class="terminal-body">
+              <div class="terminal-poster-wrap">
+                <img src="/images/screenshots/scene_0.webp" alt="Cameraman Tower Defense Showcase" class="terminal-poster" width="768" height="432" loading="eager" />
+                <div class="poster-overlay-tag">UTTVM UPDATE 4 ACTIVE</div>
+              </div>
+
+              <div class="terminal-metrics-grid">
+                <div class="metric-cell">
+                  <span class="metric-label">CURRENT PLAYERS</span>
+                  <span class="metric-val text-cyan">{livePlaying.toLocaleString()}</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-label">TOTAL VISITS</span>
+                  <span class="metric-val">{totalVisits.toLocaleString()}</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-label">COMMUNITY RATING</span>
+                  <span class="metric-val text-green">{ratingPercent}% Positive</span>
+                </div>
+                <div class="metric-cell">
+                  <span class="metric-label">OFFICIAL CREATOR</span>
+                  <span class="metric-val text-muted">Aligators Games</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 4 STATS COUNTER BAR -->
+  <section class="metrics-bar-section">
+    <div class="container">
+      <div class="stats-ribbon">
+        <div class="ribbon-item">
+          <span class="ribbon-num">{totalUnitsCount}</span>
+          <span class="ribbon-lbl">AUDITED UNITS</span>
+        </div>
+        <div class="ribbon-item">
+          <span class="ribbon-num">{activeCodesCount}</span>
+          <span class="ribbon-lbl">ACTIVE PROMO CODES</span>
+        </div>
+        <div class="ribbon-item">
+          <span class="ribbon-num">±10%</span>
+          <span class="ribbon-lbl">FAIR TRADE CORRIDOR</span>
+        </div>
+        <div class="ribbon-item">
+          <span class="ribbon-num">50 WAVES</span>
+          <span class="ribbon-lbl">NIGHTMARE GAUNTLET</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CHANNELS CATEGORIZED GRIDS -->
+  <main class="container page-content" style="padding-top: 3.5rem; padding-bottom: 4rem;">
+    <!-- CATEGORIZED CHANNEL 1: VALUES -->
+    <section class="channel-section" id="channel-values">
+      <div class="channel-section-header">
+        <div class="channel-title-group">
+          <span class="channel-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">P0 TRADING TOOL</span>
+          <h2>Unit Values & Interactive Trade Calculator</h2>
+        </div>
+        <p class="channel-desc">{CHANNEL_SUMMARIES.values}</p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src={CHANNEL_CARDS.values.image} alt={CHANNEL_CARDS.values.alt} loading="lazy" width="800" height="500" />
+            <span class="card-tag">INTERACTIVE</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/values/" class="stretched-link">Cameraman Tower Defense Trade Calculator & Values</a></h3>
+            <p>Compute 4-slot trade equity, analyze Win/Fair/Lose profit margins, and inspect current demand benchmarks across all 38 units.</p>
+            <div class="card-footer">
+              <span class="card-action">Launch Calculator →</span>
+              <span class="card-meta">Update 4 Index</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CATEGORIZED CHANNEL 2: CODES -->
+    <section class="channel-section" id="channel-codes" style="margin-top: 4rem;">
+      <div class="channel-section-header">
+        <div class="channel-title-group">
+          <span class="channel-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">P0 REWARDS</span>
+          <h2>Promo Codes & Free Coin Entitlements</h2>
+        </div>
+        <p class="channel-desc">{CHANNEL_SUMMARIES.codes}</p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src={CHANNEL_CARDS.codes.image} alt={CHANNEL_CARDS.codes.alt} loading="lazy" width="800" height="500" />
+            <span class="card-tag">DAILY AUDITED</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/codes/" class="stretched-link">Cameraman Tower Defense Codes (November 2026)</a></h3>
+            <p>Verified working coin drops including <code>LStriderSpeaker</code>, <code>Battlepass</code>, and <code>UTCM</code> with the mandatory 3-win unlock step guide.</p>
+            <div class="card-footer">
+              <span class="card-action">Copy Working Codes →</span>
+              <span class="card-meta">{activeCodesCount} Codes Active</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CATEGORIZED CHANNEL 3: UNITS -->
+    <section class="channel-section" id="channel-units" style="margin-top: 4rem;">
+      <div class="channel-section-header">
+        <div class="channel-title-group">
+          <span class="channel-badge" style="background: rgba(129, 140, 248, 0.15); color: #818cf8; border: 1px solid rgba(129, 140, 248, 0.3);">P1 ROSTER</span>
+          <h2>Units Database & Detailed Guides</h2>
+        </div>
+        <p class="channel-desc">{CHANNEL_SUMMARIES.units}</p>
+      </div>
+
+      <div class="cards-grid grid-3-cols">
+        <!-- Units Index Hub Card -->
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src={CHANNEL_CARDS.units.image} alt={CHANNEL_CARDS.units.alt} loading="lazy" width="800" height="500" />
+            <span class="card-tag">FULL ROSTER</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/units/" class="stretched-link">Complete 38 Units Roster & Stat Database</a></h3>
+            <p>Explore all Godly, Mythic, Legendary, Epic, Rare, and Basic units with DPS, range, and unlock methods.</p>
+            <div class="card-footer">
+              <span class="card-action">Explore All 38 Units →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- UTCM Card -->
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src="/images/cards/card_utcm.webp" alt="Upgraded Titan Cameraman Guide" loading="lazy" width="800" height="500" />
+            <span class="card-tag">GODLY CARRY</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/units/upgraded-titan-cameraman/" class="stretched-link">Upgraded Titan Cameraman (UTCM) Guide</a></h3>
+            <p>Endgame godly railgun carry stats, DPS scaling benchmarks, spin pity rates, and optimal placement loops.</p>
+            <div class="card-footer">
+              <span class="card-action">View Unit Dossier →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- UTTVM Card -->
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src="/images/cards/card_uttvm.webp" alt="Upgraded Titan TV Man Guide" loading="lazy" width="800" height="500" />
+            <span class="card-tag">NEW PATCH</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/units/upgraded-titan-tv-man/" class="stretched-link">Upgraded Titan TV Man (UTTVM) Guide</a></h3>
+            <p>Newly introduced in the Halloween update. Full breakdown of screen radiation damage and Nightmare boss sweeps.</p>
+            <div class="card-footer">
+              <span class="card-action">View Unit Dossier →</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CATEGORIZED CHANNEL 4: TIER LIST -->
+    <section class="channel-section" id="channel-tier-list" style="margin-top: 4rem;">
+      <div class="channel-section-header">
+        <div class="channel-title-group">
+          <span class="channel-badge" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3);">P1 META</span>
+          <h2>Unit Meta Tier List & Rankings</h2>
+        </div>
+        <p class="channel-desc">{CHANNEL_SUMMARIES["tier-list"]}</p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src={CHANNEL_CARDS["tier-list"].image} alt={CHANNEL_CARDS["tier-list"].alt} loading="lazy" width="800" height="500" />
+            <span class="card-tag">UPDATE 4 META</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/tier-list/" class="stretched-link">Cameraman Tower Defense Meta Tier List (UTTVM Patch)</a></h3>
+            <p>Evaluates DPS-to-cost efficiency, boss shredding utility, and crowd control across S, A, B, C, and D tiers for all 38 units.</p>
+            <div class="card-footer">
+              <span class="card-action">View Tier List Rankings →</span>
+              <span class="card-meta">Patch UTTVM</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CATEGORIZED CHANNEL 5: TACTICAL GUIDES -->
+    <section class="channel-section" id="channel-guides" style="margin-top: 4rem;">
+      <div class="channel-section-header">
+        <div class="channel-title-group">
+          <span class="channel-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">P1/P2 GUIDES</span>
+          <h2>Tactical Walkthroughs & Official Hubs</h2>
+        </div>
+        <p class="channel-desc">{CHANNEL_SUMMARIES.guides}</p>
+      </div>
+
+      <div class="cards-grid grid-3-cols">
+        <!-- Nightmare Solo Guide Card -->
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src={CHANNEL_CARDS.guides.image} alt={CHANNEL_CARDS.guides.alt} loading="lazy" width="800" height="500" />
+            <span class="card-tag">TACTICAL GUIDE</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/how-to-solo-nightmare-mode/" class="stretched-link">How to Solo Nightmare Mode Guide</a></h3>
+            <p>Complete 50-wave solo walkthrough on Desert map: early cash farming, Glitch Cameraman slow placement, and boss strategies.</p>
+            <div class="card-footer">
+              <span class="card-action">Read Solo Blueprint →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Discord Hub Card -->
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src="/images/cards/card_discord.webp" alt="Official Discord & Trading Hub" loading="lazy" width="800" height="500" />
+            <span class="card-tag">COMMUNITY HUB</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/discord/" class="stretched-link">Official Discord & Trading Community Hub</a></h3>
+            <p>Verified links to Aligators Games official Discord server, trade advertisement channels, developer giveaways, and moderation rules.</p>
+            <div class="card-footer">
+              <span class="card-action">Access Discord Coordinates →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Shop & Economy Guide Card -->
+        <article class="guide-card stretched-link-card">
+          <div class="card-media">
+            <img src="/images/cards/card_shop.webp" alt="In-Game Shop & Economy Guide" loading="lazy" width="800" height="500" />
+            <span class="card-tag">ECONOMY GUIDE</span>
+          </div>
+          <div class="card-body">
+            <h3><a href="/shop/" class="stretched-link">In-Game Shop, Crates & Gamepasses Guide</a></h3>
+            <p>Comprehensive guide to coin summon crates, VIP gamepass multipliers, gem spending, and free-to-play economy optimization.</p>
+            <div class="card-footer">
+              <span class="card-action">Read Economy Guide →</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- IN-GAME SCREENSHOT GALLERY -->
+    <section class="gallery-section" style="margin-top: 5rem;">
+      <div class="channel-section-header">
+        <div class="channel-title-group">
+          <span class="channel-badge" style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3);">MEDIA SHOWCASE</span>
+          <h2>Official Game Field Action & Maps</h2>
+        </div>
+        <p class="channel-desc">High-resolution combat screenshots from Cameraman Tower Defense live servers.</p>
+      </div>
+
+      <div class="screenshots-grid">
+        {OFFICIAL_SCREENSHOTS.map((s, idx) => (
+          <div class="screenshot-item">
+            <img src={s.src} alt={s.alt} loading="lazy" width="768" height="432" />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION) -->
+    <section class="faq-section" style="margin-top: 5rem;">
+      <div class="channel-section-header">
+        <div class="channel-title-group">
+          <span class="channel-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">KNOWLEDGE BASE</span>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <p class="channel-desc">Answers to high-frequency player questions regarding codes, values, updates, and gameplay.</p>
+      </div>
+
+      <div class="faq-accordion-container">
+        {faqItems.map((item, idx) => (
+          <details class="faq-accordion-item" open={idx === 0}>
+            <summary class="faq-question">
+              <span>{item.question}</span>
+              <span class="faq-toggle-icon">▾</span>
+            </summary>
+            <div class="faq-answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero-bleed {
+    position: relative;
+    width: 100%;
+    min-height: 580px;
+    background: #080c14;
+    overflow: hidden;
+    padding: 4.5rem 0 3.5rem 0;
+    border-bottom: 1px solid #1e293b;
+  }
+  .hero-bg-media {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.22;
+    filter: blur(1px);
+    z-index: 0;
+  }
+  .hero-lens-flare {
+    position: absolute;
+    top: -100px;
+    right: 15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 58% 42%;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (max-width: 992px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .hero-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.825rem;
+    color: #e2e8f0;
+    margin-bottom: 1.25rem;
+  }
+  .pulse-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+  .live-title {
+    font-weight: 700;
+    color: #38bdf8;
+  }
+  .live-playing {
+    color: #cbd5e1;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .hero-headline {
+    font-family: var(--font-display, sans-serif);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #f8fafc;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.01em;
+  }
+  .hero-lead {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+    max-width: 580px;
+  }
+
+  .hero-cta-matrix {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .cta-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  .cta-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .cta-text strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .cta-text small {
+    font-size: 0.75rem;
+    opacity: 0.85;
+    margin-top: 0.15rem;
+  }
+
+  .btn-primary-cta {
+    background: #38bdf8;
+    color: #080c14;
+    border: 1px solid #38bdf8;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+  }
+  .btn-primary-cta:hover {
+    background: #7dd3fc;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary-cta {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.4);
+  }
+  .btn-secondary-cta:hover {
+    background: rgba(16, 185, 129, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-cta {
+    background: rgba(15, 23, 42, 0.7);
+    color: #f8fafc;
+    border: 1px solid #334155;
+  }
+  .btn-outline-cta:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #64748b;
+    transform: translateY(-2px);
+  }
+
+  /* Tactical Terminal Card */
+  .tactical-terminal-card {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  }
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #090e18;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #1e293b;
+  }
+  .terminal-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .terminal-dot.red { background: #ef4444; }
+  .terminal-dot.yellow { background: #f59e0b; }
+  .terminal-dot.green { background: #10b981; }
+  .terminal-title {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+  }
+
+  .terminal-poster-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .terminal-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .poster-overlay-tag {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(8, 12, 20, 0.85);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .terminal-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #1e293b;
+  }
+  .metric-cell {
+    background: #0f172a;
+    padding: 0.85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .metric-label {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+  }
+  .metric-val {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    font-family: var(--font-mono, monospace);
+  }
+  .text-cyan { color: #38bdf8; }
+  .text-green { color: #10b981; }
+  .text-muted { color: #94a3b8; }
+
+  /* Metrics Ribbon */
+  .metrics-bar-section {
+    background: #0c1322;
+    border-bottom: 1px solid #1e293b;
+    padding: 1.25rem 0;
+  }
+  .stats-ribbon {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    .stats-ribbon {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 1.25rem;
+    }
+  }
+  .ribbon-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .ribbon-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #38bdf8;
+    font-family: var(--font-display, sans-serif);
+    line-height: 1;
+  }
+  .ribbon-lbl {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.08em;
+  }
+
+  /* Channel Sections */
+  .channel-section-header {
+    margin-bottom: 1.5rem;
+  }
+  .channel-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .channel-title-group h2 {
+    margin: 0;
+    font-family: var(--font-display, sans-serif);
+    font-size: 1.85rem;
+    color: #f8fafc;
+  }
+  .channel-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+  }
+  .channel-desc {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin: 0;
+    max-width: 720px;
+    line-height: 1.5;
+  }
+
+  /* Grid layouts */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .grid-3-cols {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  /* Guide Cards */
+  .guide-card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .guide-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  }
+  .card-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #090e18;
+    overflow: hidden;
+  }
+  .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .guide-card:hover .card-media img {
+    transform: scale(1.03);
+  }
+  .card-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(8, 12, 20, 0.85);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card-body h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+  .card-body h3 a {
+    color: #f8fafc;
+    text-decoration: none;
+  }
+  .card-body p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 1.25rem 0;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #1e293b;
+    padding-top: 0.85rem;
+    font-size: 0.85rem;
+  }
+  .card-action {
+    color: #38bdf8;
+    font-weight: 700;
+  }
+  .card-meta {
+    color: #64748b;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+  }
+
+  /* Stretched link pseudo element */
+  .stretched-link-card a.stretched-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  /* Screenshot Gallery */
+  .screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .screenshot-item {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1e293b;
+    aspect-ratio: 16 / 9;
+    background: #090e18;
+  }
+  .screenshot-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+  }
+  .screenshot-item:hover img {
+    transform: scale(1.04);
+  }
+
+  /* FAQ Accordion */
+  .faq-accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 860px;
+  }
+  .faq-accordion-item {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .faq-accordion-item[open] {
+    border-color: rgba(56, 189, 248, 0.35);
+  }
+  .faq-question {
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    list-style: none;
+    user-select: none;
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-toggle-icon {
+    color: #38bdf8;
+    transition: transform 0.2s ease;
+  }
+  .faq-accordion-item[open] .faq-toggle-icon {
+    transform: rotate(180deg);
+  }
+  .faq-answer {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.85rem;
+  }
+  .faq-answer p {
+    margin: 0;
+  }
+</style>

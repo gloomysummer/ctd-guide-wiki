@@ -1,0 +1,152 @@
+---
+import AdSlot from './AdSlot.astro';
+import { CHANNELS, TOTAL_GUIDES_COUNT, getChannelByGuideUrl } from '../config/channels';
+import codesData from '../data/verified-codes.json';
+
+export interface TocHeading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+export interface Props {
+  tocHeadings: TocHeading[];
+  currentUrl?: string;
+}
+
+const { tocHeadings = [], currentUrl = Astro.url.pathname } = Astro.props;
+const normUrl = currentUrl.endsWith('/') ? currentUrl : `${currentUrl}/`;
+const currentChannel = getChannelByGuideUrl(normUrl);
+const topCode = codesData.activeCodes[0] || { code: "LStriderSpeaker", reward: "50 Free Coins" };
+---
+
+<div class="article-sidebars-group">
+  <!-- Column 2 (≥1280px): ON THIS PAGE (210px) + 160x600 rail -->
+  <div class="sidebar-col-stack">
+    {tocHeadings.length > 0 && (
+      <aside class="sidebar-col-toc" aria-label="On this page">
+        <div class="toc-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <span>ON THIS PAGE</span>
+        </div>
+        <ol class="toc-step-list">
+          {tocHeadings.map((h, idx) => (
+            <li class={`toc-step-item depth-${h.depth}`}>
+              <a href={`#${h.slug}`} class="toc-step-link" data-section={h.slug}>
+                <span class="toc-step-num">{String(idx + 1).padStart(2, '0')}</span>
+                <span class="toc-step-title">{h.text}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    )}
+
+    <!-- 广告位（160x600）：置于目录列内、目录下方，sticky 跟随 -->
+    <div class="guide-rail-ad">
+      <div class="guide-rail-stick">
+        <AdSlot zone="banner-160x600" label="Sponsored Guide Intel" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Column 3 (≥1280px): EXPLORE THE WIKI (Wide, 270px) -->
+  <aside class="sidebar-col-wiki" aria-label="Explore the Wiki">
+    <div class="wiki-nav-header">
+      <div class="wiki-nav-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect width="18" height="18" x="3" y="3" rx="2"/>
+          <path d="M3 9h18"/>
+          <path d="M9 21V9"/>
+        </svg>
+        <span>EXPLORE THE WIKI</span>
+      </div>
+      <span class="sidebar-count-badge">Guides {TOTAL_GUIDES_COUNT}</span>
+    </div>
+
+    <div class="wiki-category-tree">
+      {CHANNELS.map((ch) => {
+        const isCurrentGroup = ch.id === currentChannel.id;
+        return (
+          <div class={`wiki-category-group ${isCurrentGroup ? 'is-current-group' : ''}`}>
+            <div class="wiki-category-header">
+              <span class="cat-accent-dot" style={`background-color: ${ch.color};`}></span>
+              <span class="cat-title-text">{ch.shortTitle}</span>
+              <span class="sidebar-count-badge">{ch.guides.length}</span>
+            </div>
+            <ul class="wiki-guide-sublist">
+              {ch.guides.map((item) => {
+                const isCurrentDoc = item.url === normUrl;
+                return (
+                  <li class={`wiki-guide-subitem ${isCurrentDoc ? `is-active-article cat-${ch.id}` : ''}`}>
+                    <a href={item.url} class="wiki-guide-sublink" aria-current={isCurrentDoc ? 'page' : undefined}>
+                      <span class="sublink-bullet">{isCurrentDoc ? '●' : '○'}</span>
+                      <span class="sublink-text">{item.title}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Active Codes Widget (常驻右栏) -->
+    <div class="sidebar-section sidebar-codes-widget">
+      <div class="widget-header">
+        <div class="widget-title">
+          <span class="dot live pulse"></span>
+          <span>ACTIVE REWARD CODES</span>
+        </div>
+        <span class="widget-count-badge active">{codesData.activeCodes.length} ACTIVE</span>
+      </div>
+      <div class="widget-code-preview">
+        <div class="code-snippet-box">
+          <span class="code-val">{topCode.code}</span>
+        </div>
+        <span class="code-reward-text">{topCode.reward} (Requires 3 Wins)</span>
+      </div>
+      <a href="/codes/" class="widget-action-link">
+        <span>View All {codesData.activeCodes.length} Promo Codes</span>
+        <span class="action-arrow">→</span>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            if (id) {
+              document.querySelectorAll('.toc-step-link').forEach((link) => {
+                const section = link.getAttribute('data-section') || link.getAttribute('href')?.replace('#', '');
+                if (section === id) {
+                  link.classList.add('is-active');
+                } else {
+                  link.classList.remove('is-active');
+                }
+              });
+            }
+          }
+        });
+      },
+      { rootMargin: '0px 0px -70% 0px', threshold: 0.1 }
+    );
+
+    document.querySelectorAll('article h2[id], article h3[id]').forEach((heading) => {
+      observer.observe(heading);
+    });
+  }
+</script>

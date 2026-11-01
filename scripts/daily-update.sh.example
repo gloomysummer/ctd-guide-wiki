@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# daily-update.sh.example — 游戏攻略站工业级每日自动化更新与收录流水线
+# ------------------------------------------------------------------------------
+# 调度规范：
+# - macOS LaunchAgent 错峰调度：每日两次（建议 06:30 与 20:30 CST）
+# - 必须显式声明 PATH 与代理环境变量（防止 launchd 丢失 node/python3/wrangler）
+# ==============================================================================
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+cd "$REPO_ROOT"
+
+echo "=== [1/7] Refreshing Live Game Stats & Official Metadata ==="
+if [ -f "scripts/refresh-stats.py" ]; then
+  python3 scripts/refresh-stats.py
+fi
+
+echo "=== [2/7] Checking Codes Drift & Autonomous Discovery Radar ==="
+if [ -f "scripts/check-codes-drift.py" ]; then
+  python3 scripts/check-codes-drift.py
+fi
+
+echo "=== [3/7] Building Static Distribution (SSG) ==="
+npm run build
+
+echo "=== [4/7] Running Quality Gates & Supervisor Guard ==="
+npm run check:assets
+npm run check:config
+npm run check:content
+npm run check:links
+npm run check:tdh
+
+if [ -f "scripts/supervisor-guard.sh" ]; then
+  echo "=== Running Deterministic Supervisor Guard ==="
+  bash scripts/supervisor-guard.sh
+fi
+
+echo "=== [5/7] Deploying to Cloudflare Pages Production ==="
+if [ -f "$HOME/.gemini/config/domain_setup_credentials.json" ]; then
+  export CLOUDFLARE_API_TOKEN=$(python3 -c "import json; print(json.load(open('$HOME/.gemini/config/domain_setup_credentials.json'))['cloudflare']['api_token'])")
+  export CLOUDFLARE_ACCOUNT_ID=$(python3 -c "import json; print(json.load(open('$HOME/.gemini/config/domain_setup_credentials.json'))['cloudflare']['account_id'])")
+  npx --yes wrangler@latest pages deploy dist --project-name="$(basename "$REPO_ROOT")" --branch=main --commit-dirty=true
+else
+  echo "⚠️ Cloudflare credentials not found; skipping direct deployment."
+fi
+
+echo "=== [6/7] Submitting to Bing IndexNow Network ==="
+if [ -f "scripts/submit_bing_indexnow.py" ]; then
+  python3 scripts/submit_bing_indexnow.py --urls "https://example.com/" "https://example.com/codes/" "https://example.com/trello/"
+fi
+
+echo "=== [7/7] Submitting Changed URLs to Google Search Console (CDP Mode) ==="
+if [ -f "scripts/submit_gsc.py" ]; then
+  python3 scripts/submit_gsc.py --only-changed
+fi
+
+echo "================================================================="
+echo "✅ Daily update pipeline completed successfully!"
+echo "================================================================="

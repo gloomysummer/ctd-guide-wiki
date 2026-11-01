@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <radialGradient id="lensGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#0284c7" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#080c14" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0b0f17"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bodyGrad)"/>
+  <rect x="3" y="3" width="122" height="122" rx="25" fill="none" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.4"/>
+  <!-- Camera Body -->
+  <circle cx="64" cy="64" r="46" fill="#0f172a" stroke="#334155" stroke-width="3"/>
+  <circle cx="64" cy="64" r="38" fill="url(#lensGlow)"/>
+  <circle cx="64" cy="64" r="22" fill="#080c14" stroke="#38bdf8" stroke-width="2.5"/>
+  <circle cx="56" cy="56" r="6" fill="#ffffff" fill-opacity="0.75"/>
+  <!-- Rec Red Dot -->
+  <circle cx="102" cy="26" r="6" fill="#ef4444"/>
+  <circle cx="102" cy="26" r="9" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.5"/>
+</svg>

@@ -1,0 +1,50 @@
+---
+interface Props {
+  lastUpdated: string;
+  versionName?: string;
+}
+
+const {
+  lastUpdated,
+  versionName = "availability model v1"
+} = Astro.props;
+---
+
+<section id="methodology" class="guide-section" style="margin-top: 3rem; padding: 1.5rem; background: var(--panel-card); border: 1px solid var(--line); border-radius: 8px;">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+    <h2 style="margin: 0; font-size: 1.3rem; color: var(--ink);">Rating Methodology & Transparency</h2>
+    <span class="badge" style="font-size: 0.8rem; background: rgba(56, 189, 248, 0.15); color: var(--accent); border-color: rgba(56, 189, 248, 0.3);">
+      Objective Availability Framework
+    </span>
+  </div>
+
+  <div class="guide-meta-row" style="margin-bottom: 1rem; font-size: 0.85rem; color: var(--muted); display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+    <span>Model Version: <strong>{versionName}</strong></span>
+    <span>•</span>
+    <span>Update Frequency: <strong>Twice Daily Automated Sync</strong></span>
+    <span>•</span>
+    <time datetime={lastUpdated}>Last Evaluated: {lastUpdated.split('T')[0]}</time>
+    <span>•</span>
+    <a href="/about/" style="color: var(--accent); text-decoration: none;">About Our Standards ↗</a>
+  </div>
+
+  <p style="font-size: 0.95rem; line-height: 1.6; color: var(--ink);">
+    Most tier lists on the web rely on subjective player opinions or unverified anecdotes. The Anime Zero Wiki utilizes an objective <strong>availability model</strong> (AD) derived directly from verified drop chances, hard pity caps, and progression barriers recorded in official developer patches.
+  </p>
+
+  <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 1rem; margin: 1rem 0;">
+    <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 0.5rem; font-weight: 700;">
+      Mathematical Availability Formula
+    </div>
+    <code style="font-family: var(--font-mono, monospace); font-size: 0.88rem; color: #a7f3d0; display: block; line-height: 1.5;">
+      rarityScore: Epic=1 | Legendary=2 | Mythic=3 | Arcane=4 | Lyth=5<br />
+      gatingCost = 0.6 × log10(rarityPity + 1) + 0.4 × (-log10((dropRatePercent ?? 1) / 100))<br />
+      AD = 0.65 × rarityScore + 0.35 × normalize(gatingCost)<br />
+      Band: AD ≥ 4.5: S+ | ≥ 4.0: S | ≥ 3.0: A | ≥ 2.0: B | ≥ 1.2: C | ≥ 0.5: D | else: F
+    </code>
+  </div>
+
+  <blockquote style="margin: 1rem 0 0 0; padding: 0.75rem 1rem; border-left: 3px solid var(--accent); background: rgba(56, 189, 248, 0.08); font-size: 0.9rem; color: var(--muted); font-style: italic;">
+    "This ranking is derived objectively from official drop rates and pity gating costs (availability model v1), not subjective gameplay opinions."
+  </blockquote>
+</section>

@@ -1,0 +1,29 @@
+{
+  "name": "ctd-guide-wiki",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "npm run build && wrangler dev",
+    "check:links": "python3 scripts/check-links.py",
+    "check:content": "python3 scripts/check-content.py",
+    "check:config": "python3 scripts/check-config.py",
+    "check:assets": "python3 scripts/asset-isolation-audit.py",
+    "check:codes": "python3 scripts/check-codes.py",
+    "setup:hooks": "python3 scripts/install-hooks.py",
+    "check:tdh": "python3 scripts/validate-tdh.py --dist dist",
+    "submit:bing": "python3 scripts/submit_bing_indexnow.py",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "12",
+    "@astrojs/sitemap": "^3.3.0",
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.156.0"
+  }
+}

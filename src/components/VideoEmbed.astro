@@ -1,0 +1,187 @@
+---
+export interface Props {
+  id: string;
+  title: string;
+  description?: string;
+  uploadDate?: string;
+  channelTitle?: string;
+  channel?: string;
+  captionLabel?: string;
+}
+
+const {
+  id,
+  title,
+  description = "Official Clive Barker's Hellraiser: Revival gameplay walkthrough and showcase footage.",
+  uploadDate = "2026-06-10",
+  channelTitle = Astro.props.channel || "Official Channel",
+  captionLabel = "Official Video Reference"
+} = Astro.props;
+
+const uniqueId = `yt-${id}-${Math.random().toString(36).substring(2, 7)}`;
+const embedUrl = `https://www.youtube.com/embed/${id}`;
+const thumbnailUrl = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+
+// Google requires a FULL ISO 8601 datetime WITH timezone for VideoObject.uploadDate.
+// Date-only values ("2026-06-10") are rejected with:
+//   "Invalid datetime value for uploadDate"
+//   "Datetime property uploadDate is missing a timezone"
+// which suppresses the Video rich result entirely. Normalize date-only input by
+// appending midnight UTC. Frontmatter may still be written as a plain date.
+const rawUploadDate = uploadDate;
+const uploadDateIso = /^\d{4}-\d{2}-\d{2}$/.test(rawUploadDate.trim())
+  ? `${rawUploadDate.trim()}T00:00:00+00:00`
+  : rawUploadDate;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": title,
+  "description": description,
+  "thumbnailUrl": [thumbnailUrl],
+  "uploadDate": uploadDateIso,
+  "embedUrl": embedUrl
+};
+---
+
+<div class="video-embed-wrapper">
+  <!-- 16:9 Zero-CLS Aspect Ratio Container with YouTube IFrame API Target -->
+  <div class="video-embed-container" data-yt-container data-video-id={id} data-video-title={title}>
+    <div id={uniqueId} class="yt-player-target"></div>
+  </div>
+  <p class="video-embed-caption">
+    {captionLabel}: <span class="video-title">{title}</span> <span class="video-channel">· {channelTitle}</span>
+  </p>
+
+  <!-- VideoObject JSON-LD for Google Rich Snippets -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</div>
+
+<script>
+  declare global {
+    interface Window {
+      YT: any;
+      onYouTubeIframeAPIReady: () => void;
+      __hellraiser_yt_inited?: boolean;
+    }
+  }
+
+  function initYTPlayers() {
+    const containers = document.querySelectorAll<HTMLElement>('.video-embed-container[data-video-id]:not([data-initialized])');
+    if (!containers.length) return;
+
+    if (!window.YT || !window.YT.Player) {
+      if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScript = document.getElementsByTagName('script')[0];
+        if (firstScript && firstScript.parentNode) {
+          firstScript.parentNode.insertBefore(tag, firstScript);
+        } else {
+          document.head.appendChild(tag);
+        }
+      }
+
+      const prevCallback = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = function() {
+        if (typeof prevCallback === 'function') {
+          try { prevCallback(); } catch(e) {}
+        }
+        initYTPlayers();
+      };
+      return;
+    }
+
+    containers.forEach((container) => {
+      container.setAttribute('data-initialized', 'true');
+      const target = container.querySelector<HTMLElement>('.yt-player-target');
+      const videoId = container.getAttribute('data-video-id');
+      const videoTitle = container.getAttribute('data-video-title') || 'YouTube Video';
+      if (!target || !videoId) return;
+
+      let player: any = null;
+      try {
+        player = new window.YT.Player(target, {
+          videoId: videoId,
+          width: '100%',
+          height: '100%',
+          playerVars: {
+            autoplay: 1,
+            mute: 1,
+            loop: 1,
+            playlist: videoId,
+            controls: 1,
+            showinfo: 0,
+            rel: 0,
+            modestbranding: 1,
+            playsinline: 1
+          },
+          events: {
+            onReady: (event: any) => {
+              try {
+                event.target.mute();
+                event.target.playVideo();
+              } catch(e) {}
+            }
+          }
+        });
+
+        // Click to unmute interaction
+        container.addEventListener('click', () => {
+          if (player && typeof player.isMuted === 'function' && player.isMuted()) {
+            player.unMute();
+          }
+        }, { once: true });
+      } catch (err) {
+        console.warn('YT Player init failed:', err);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initYTPlayers);
+  } else {
+    initYTPlayers();
+  }
+  document.addEventListener('astro:page-load', initYTPlayers);
+</script>
+
+<style>
+  .video-embed-wrapper {
+    margin: 1.75rem 0;
+  }
+  .video-embed-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line, #2b2230);
+    background: #000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+  .video-embed-container iframe,
+  .video-embed-container .yt-player-target {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video-embed-caption {
+    font-size: 0.75rem;
+    color: var(--muted, #ab9eb0);
+    font-family: var(--font-mono, monospace);
+    margin-top: 0.5rem;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .video-title {
+    color: var(--ink, #f0eaf4);
+    font-weight: 600;
+  }
+  .video-channel {
+    color: var(--accent, #38bdf8);
+  }
+</style>

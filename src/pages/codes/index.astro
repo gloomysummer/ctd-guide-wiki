@@ -1,0 +1,498 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DualSidebar from "../../components/DualSidebar.astro";
+import { siteConfig } from "../../config/site.config";
+import codesData from "../../data/verified-codes.json";
+
+const tocHeadings = [
+  { depth: 2, slug: "active-codes", text: "Active Working Codes" },
+  { depth: 2, slug: "redemption-steps", text: "How to Redeem (3-Win Rule)" },
+  { depth: 2, slug: "expired-codes", text: "Expired Codes Archive" },
+  { depth: 2, slug: "evidence-dossier", text: "Official Verification Ledger" },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemPage",
+    "name": "Cameraman Tower Defense Codes (November 2026)",
+    "description": "Active promo codes for Cameraman Tower Defense on Roblox. Verified coin drops and redemption requirements.",
+    "url": `${siteConfig.siteUrl}/codes/`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Codes", "item": `${siteConfig.siteUrl}/codes/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Cameraman Tower Defense Codes (November 2026)"
+  description="Active Cameraman Tower Defense codes for November 2026. Copy working coin rewards, check 3-win unlock rules, and redeem free in-game currency."
+  canonical="/codes/"
+  jsonLd={jsonLd}
+>
+  <div class="container article-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="/">Home</a>
+      <span class="separator">/</span>
+      <span class="current">Codes</span>
+    </nav>
+
+    <header class="guide-header">
+      <div class="guide-badges">
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">NOVEMBER 2026 VERIFIED</span>
+        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">DAILY AUDITED</span>
+        <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">3-WIN GATE</span>
+      </div>
+      <h1>Cameraman Tower Defense Codes (November 2026)</h1>
+      <p class="guide-lead">
+        Copy all working Cameraman Tower Defense promo codes for free coins. Manually audited on Roblox server <strong>Universe 10762636904</strong> with the mandatory 3-win unlock guide.
+      </p>
+    </header>
+
+    <div class="article-layout has-dual-sidebar">
+      <article class="article-main">
+        <!-- Mobile Table of Contents -->
+        <details class="mobile-toc">
+          <summary>
+            <span>ON THIS PAGE (TABLE OF CONTENTS)</span>
+            <span>▾</span>
+          </summary>
+          <div class="mobile-toc-inner">
+            <ol class="toc-step-list">
+              {tocHeadings.map((item, idx) => (
+                <li class={`toc-step-item depth-${item.depth}`}>
+                  <a href={`#${item.slug}`} class="toc-step-link">
+                    <span class="toc-step-num">{String(idx + 1).padStart(2, '0')}</span>
+                    <span class="toc-step-title">{item.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
+
+        <!-- Mandatory 3-Win Alert -->
+        <div class="warning-callout">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-content">
+            <strong>Mandatory Requirement: 3 Game Wins Required</strong>
+            <p>
+              Developers <em>Aligators Games</em> enforced a strict anti-bot gate: <strong>You must complete and win at least 3 matches</strong> in Cameraman Tower Defense before the in-game Shop allows code redemptions. New accounts will see an error if attempting to redeem with 0–2 wins.
+            </p>
+          </div>
+        </div>
+
+        <!-- SECTION 1: ACTIVE CODES -->
+        <section id="active-codes" style="margin-top: 2rem;">
+          <div class="section-title-wrap">
+            <h2>Active Cameraman Tower Defense Codes</h2>
+            <p class="section-desc">Click any copy button to instantly copy the exact case-sensitive code to your clipboard.</p>
+          </div>
+
+          <div class="codes-card-list">
+            {codesData.activeCodes.map((item) => (
+              <div class="code-card">
+                <div class="code-left">
+                  <div class="code-chip">
+                    <code class="code-text" id={`code-${item.code}`}>{item.code}</code>
+                  </div>
+                  <div class="code-reward">
+                    <span class="coin-icon">💰</span> <strong>{item.reward}</strong>
+                  </div>
+                </div>
+                <div class="code-right">
+                  <span class="verify-tag">✓ Audited {item.verifiedDate}</span>
+                  <button type="button" class="btn-copy-code" data-code={item.code}>
+                    Copy Code
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- SECTION 2: HOW TO REDEEM -->
+        <section id="redemption-steps" style="margin-top: 3.5rem;">
+          <div class="section-title-wrap">
+            <h2>How to Redeem Codes in Cameraman Tower Defense</h2>
+            <p class="section-desc">Follow these exact five steps in the Roblox game client to claim your free coin rewards.</p>
+          </div>
+
+          <div class="steps-flow">
+            <div class="step-card">
+              <div class="step-num">01</div>
+              <div class="step-info">
+                <h3>Launch the Game</h3>
+                <p>Open <a href="https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense" target="_blank" rel="noopener">Cameraman Tower Defense</a> on Roblox (placeId: 132929771812494).</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">02</div>
+              <div class="step-info">
+                <h3>Clear 3 Matches (3 Wins)</h3>
+                <p>Play Normal or Easy mode to log 3 confirmed match victories. This lifts the anti-bot lock on code redemptions.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">03</div>
+              <div class="step-info">
+                <h3>Open the Shop Menu</h3>
+                <p>Click on the <strong>Shop</strong> button (shopping cart icon) on the left-side screen HUD.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">04</div>
+              <div class="step-info">
+                <h3>Scroll to Bottom of Shop</h3>
+                <p>Scroll down past crates, gamepasses, and gem purchases until you reach the code text box at the very bottom.</p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-num">05</div>
+              <div class="step-info">
+                <h3>Enter Code & Click Redeem</h3>
+                <p>Paste the copied promo code into the text field and hit the green <strong>Redeem</strong> button to receive your coins.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: EXPIRED CODES ARCHIVE -->
+        <section id="expired-codes" style="margin-top: 3.5rem;">
+          <div class="section-title-wrap">
+            <h2>Expired Codes Archive</h2>
+            <p class="section-desc">These codes were deactivated during prior patches and no longer yield rewards in-game.</p>
+          </div>
+
+          <div class="table-responsive">
+            <table class="expired-table">
+              <thead>
+                <tr>
+                  <th>Expired Code</th>
+                  <th>Past Reward</th>
+                  <th>Deactivation Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {codesData.expiredCodes.map((item) => (
+                  <tr>
+                    <td><code>{item.code}</code></td>
+                    <td>{item.reward}</td>
+                    <td>{item.expiredDate}</td>
+                    <td><span class="status-expired">EXPIRED</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 4: EVIDENCE DOSSIER -->
+        <section id="evidence-dossier" style="margin-top: 3.5rem;">
+          <h2>Official Verification Ledger & Dossier</h2>
+          <div class="evidence-box">
+            <div class="evidence-header">
+              <span class="evidence-shield">🛡️ IN-GAME CLIENT AUDIT</span>
+              <span class="evidence-status">CONFIRMED WORKING</span>
+            </div>
+            <div class="evidence-body">
+              <p><strong>Audited Client Version:</strong> Universe ID <code>10762636904</code> (Update 4 UTTVM Patch).</p>
+              <p><strong>Audit Methodology:</strong> Every code was manually tested inside the live Roblox client on an active player account with 3+ wins.</p>
+              <p><strong>Release Channel:</strong> Aligators Games Developer Announcements & Community Bulletin.</p>
+              <blockquote>
+                <em>"Codes are distributed directly by developers aibat303e and iop_dev for milestone visits and new titan releases. Never use third-party code generators."</em>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Sidebar -->
+      <DualSidebar
+        tocHeadings={tocHeadings}
+        currentUrl="/codes/"
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    document.querySelectorAll('.btn-copy-code').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const code = btn.dataset.code;
+        try {
+          await navigator.clipboard.writeText(code);
+          const originalText = btn.textContent;
+          btn.textContent = 'COPIED!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          // Fallback
+          const input = document.createElement('input');
+          input.value = code;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          document.body.removeChild(input);
+          btn.textContent = 'COPIED!';
+          setTimeout(() => { btn.textContent = 'Copy Code'; }, 2000);
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .warning-callout {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .callout-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .callout-content strong {
+    color: #fbbf24;
+    font-size: 1.05rem;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .callout-content p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .codes-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .code-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.15s ease;
+  }
+  .code-card:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+  }
+  .code-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .code-chip {
+    background: #090e18;
+    border: 1px solid #334155;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+  }
+  .code-chip code {
+    color: #38bdf8;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+  }
+  .code-reward {
+    color: #f1f5f9;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .coin-icon { font-size: 1.1rem; }
+
+  .code-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .verify-tag {
+    font-size: 0.75rem;
+    color: #10b981;
+    font-family: var(--font-mono, monospace);
+  }
+  .btn-copy-code {
+    background: #38bdf8;
+    color: #080c14;
+    border: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-copy-code:hover {
+    background: #7dd3fc;
+  }
+  .btn-copy-code.copied {
+    background: #10b981;
+    color: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .code-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+    .code-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  /* Steps Flow */
+  .steps-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .step-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .step-num {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+    line-height: 1;
+    opacity: 0.8;
+  }
+  .step-info h3 {
+    margin: 0 0 0.35rem 0;
+    color: #f8fafc;
+    font-size: 1.05rem;
+  }
+  .step-info p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .step-info a {
+    color: #38bdf8;
+  }
+
+  /* Expired Table */
+  .expired-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .expired-table th {
+    background: #090e18;
+    color: #94a3b8;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1e293b;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .expired-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1e293b;
+    color: #cbd5e1;
+  }
+  .expired-table code {
+    color: #94a3b8;
+    background: #111a2e;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    text-decoration: line-through;
+  }
+  .status-expired {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  /* Evidence Box */
+  .evidence-box {
+    background: #0b1120;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  .evidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .evidence-shield {
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .evidence-status {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .evidence-body p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin: 0.4rem 0;
+  }
+  .evidence-body code {
+    background: #1e293b;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    color: #38bdf8;
+  }
+  .evidence-body blockquote {
+    border-left: 3px solid #38bdf8;
+    margin: 0.8rem 0 0 0;
+    padding-left: 0.8rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  currentVersion?: string;
+  monthYear?: string;
+  activeTab?: string;
+}
+
+const {
+  currentVersion = "Update 3",
+  monthYear = "October 2026",
+  activeTab = "hub"
+} = Astro.props;
+
+const scenes = [
+  { slug: "hub", name: `Overall (${monthYear})`, url: "/tier-list/" },
+  { slug: "raid", name: "Raid Scene", url: "/tier-list/raid/" },
+  { slug: "farming", name: "Farming & Wave", url: "/tier-list/farming/" },
+  { slug: "trading", name: "Trading & Values", url: "/tier-list/trading/" },
+  { slug: "changelog", name: "Changelog", url: "/tier-list/changelog/" },
+  { slug: "update-3", name: "Update 3 Archive", url: "/tier-list/update-3/" },
+];
+
+const checkRouteExists = (url: string) => {
+  if (url === '/tier-list/') return true;
+  const rel = url.replace(/^\//, '').replace(/\/$/, '');
+  const p = path.resolve(process.cwd(), `src/pages/${rel}/index.astro`);
+  return fs.existsSync(p);
+};
+---
+
+<div class="version-switcher-container" style="margin-bottom: 2rem; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.75rem 1rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 700;">
+        ACTIVE VERSION
+      </span>
+      <span class="badge" style="background: rgba(34, 197, 94, 0.15); color: #34d399; border-color: rgba(34, 197, 94, 0.3);">
+        {currentVersion} Live
+      </span>
+    </div>
+    <span style="font-size: 0.8rem; color: var(--muted);">
+      Timeline: {monthYear} Cycle
+    </span>
+  </div>
+
+  <nav class="scene-nav-pills" aria-label="Tier list scenes and history" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    {scenes.map((s) => {
+      const exists = checkRouteExists(s.url);
+      const isActive = activeTab === s.slug;
+      if (exists) {
+        return (
+          <a
+            href={s.url}
+            class={`scene-nav-pill ${isActive ? 'active' : ''}`}
+            style={`font-size: 0.82rem; padding: 6px 14px; border-radius: 4px; text-decoration: none; border: 1px solid ${isActive ? 'var(--accent)' : 'var(--line)'}; background: ${isActive ? 'var(--accent)' : 'var(--panel-card)'}; color: ${isActive ? '#0b0f0d' : 'var(--ink)'}; font-weight: ${isActive ? '700' : '500'}; transition: all 0.15s ease;`}
+          >
+            {s.name}
+          </a>
+        );
+      } else {
+        return (
+          <span
+            class="scene-nav-pill disabled"
+            style="font-size: 0.82rem; padding: 6px 14px; border-radius: 4px; border: 1px dashed var(--line); background: var(--panel); color: var(--muted); opacity: 0.6; cursor: not-allowed;"
+            title="Scheduled in upcoming deployment"
+          >
+            {s.name}
+          </span>
+        );
+      }
+    })}
+  </nav>
+</div>

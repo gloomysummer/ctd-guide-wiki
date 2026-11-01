@@ -1,0 +1,531 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DualSidebar from "../../components/DualSidebar.astro";
+import { siteConfig } from "../../config/site.config";
+import valuesData from "../../data/values.json";
+
+const tocHeadings = [
+  { depth: 2, slug: "tier-rankings", text: "Meta Tier Rankings" },
+  { depth: 2, slug: "s-tier-breakdown", text: "S-Tier: Godly & Meta Carries" },
+  { depth: 2, slug: "a-tier-breakdown", text: "A-Tier: High DPS Specialists" },
+  { depth: 2, slug: "b-tier-breakdown", text: "B-Tier: Solid Support & Mid-Game" },
+  { depth: 2, slug: "c-d-tier-breakdown", text: "C & D-Tier: Niche & Starters" },
+  { depth: 2, slug: "patch-analysis", text: "UTTVM Patch Balance Analysis" },
+  { depth: 2, slug: "evidence-dossier", text: "Verified Evidence Ledger" },
+];
+
+const sTier = valuesData.filter(u => u.tier === 'S');
+const aTier = valuesData.filter(u => u.tier === 'A');
+const bTier = valuesData.filter(u => u.tier === 'B');
+const cTier = valuesData.filter(u => u.tier === 'C');
+const dTier = valuesData.filter(u => u.tier === 'D');
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemPage",
+    "name": "Cameraman Tower Defense Tier List (UTTVM Patch)",
+    "description": "Cameraman Tower Defense meta tier list ranking all 38 units following the Halloween Update 4 and UTTVM release.",
+    "url": `${siteConfig.siteUrl}/tier-list/`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Tier List", "item": `${siteConfig.siteUrl}/tier-list/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Cameraman Tower Defense Tier List (UTTVM Patch)"
+  description="Cameraman Tower Defense tier list for Update 4 UTTVM patch. Discover S-Tier meta rankings, best DPS carries, economy units, and boss counters."
+  canonical="/tier-list/"
+  jsonLd={jsonLd}
+>
+  <div class="container article-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="/">Home</a>
+      <span class="separator">/</span>
+      <span class="current">Tier List</span>
+    </nav>
+
+    <header class="guide-header">
+      <div class="guide-badges">
+        <span class="badge" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3);">UPDATE 4 PATCH</span>
+        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">NOVEMBER 2026 META</span>
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">38 UNITS RANKED</span>
+      </div>
+      <h1>Cameraman Tower Defense Meta Tier List</h1>
+      <p class="guide-lead">
+        Comprehensive rankings for all 38 units in Roblox Cameraman Tower Defense. Evaluated on DPS-to-cost efficiency, wave-clearing radius, boss damage, and solo Nightmare mode utility.
+      </p>
+    </header>
+
+    <div class="article-layout has-dual-sidebar">
+      <article class="article-main">
+        <!-- Mobile Table of Contents -->
+        <details class="mobile-toc">
+          <summary>
+            <span>ON THIS PAGE (TABLE OF CONTENTS)</span>
+            <span>▾</span>
+          </summary>
+          <div class="mobile-toc-inner">
+            <ol class="toc-step-list">
+              {tocHeadings.map((item, idx) => (
+                <li class={`toc-step-item depth-${item.depth}`}>
+                  <a href={`#${item.slug}`} class="toc-step-link">
+                    <span class="toc-step-num">{String(idx + 1).padStart(2, '0')}</span>
+                    <span class="toc-step-title">{item.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
+
+        <!-- Patch Meta Notice -->
+        <div class="patch-notice-bar">
+          <span class="patch-badge">PATCH STAMP // 2026-11-01</span>
+          <p>
+            Rankings reflect the <strong>Halloween Update 4 (UTTVM Release)</strong> on Roblox Universe <code>10762636904</code>. Includes recent damage buffs to Executioner TV Man and slight stun adjustments to TV Woman.
+          </p>
+        </div>
+
+        <!-- SECTION 1: TIER RANKINGS SUMMARY -->
+        <section id="tier-rankings" style="margin-top: 2rem;">
+          <h2>Meta Tier Rankings Overview</h2>
+          <div class="tier-matrix">
+            <div class="tier-row tier-row-s">
+              <div class="tier-label">S</div>
+              <div class="tier-units">
+                {sTier.map(u => (
+                  <a href={`/units/${u.id}/`} class="tier-unit-chip" title={`${u.name} (Value: ${u.value.toLocaleString()} pts)`}>
+                    <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="48" height="30" />
+                    <span>{u.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div class="tier-row tier-row-a">
+              <div class="tier-label">A</div>
+              <div class="tier-units">
+                {aTier.map(u => (
+                  <a href={`/units/${u.id}/`} class="tier-unit-chip" title={`${u.name} (Value: ${u.value.toLocaleString()} pts)`}>
+                    <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="48" height="30" />
+                    <span>{u.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div class="tier-row tier-row-b">
+              <div class="tier-label">B</div>
+              <div class="tier-units">
+                {bTier.map(u => (
+                  <a href={`/units/${u.id}/`} class="tier-unit-chip" title={`${u.name} (Value: ${u.value.toLocaleString()} pts)`}>
+                    <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="48" height="30" />
+                    <span>{u.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div class="tier-row tier-row-c">
+              <div class="tier-label">C</div>
+              <div class="tier-units">
+                {cTier.map(u => (
+                  <a href={`/units/${u.id}/`} class="tier-unit-chip" title={`${u.name} (Value: ${u.value.toLocaleString()} pts)`}>
+                    <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="48" height="30" />
+                    <span>{u.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div class="tier-row tier-row-d">
+              <div class="tier-label">D</div>
+              <div class="tier-units">
+                {dTier.map(u => (
+                  <a href={`/units/${u.id}/`} class="tier-unit-chip" title={`${u.name} (Value: ${u.value.toLocaleString()} pts)`}>
+                    <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="48" height="30" />
+                    <span>{u.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: S-TIER -->
+        <section id="s-tier-breakdown" style="margin-top: 3.5rem;">
+          <div class="section-title-wrap">
+            <h2>S-Tier: Godly & Meta Carries</h2>
+            <p class="section-desc">Irreplaceable units essential for soloing Nightmare mode and achieving leaderboard wave records.</p>
+          </div>
+          <div class="tier-analysis-list">
+            {sTier.map(u => (
+              <div class="analysis-card">
+                <div class="analysis-thumb">
+                  <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="800" height="500" />
+                </div>
+                <div class="analysis-info">
+                  <h3><a href={`/units/${u.id}/`}>{u.name}</a> <span class={`rarity-pill tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span></h3>
+                  <div class="analysis-stats">
+                    <span><strong>DPS:</strong> {u.dps > 0 ? u.dps.toLocaleString() : 'Economy Farm'}</span>
+                    <span><strong>Range:</strong> {u.range}</span>
+                    <span><strong>Trade Value:</strong> {u.value.toLocaleString()} pts</span>
+                  </div>
+                  <p>{u.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- SECTION 3: A-TIER -->
+        <section id="a-tier-breakdown" style="margin-top: 3.5rem;">
+          <div class="section-title-wrap">
+            <h2>A-Tier: High DPS Specialists</h2>
+            <p class="section-desc">Strong secondary carries, crowd controllers, and high-damage titans that reliably support endgame teams.</p>
+          </div>
+          <div class="tier-analysis-list">
+            {aTier.map(u => (
+              <div class="analysis-card">
+                <div class="analysis-thumb">
+                  <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="800" height="500" />
+                </div>
+                <div class="analysis-info">
+                  <h3><a href={`/units/${u.id}/`}>{u.name}</a> <span class={`rarity-pill tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span></h3>
+                  <div class="analysis-stats">
+                    <span><strong>DPS:</strong> {u.dps.toLocaleString()}</span>
+                    <span><strong>Range:</strong> {u.range}</span>
+                    <span><strong>Trade Value:</strong> {u.value.toLocaleString()} pts</span>
+                  </div>
+                  <p>{u.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- SECTION 4: B-TIER -->
+        <section id="b-tier-breakdown" style="margin-top: 3.5rem;">
+          <div class="section-title-wrap">
+            <h2>B-Tier: Solid Support & Mid-Game</h2>
+            <p class="section-desc">Indispensable cash generation farms (Scientist, Large Scientist) and reliable crowd stun support.</p>
+          </div>
+          <div class="tier-analysis-list">
+            {bTier.map(u => (
+              <div class="analysis-card">
+                <div class="analysis-thumb">
+                  <img src={`/images/units/${u.id}.webp`} alt={u.name} loading="lazy" width="800" height="500" />
+                </div>
+                <div class="analysis-info">
+                  <h3><a href={`/units/${u.id}/`}>{u.name}</a> <span class={`rarity-pill tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span></h3>
+                  <div class="analysis-stats">
+                    <span><strong>DPS:</strong> {u.dps > 0 ? u.dps.toLocaleString() : 'Cash Farm'}</span>
+                    <span><strong>Trade Value:</strong> {u.value.toLocaleString()} pts</span>
+                  </div>
+                  <p>{u.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- SECTION 5: C & D-TIER -->
+        <section id="c-d-tier-breakdown" style="margin-top: 3.5rem;">
+          <div class="section-title-wrap">
+            <h2>C & D-Tier: Niche Starters & Trade Fodder</h2>
+            <p class="section-desc">Useful primarily for waves 1–10 early defense or summon crate filler.</p>
+          </div>
+          <p style="color: #94a3b8; line-height: 1.6;">
+            Units like <em>Ninja Cameraman</em> excel in early Nightmare wave stalling, while base infantry (TV Man, Speakerman, Brown Cameraman) are rapidly replaced once coin summoning allows upgrading into epics and legendaries.
+          </p>
+        </section>
+
+        <!-- SECTION 6: PATCH ANALYSIS -->
+        <section id="patch-analysis" style="margin-top: 3.5rem;">
+          <h2>UTTVM Patch Balance Analysis</h2>
+          <div class="patch-breakdown-grid">
+            <div class="breakdown-card">
+              <h3>Executioner TV Man Buff</h3>
+              <p>Received a substantial multiplier increase on single-target execution beams, transforming it into an elite boss shredder.</p>
+            </div>
+            <div class="breakdown-card">
+              <h3>Nightmare Boss HP Buff</h3>
+              <p>Recent updates increased Nightmare boss HP pools by ~20%, elevating the necessity of slowing units like Glitch Cameraman.</p>
+            </div>
+            <div class="breakdown-card">
+              <h3>UTTVM Screen AoE Dominance</h3>
+              <p>Upgraded Titan TV Man immediately claimed S-Tier dominance due to its multi-lane screen radiation coverage.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: EVIDENCE DOSSIER -->
+        <section id="evidence-dossier" style="margin-top: 3.5rem;">
+          <h2>Verified Evidence Dossier & Attributions</h2>
+          <div class="evidence-box">
+            <div class="evidence-header">
+              <span class="evidence-shield">🛡️ TIER CONSENSUS DOSSIER</span>
+              <span class="evidence-status">COMMUNITY AUDITED</span>
+            </div>
+            <div class="evidence-body">
+              <p><strong>Meta Video References:</strong> Vaulted Values X (<a href="https://www.youtube.com/watch?v=zASCkcH9SEI" target="_blank" rel="noopener">ID: zASCkcH9SEI</a>, <a href="https://www.youtube.com/watch?v=g-XI7aSS9Mo" target="_blank" rel="noopener">ID: g-XI7aSS9Mo</a>) & Kelxyr (<a href="https://www.youtube.com/watch?v=BGzO_98xViA" target="_blank" rel="noopener">ID: BGzO_98xViA</a>).</p>
+              <p><strong>Empirical Playtest Validation:</strong> 50-wave solo runs on Desert map using Universe ID <code>10762636904</code>.</p>
+              <blockquote>
+                <em>"Tier rankings prioritize Nightmare Mode completion rate and cost-to-DPS efficiency over raw theoretical DPS."</em>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Sidebar -->
+      <DualSidebar
+        tocHeadings={tocHeadings}
+        currentUrl="/tier-list/"
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .patch-notice-bar {
+    background: #0f172a;
+    border-left: 4px solid #f43f5e;
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1.5rem;
+  }
+  .patch-badge {
+    color: #f43f5e;
+    font-weight: 700;
+    font-size: 0.75rem;
+    font-family: var(--font-mono, monospace);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .patch-notice-bar p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Tier Matrix */
+  .tier-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .tier-row {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .tier-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display, sans-serif);
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .tier-row-s .tier-label { background: #e11d48; }
+  .tier-row-a .tier-label { background: #ea580c; }
+  .tier-row-b .tier-label { background: #ca8a04; }
+  .tier-row-c .tier-label { background: #2563eb; }
+  .tier-row-d .tier-label { background: #475569; }
+
+  .tier-units {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    align-items: center;
+  }
+  .tier-unit-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #090e18;
+    border: 1px solid #334155;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    color: #f1f5f9;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.15s ease;
+  }
+  .tier-unit-chip:hover {
+    border-color: #38bdf8;
+    color: #38bdf8;
+    transform: translateY(-2px);
+  }
+  .tier-unit-chip img {
+    border-radius: 3px;
+    object-fit: cover;
+  }
+
+  /* Analysis Cards */
+  .tier-analysis-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .analysis-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.25rem;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 1rem;
+  }
+  @media (max-width: 640px) {
+    .analysis-card {
+      grid-template-columns: 1fr;
+    }
+  }
+  .analysis-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #090e18;
+  }
+  .analysis-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .analysis-info h3 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.15rem;
+  }
+  .analysis-info h3 a {
+    color: #f8fafc;
+    text-decoration: none;
+  }
+  .analysis-info h3 a:hover {
+    color: #38bdf8;
+  }
+  .analysis-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-family: var(--font-mono, monospace);
+    margin-bottom: 0.6rem;
+  }
+  .analysis-stats strong {
+    color: #cbd5e1;
+  }
+  .analysis-info p {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .patch-breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+  .breakdown-card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .breakdown-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.05rem;
+    color: #f8fafc;
+  }
+  .breakdown-card p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  .rarity-pill {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .tag-godly { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+  .tag-mythic { background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
+  .tag-legendary { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+  .tag-epic { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .tag-rare { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+  .tag-basic { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+  /* Evidence Box */
+  .evidence-box {
+    background: #0b1120;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  .evidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .evidence-shield {
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .evidence-status {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+  .evidence-body p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin: 0.4rem 0;
+  }
+  .evidence-body code {
+    background: #1e293b;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    color: #38bdf8;
+  }
+  .evidence-body blockquote {
+    border-left: 3px solid #38bdf8;
+    margin: 0.8rem 0 0 0;
+    padding-left: 0.8rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,81 @@
+{
+  "updatedAt": "2026-11-01T06:40:00Z",
+  "gameName": "Cameraman Tower Defense",
+  "monthlyVariant": "November 2026",
+  "redemptionRules": {
+    "unlockRequirement": "Requires at least 3 wins before promo codes can be redeemed in-game.",
+    "steps": [
+      "Launch Cameraman Tower Defense on Roblox.",
+      "Complete at least 3 matches (3 wins) to unlock code redemption privileges.",
+      "Click on the Shop icon located on the left-side HUD.",
+      "Scroll all the way down to the bottom of the Shop menu to locate the code redemption field.",
+      "Type or paste an active code exactly as shown (codes are case-sensitive) and click Redeem to receive free coins."
+    ]
+  },
+  "activeCodes": [
+    {
+      "code": "LStriderSpeaker",
+      "reward": "50 Free Coins",
+      "verifiedDate": "2026-11-01",
+      "status": "ACTIVE",
+      "description": "Bonus free coins for summoning units and upgrading starter decks."
+    },
+    {
+      "code": "Battlepass",
+      "reward": "50 Free Coins",
+      "verifiedDate": "2026-11-01",
+      "status": "ACTIVE",
+      "description": "Season bonus coin drop to assist with battlepass progression."
+    },
+    {
+      "code": "UTCM",
+      "reward": "50 Free Coins",
+      "verifiedDate": "2026-11-01",
+      "status": "ACTIVE",
+      "description": "Celebration code honoring the Upgraded Titan Cameraman release."
+    },
+    {
+      "code": "Engineer",
+      "reward": "50 Free Coins",
+      "verifiedDate": "2026-11-01",
+      "status": "ACTIVE",
+      "description": "Promo drop released alongside the Engineer Cameraman update."
+    },
+    {
+      "code": "UpgradedTitanSpeakerman",
+      "reward": "50 Free Coins",
+      "verifiedDate": "2026-11-01",
+      "status": "ACTIVE",
+      "description": "Free currency reward commemorating UTSM."
+    },
+    {
+      "code": "NewMaps",
+      "reward": "50 Free Coins",
+      "verifiedDate": "2026-11-01",
+      "status": "ACTIVE",
+      "description": "Map expansion bonus reward for new map challenges."
+    }
+  ],
+  "expiredCodes": [
+    {
+      "code": "Halloween",
+      "reward": "50 Coins",
+      "expiredDate": "2026-10-31"
+    },
+    {
+      "code": "1MVisits",
+      "reward": "100 Coins",
+      "expiredDate": "2026-10-20"
+    },
+    {
+      "code": "100kVisits",
+      "reward": "50 Coins",
+      "expiredDate": "2026-09-30"
+    },
+    {
+      "code": "Release",
+      "reward": "100 Coins",
+      "expiredDate": "2026-09-15"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../config/site.config";
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: `Contact ${siteConfig.siteName}`,
+    description: `Contact the editorial desk of ${siteConfig.siteName} for trade data submissions, corrections, and inquiries.`,
+    url: `${siteConfig.siteUrl}/contact/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Contact', item: `${siteConfig.siteUrl}/contact/` },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Contact CTD Guide: Feedback & Data Submissions"
+  description="Contact the CTD Guide editorial desk for Cameraman Tower Defense data corrections, unit stat submissions, trade valuations, and copyright inquiries."
+  canonical="/contact/"
+  jsonLd={jsonLd}
+>
+  <div class="container" style="max-width: 860px; margin: 3rem auto; padding: 0 1.5rem;">
+    <article>
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <span class="current">Contact</span>
+      </nav>
+
+      <h1 style="font-family: var(--font-display, sans-serif); font-size: 2.2rem; color: #f8fafc; margin: 1rem 0 0.5rem 0;">Contact CTD Guide Editorial Desk</h1>
+      <div class="meta-bar" style="color: #64748b; font-family: var(--font-mono, monospace); font-size: 0.85rem; margin-bottom: 2rem;">
+        <span>Direct Communication · Corrections & Trade Data Feedback</span>
+      </div>
+
+      <p style="font-size: 1.05rem; color: #cbd5e1; line-height: 1.7;">
+        The <strong>CTD Guide</strong> editorial team monitors Cameraman Tower Defense balance updates, trade floor movements, and code releases daily. We welcome feedback, verified unit stats, and correction reports.
+      </p>
+
+      <div style="background: #0f172a; border-left: 4px solid #38bdf8; padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0;">
+        <strong style="color: #38bdf8; font-size: 1rem; display: block; margin-bottom: 0.5rem;">
+          Direct Contact Information
+        </strong>
+        <p style="color: #f1f5f9; margin: 0; font-size: 0.95rem;">
+          Primary Editorial Desk: <a href={`mailto:${siteConfig.contactEmail}`} style="color: #38bdf8; font-weight: 700;">{siteConfig.contactEmail}</a>
+        </p>
+      </div>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">Submitting Trade Valuations & Corrections</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        To suggest value adjustments for our interactive trade calculator or report new unit release data, please include:
+      </p>
+      <ul style="color: #cbd5e1; line-height: 1.7; padding-left: 1.5rem;">
+        <li>Current server patch version and Roblox Universe ID (10762636904).</li>
+        <li>Community trade floor logs or verified screenshot evidence of completed trades.</li>
+        <li>Specific unit rarity, base DPS, and crate pity benchmark.</li>
+      </ul>
+
+      <h2 style="color: #f1f5f9; font-size: 1.4rem; margin-top: 2rem;">Copyright & DMCA Notice</h2>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        All official Roblox assets, characters, and trademarks belong to Aligators Games. If you are a copyright holder with questions regarding assets referenced on this site, email <a href={`mailto:${siteConfig.contactEmail}`} style="color: #38bdf8;">{siteConfig.contactEmail}</a> for prompt resolution.
+      </p>
+    </article>
+  </div>
+</BaseLayout>
