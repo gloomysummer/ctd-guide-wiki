@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import VideoEmbed from "../components/VideoEmbed.astro";
 import { siteConfig } from "../config/site.config";
 import { CHANNELS, TOTAL_GUIDES_COUNT } from "../config/channels";
 import dossier from "../data/dossier.json";
@@ -191,6 +192,20 @@ const websiteJsonLd = {
       </div>
     </div>
   </header>
+
+  <!-- HOMEPAGE GAMEPLAY SHOWCASE VIDEO -->
+  <section class="homepage-showcase-section" style="padding: 1.5rem 0 0.5rem;">
+    <div class="container" style="max-width: 960px;">
+      <VideoEmbed
+        id="E6jfnsuMC2Y"
+        title="The ULTIMATE Beginners GUIDE For Cameraman Tower Defense!"
+        description="Comprehensive beginner guide and gameplay walkthrough for Cameraman Tower Defense."
+        channel="MelloTD"
+        uploadDate="2026-10-28"
+        captionLabel="Gameplay walkthrough and beginner guide"
+      />
+    </div>
+  </section>
 
   <!-- 4 STATS COUNTER BAR -->
   <section class="metrics-bar-section">
