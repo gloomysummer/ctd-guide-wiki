@@ -12,6 +12,78 @@
       "Type or paste an active code exactly as shown (codes are case-sensitive) and click Redeem to receive free coins."
     ]
   },
+  "codes": [
+    {
+      "code": "LStriderSpeaker",
+      "rewards": "50 Free Coins",
+      "status": "active",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "Battlepass",
+      "rewards": "50 Free Coins",
+      "status": "active",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "UTCM",
+      "rewards": "50 Free Coins",
+      "status": "active",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "Engineer",
+      "rewards": "50 Free Coins",
+      "status": "active",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "UpgradedTitanSpeakerman",
+      "rewards": "50 Free Coins",
+      "status": "active",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "NewMaps",
+      "rewards": "50 Free Coins",
+      "status": "active",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "Halloween",
+      "rewards": "50 Coins",
+      "status": "expired",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "1MVisits",
+      "rewards": "100 Coins",
+      "status": "expired",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "100kVisits",
+      "rewards": "50 Coins",
+      "status": "expired",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    },
+    {
+      "code": "Release",
+      "rewards": "100 Coins",
+      "status": "expired",
+      "lastVerified": "2026-11-01",
+      "sourceUrl": "https://www.roblox.com/games/132929771812494/Cameraman-Tower-Defense"
+    }
+  ],
   "activeCodes": [
     {
       "code": "LStriderSpeaker",
