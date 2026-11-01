@@ -63,9 +63,9 @@ export const CHANNELS: Channel[] = [
     guides: [
       {
         id: "all-units-index",
-        title: "Complete 38 Units Roster & Stat Index",
+        title: "Complete 39 Units Roster & Index",
         url: "/units/",
-        description: "Full index of all 38 Godly, Mythic, Legendary, Epic, Rare, and Basic units.",
+        description: "Full index of all 39 Godly, Mythic, Legendary, Epic, Rare, and Basic units.",
         tag: "P1 ROSTER"
       },
       {
@@ -74,13 +74,6 @@ export const CHANNELS: Channel[] = [
         url: "/units/upgraded-titan-cameraman/",
         description: "S-Tier Godly unit stats, DPS scaling, summon pity benchmark, and best placements.",
         tag: "GODLY"
-      },
-      {
-        id: "chaos-cameraman",
-        title: "Chaos Cameraman",
-        url: "/units/chaos-cameraman/",
-        description: "Newly released Halloween update titan with devastating screen radiation AoE DPS.",
-        tag: "NEW PATCH"
       },
       {
         id: "chaos-cameraman",
@@ -109,7 +102,7 @@ export const CHANNELS: Channel[] = [
         id: "meta-tier-list",
         title: "Cameraman Tower Defense Meta Tier List (Update 4)",
         url: "/tier-list/",
-        description: "Complete S-to-D tier rankings across all 38 units based on DPS, cost, and Nightmare utility.",
+        description: "Complete S-to-D tier rankings across all 39 units based on DPS, cost, and Nightmare utility.",
         tag: "P1 META"
       }
     ]

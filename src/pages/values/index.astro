@@ -53,11 +53,11 @@ const jsonLd = [
       <div class="guide-badges">
         <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">P0 INTERACTIVE TOOL</span>
         <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">UPDATE 4 VALUE INDEX</span>
-        <span class="badge" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">{totalUnits} UNITS AUDITED</span>
+        <span class="badge" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">{totalUnits} UNITS INDEXED</span>
       </div>
       <h1>Cameraman Tower Defense Value List & Calculator</h1>
       <p class="guide-lead">
-        Audit real-time trading values, calculate Win / Fair / Lose trade balance across 4 offer slots, and reference demand ratings for all 38 units in Roblox Cameraman Tower Defense.
+        Audit real-time trading values, calculate Win / Fair / Lose trade balance across 4 offer slots, and reference demand ratings for all 39 units in Roblox Cameraman Tower Defense.
       </p>
     </header>
 
@@ -227,11 +227,11 @@ const jsonLd = [
                       <span class={`rarity-tag tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span>
                     </td>
                     <td>
-                      {u.value > 0 ? <><span class="value-number">{u.value.toLocaleString()}</span> <small class="pts-lbl">pts</small></> : <span class="value-number na">&mdash;</span> <small class="pts-lbl">unpublished</small>}
+                      {u.value > 0 ? <><span class="value-number">{u.value.toLocaleString()}</span> <small class="pts-lbl">pts</small></> : <span class="value-number na">—</span> <small class="pts-lbl">unpublished</small>}
                     </td>
                     <td>
                       <div class="demand-meter">
-                        <span class="demand-val">{u.demand > 0 ? `${u.demand}/10` : "&mdash;"}</span>
+                        <span class="demand-val">{u.demand > 0 ? `${u.demand}/10` : "—"}</span>
                         <div class="bar-bg"><div class="bar-fill" style={`width: ${u.demand * 10}%;`}></div></div>
                       </div>
                     </td>
@@ -714,7 +714,7 @@ const jsonLd = [
     background: #090e18;
     color: #94a3b8;
     text-align: left;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.5rem;
     border-bottom: 1px solid #1e293b;
     font-weight: 600;
     text-transform: uppercase;
@@ -722,7 +722,7 @@ const jsonLd = [
     letter-spacing: 0.05em;
   }
   .values-data-table td {
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 0.5rem;
     border-bottom: 1px solid #1e293b;
     vertical-align: middle;
   }
@@ -928,13 +928,19 @@ const jsonLd = [
     -webkit-overflow-scrolling: touch;
     border-radius: 0.75rem;
   }
-  .table-scroll table { min-width: 860px; }
+  .table-scroll table { min-width: 700px; }
   .trend-dropping { color: #f87171; }
   .trend-unstable { color: #fbbf24; }
   .trend-volatile { color: #c084fc; }
   .trend-unknown  { color: #64748b; }
   .value-number.na { color: #64748b; }
   @media (max-width: 900px) {
-    .table-scroll table { min-width: 760px; }
+    .table-scroll table { min-width: 660px; }
   }
+
+  .values-data-table .quick-add-group { display: flex; gap: 4px; }
+  .values-data-table .btn-add-calc { padding: 3px 6px; font-size: 0.72rem; letter-spacing: 0; }
+  .values-data-table .rarity-tag { padding: 2px 6px; font-size: 0.68rem; }
+  .values-data-table .unit-mini-thumb { margin-right: 6px; width: 40px; height: 25px; }
+  .values-data-table .unit-cell { gap: 6px; }
 </style>

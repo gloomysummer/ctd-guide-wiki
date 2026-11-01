@@ -285,6 +285,7 @@ a:hover { color: var(--accent-hover); }
   position: absolute;
   top: 100%;
   left: 0;
+  max-width: calc(100vw - 32px);
   padding-top: 8px;
   z-index: 1000;
   opacity: 0;
@@ -2334,7 +2335,7 @@ article code {
 @media (min-width: 1280px) {
   .article-layout.has-dual-sidebar {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 210px 270px;
+    grid-template-columns: minmax(0, 1fr) 190px 250px;
     gap: 28px;
     align-items: start;
   }
@@ -4277,4 +4278,67 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-.table-scroll > table { min-width: 720px; }
+.table-scroll > table { min-width: 640px; }
+
+
+/* 宽屏下文章容器放宽，避免右侧栏挤压正文导致表格被裁 */
+@media (min-width: 1280px) {
+  .container.article-page { max-width: 1340px; }
+  .article-layout.has-dual-sidebar {
+    grid-template-columns: minmax(0, 1fr) 190px 250px;
+    gap: 24px;
+  }
+}
+/* 数据表紧凑化：七列在 800px 内可读 */
+.values-data-table { min-width: 800px !important; }
+.values-data-table th,
+.values-data-table td { padding: 10px 6px; }
+.values-data-table .quick-add-group { display: flex; gap: 4px; }
+.values-data-table .btn-add-calc { padding: 3px 6px; font-size: 0.72rem; letter-spacing: 0; }
+.values-data-table .rarity-tag { padding: 2px 6px; font-size: 0.68rem; }
+.values-data-table .unit-mini-thumb { margin-right: 6px; }
+.values-data-table .unit-mini-thumb { width: 40px; height: 25px; }
+
+
+/* 1080~1279 区间：导航下拉不得超出视口 */
+@media (max-width: 1279px) {
+  .dropdown-menu { max-width: calc(100vw - 32px); }
+}
+/* 窄屏隐藏表格的 Quick Add 列，避免横向滚动 */
+@media (max-width: 1199px) {
+  .values-data-table th:last-child,
+  .values-data-table td:last-child { display: none; }
+  .values-data-table { min-width: 0 !important; }
+  .table-scroll table { min-width: 0; }
+}
+
+
+/* 最后一个下拉菜单右对齐，避免超出视口（此前无 dropdown-right 类） */
+.nav-item.has-dropdown:last-child .dropdown-menu,
+.nav-menu > .nav-item:last-child .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+
+/* 所有导航下拉右对齐：菜单向左展开，不再顶出视口右缘 */
+.nav-links .nav-item .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+
+/* 侧栏标题不再被挤成两行 */
+.sidebar-col-explore .explore-title,
+.sidebar-explore-title,
+.explore-header { white-space: nowrap; }
+@media (min-width: 1280px) {
+  .article-layout.has-dual-sidebar { grid-template-columns: minmax(0, 1fr) 200px 260px; }
+}
+
+
+/* 侧栏标题与计数徽章不换行 */
+.wiki-nav-title { white-space: nowrap; }
+.wiki-nav-title span { white-space: nowrap; }
+.wiki-nav-header { flex-wrap: nowrap; gap: 8px; }
+.sidebar-count-badge { white-space: nowrap; flex: 0 0 auto; }
