@@ -8,7 +8,7 @@ const tocHeadings = [
   { depth: 2, slug: "trade-calculator", text: "Interactive Trade Calculator" },
   { depth: 2, slug: "value-table", text: "Unit Trading Value Table" },
   { depth: 2, slug: "fairness-methodology", text: "Fairness Band Methodology" },
-  { depth: 2, slug: "evidence-dossier", text: "Verified Evidence Dossier" },
+  { depth: 2, slug: "evidence-dossier", text: "Source Dossier" },
 ];
 
 const totalUnits = valuesData.length;
@@ -52,7 +52,7 @@ const jsonLd = [
     <header class="guide-header">
       <div class="guide-badges">
         <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">P0 INTERACTIVE TOOL</span>
-        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">UTTVM UPDATE 4 INDEX</span>
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">UPDATE 4 VALUE INDEX</span>
         <span class="badge" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">{totalUnits} UNITS AUDITED</span>
       </div>
       <h1>Cameraman Tower Defense Value List & Calculator</h1>
@@ -112,7 +112,7 @@ const jsonLd = [
                         <option value="">-- Empty Slot --</option>
                         {valuesData.map((u) => (
                           <option value={u.id} data-val={u.value} data-rarity={u.rarity}>
-                            {u.name} ({u.rarity} - {u.value.toLocaleString()} pts)
+                            {u.name} ({u.rarity}{u.value > 0 ? ` - ${u.value.toLocaleString()} pts` : ' - no published value'})
                           </option>
                         ))}
                       </select>
@@ -138,7 +138,7 @@ const jsonLd = [
                         <option value="">-- Empty Slot --</option>
                         {valuesData.map((u) => (
                           <option value={u.id} data-val={u.value} data-rarity={u.rarity}>
-                            {u.name} ({u.rarity} - {u.value.toLocaleString()} pts)
+                            {u.name} ({u.rarity}{u.value > 0 ? ` - ${u.value.toLocaleString()} pts` : ' - no published value'})
                           </option>
                         ))}
                       </select>
@@ -226,11 +226,11 @@ const jsonLd = [
                       <span class={`rarity-tag tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span>
                     </td>
                     <td>
-                      <span class="value-number">{u.value.toLocaleString()}</span> <small class="pts-lbl">pts</small>
+                      {u.value > 0 ? <><span class="value-number">{u.value.toLocaleString()}</span> <small class="pts-lbl">pts</small></> : <span class="value-number na">&mdash;</span> <small class="pts-lbl">unpublished</small>}
                     </td>
                     <td>
                       <div class="demand-meter">
-                        <span class="demand-val">{u.demand}/10</span>
+                        <span class="demand-val">{u.demand > 0 ? `${u.demand}/10` : "&mdash;"}</span>
                         <div class="bar-bg"><div class="bar-fill" style={`width: ${u.demand * 10}%;`}></div></div>
                       </div>
                     </td>
@@ -274,7 +274,7 @@ const jsonLd = [
             <div class="method-card">
               <h3>Overpay vs Demand</h3>
               <p>
-                High-demand Godlies (like <em>Upgraded Titan TV Man</em> or <em>UTCM</em>) command an inherent 10%–15% overpay premium. Do not trade high-demand Godlies for low-demand fodder epics at raw value parity.
+                High-demand units (like <em>TV Spider</em> at 9/10 or <em>Engineer Cameraman</em> at 8/10) command an inherent overpay premium. Do not trade high-demand Godlies for low-demand fodder epics at raw value parity.
               </p>
             </div>
           </div>
@@ -282,16 +282,16 @@ const jsonLd = [
 
         <!-- SECTION 4: EVIDENCE DOSSIER -->
         <section id="evidence-dossier" style="margin-top: 3.5rem;">
-          <h2>Verified Evidence Dossier & Ledger</h2>
+          <h2>Source Dossier & Ledger</h2>
           <div class="evidence-box">
             <div class="evidence-header">
               <span class="evidence-shield">🛡️ OFFICIAL AUDIT LEDGER</span>
-              <span class="evidence-status">VERIFIED MATCH</span>
+              <span class="evidence-status">SOURCE DATED 2026-10-25</span>
             </div>
             <div class="evidence-body">
               <p><strong>Primary Valuation Source:</strong> Vaulted Values X Index (Update 4) & Aligators Games Official Trading Discord.</p>
               <p><strong>Cross-Verification Video Anchor:</strong> <a href="https://www.youtube.com/watch?v=7QBiS599euI" target="_blank" rel="noopener">YouTube (Vaulted Values X Update 4 Valuation Ledger, ID: 7QBiS599euI)</a>.</p>
-              <p><strong>Patch Alignment:</strong> Synchronized with Roblox Universe <code>10762636904</code> update timestamp <code>2026-10-31 22:25 UTC</code> (UTTVM release).</p>
+              <p><strong>Patch Alignment:</strong> Values reflect the community list dated <code>2026-10-25</code> (Update 4). The UTTVM update was moved to November 4, 2026 and is not reflected here.</p>
               <blockquote>
                 <em>"Trading point valuations are anchored to spin pity equivalents, crate drop rates (0.01% Godly, 0.1% Mythic), and active secondary market exchange ratios."</em>
               </blockquote>

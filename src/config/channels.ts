@@ -76,9 +76,9 @@ export const CHANNELS: Channel[] = [
         tag: "GODLY"
       },
       {
-        id: "upgraded-titan-tv-man",
-        title: "Upgraded Titan TV Man (UTTVM)",
-        url: "/units/upgraded-titan-tv-man/",
+        id: "chaos-cameraman",
+        title: "Chaos Cameraman",
+        url: "/units/chaos-cameraman/",
         description: "Newly released Halloween update titan with devastating screen radiation AoE DPS.",
         tag: "NEW PATCH"
       },
@@ -107,7 +107,7 @@ export const CHANNELS: Channel[] = [
     guides: [
       {
         id: "meta-tier-list",
-        title: "Cameraman Tower Defense Meta Tier List (UTTVM Patch)",
+        title: "Cameraman Tower Defense Meta Tier List (Update 4)",
         url: "/tier-list/",
         description: "Complete S-to-D tier rankings across all 38 units based on DPS, cost, and Nightmare utility.",
         tag: "P1 META"

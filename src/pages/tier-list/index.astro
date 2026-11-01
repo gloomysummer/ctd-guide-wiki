@@ -10,8 +10,8 @@ const tocHeadings = [
   { depth: 2, slug: "a-tier-breakdown", text: "A-Tier: High DPS Specialists" },
   { depth: 2, slug: "b-tier-breakdown", text: "B-Tier: Solid Support & Mid-Game" },
   { depth: 2, slug: "c-d-tier-breakdown", text: "C & D-Tier: Niche & Starters" },
-  { depth: 2, slug: "patch-analysis", text: "UTTVM Patch Balance Analysis" },
-  { depth: 2, slug: "evidence-dossier", text: "Verified Evidence Ledger" },
+  { depth: 2, slug: "patch-analysis", text: "Update 4 Balance Analysis" },
+  { depth: 2, slug: "evidence-dossier", text: "Source Ledger" },
 ];
 
 const sTier = valuesData.filter(u => u.tier === 'S');
@@ -24,8 +24,8 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "ItemPage",
-    "name": "Cameraman Tower Defense Tier List (UTTVM Patch)",
-    "description": "Cameraman Tower Defense meta tier list ranking all 38 units following the Halloween Update 4 and UTTVM release.",
+    "name": "Cameraman Tower Defense Tier List (Update 4)",
+    "description": "Cameraman Tower Defense meta tier list ranking all 39 units following the Halloween Update 4 balance patch.",
     "url": `${siteConfig.siteUrl}/tier-list/`,
   },
   {
@@ -40,8 +40,8 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title="Cameraman Tower Defense Tier List (UTTVM Patch)"
-  description="Cameraman Tower Defense tier list for Update 4 UTTVM patch. Discover S-Tier meta rankings, best DPS carries, economy units, and boss counters."
+  title="Cameraman Tower Defense Tier List (Update 4)"
+  description="Cameraman Tower Defense tier list for Update 4. Discover S-Tier meta rankings, best DPS carries, economy units, and boss counters."
   canonical="/tier-list/"
   jsonLd={jsonLd}
 >
@@ -90,7 +90,7 @@ const jsonLd = [
         <div class="patch-notice-bar">
           <span class="patch-badge">PATCH STAMP // 2026-11-01</span>
           <p>
-            Rankings reflect the <strong>Halloween Update 4 (UTTVM Release)</strong> on Roblox Universe <code>10762636904</code>. Includes recent damage buffs to Executioner TV Man and slight stun adjustments to TV Woman.
+            Rankings reflect the <strong>Halloween Update 4</strong> on Roblox Universe <code>10762636904</code>. The UTTVM update is scheduled for November 4, 2026. Includes recent damage buffs to Executioner TV Man and slight stun adjustments to TV Woman.
           </p>
         </div>
 
@@ -175,8 +175,8 @@ const jsonLd = [
                 <div class="analysis-info">
                   <h3><a href={`/units/${u.id}/`}>{u.name}</a> <span class={`rarity-pill tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span></h3>
                   <div class="analysis-stats">
-                    <span><strong>DPS:</strong> {u.dps > 0 ? u.dps.toLocaleString() : 'Economy Farm'}</span>
-                    <span><strong>Range:</strong> {u.range}</span>
+                    <span><strong>DPS:</strong> Not published</span>
+                    <span><strong>Range:</strong> Not published</span>
                     <span><strong>Trade Value:</strong> {u.value.toLocaleString()} pts</span>
                   </div>
                   <p>{u.description}</p>
@@ -201,8 +201,8 @@ const jsonLd = [
                 <div class="analysis-info">
                   <h3><a href={`/units/${u.id}/`}>{u.name}</a> <span class={`rarity-pill tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span></h3>
                   <div class="analysis-stats">
-                    <span><strong>DPS:</strong> {u.dps.toLocaleString()}</span>
-                    <span><strong>Range:</strong> {u.range}</span>
+                    <span><strong>DPS:</strong> Not published</span>
+                    <span><strong>Range:</strong> Not published</span>
                     <span><strong>Trade Value:</strong> {u.value.toLocaleString()} pts</span>
                   </div>
                   <p>{u.description}</p>
@@ -227,7 +227,7 @@ const jsonLd = [
                 <div class="analysis-info">
                   <h3><a href={`/units/${u.id}/`}>{u.name}</a> <span class={`rarity-pill tag-${u.rarity.toLowerCase()}`}>{u.rarity}</span></h3>
                   <div class="analysis-stats">
-                    <span><strong>DPS:</strong> {u.dps > 0 ? u.dps.toLocaleString() : 'Cash Farm'}</span>
+                    <span><strong>DPS:</strong> Not published</span>
                     <span><strong>Trade Value:</strong> {u.value.toLocaleString()} pts</span>
                   </div>
                   <p>{u.description}</p>
@@ -250,7 +250,7 @@ const jsonLd = [
 
         <!-- SECTION 6: PATCH ANALYSIS -->
         <section id="patch-analysis" style="margin-top: 3.5rem;">
-          <h2>UTTVM Patch Balance Analysis</h2>
+          <h2>Update 4 Balance Analysis</h2>
           <div class="patch-breakdown-grid">
             <div class="breakdown-card">
               <h3>Executioner TV Man Buff</h3>
@@ -261,15 +261,15 @@ const jsonLd = [
               <p>Recent updates increased Nightmare boss HP pools by ~20%, elevating the necessity of slowing units like Glitch Cameraman.</p>
             </div>
             <div class="breakdown-card">
-              <h3>UTTVM Screen AoE Dominance</h3>
-              <p>Upgraded Titan TV Man immediately claimed S-Tier dominance due to its multi-lane screen radiation coverage.</p>
+              <h3>Cheap Mythics Replaced Expensive Legendaries</h3>
+              <p>After Update 4 the old legendaries — Titan Cameraman, Titan Speakerman, Titan TV Man, Ninja Cameraman and Laser Cameraman Car — were all cut to 5 trade points each, while the cheapest Mythic (Upgraded Titan Speakerman) settled at 250. A single Mythic now equals fifty of those legendaries.</p>
             </div>
           </div>
         </section>
 
         <!-- SECTION 7: EVIDENCE DOSSIER -->
         <section id="evidence-dossier" style="margin-top: 3.5rem;">
-          <h2>Verified Evidence Dossier & Attributions</h2>
+          <h2>Source Dossier & Attributions</h2>
           <div class="evidence-box">
             <div class="evidence-header">
               <span class="evidence-shield">🛡️ TIER CONSENSUS DOSSIER</span>

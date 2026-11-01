@@ -24,7 +24,7 @@ const searchItems = [
     category: "Codes",
   },
   {
-    title: "Cameraman Tower Defense Meta Tier List (UTTVM Patch)",
+    title: "Cameraman Tower Defense Meta Tier List (Update 4)",
     description: "S-to-D tier rankings for all 38 units based on DPS, cost, and Nightmare utility.",
     url: "/tier-list/",
     category: "Tier List",
@@ -49,7 +49,7 @@ const searchItems = [
   },
   ...valuesData.map((u) => ({
     title: `${u.name} (${u.rarity})`,
-    description: `${u.category} • Value: ${u.value.toLocaleString()} pts • DPS: ${u.dps > 0 ? u.dps.toLocaleString() : 'Support'} • Tier ${u.tier}`,
+    description: `${u.category} • ${u.value > 0 ? `Trade value: ${u.value.toLocaleString()} pts` : 'No published trade value'} • Tier ${u.tier}`,
     url: `/units/${u.id}/`,
     category: "Unit",
   })),
@@ -295,10 +295,10 @@ const brandRest = brandParts.slice(1).join(' ') || 'WIKI';
             <ul class="footer-nav-list">
               <li><a href="/values/">Trade Calculator & Value List</a></li>
               <li><a href="/codes/">Promo Codes (November 2026)</a></li>
-              <li><a href="/tier-list/">Meta Tier List (UTTVM Patch)</a></li>
+              <li><a href="/tier-list/">Meta Tier List (Update 4)</a></li>
               <li><a href="/how-to-solo-nightmare-mode/">Solo Nightmare Mode Guide</a></li>
               <li><a href="/units/upgraded-titan-cameraman/">Upgraded Titan Cameraman (UTCM)</a></li>
-              <li><a href="/units/upgraded-titan-tv-man/">Upgraded Titan TV Man (UTTVM)</a></li>
+              <li><a href="/units/tv-spider/">TV Spider</a></li>
             </ul>
           </div>
 

@@ -16,14 +16,14 @@ const { unit } = Astro.props;
 // SERP TDH optimization (Title <= 60, Meta Description <= 160, H1 <= 50)
 const cleanName = unit.name.replace(/\s*\([^)]*\)/g, '').trim();
 const pageTitle = cleanName.length > 25 ? `${cleanName} Stats & Value` : `${cleanName} Stats & Trade Value`;
-const metaDesc = `${cleanName} stats and trade value guide in Cameraman Tower Defense. Check DPS (${unit.dps.toLocaleString()}), range, rarity, and tier placement.`;
+const metaDesc = `${cleanName} trade value, demand score and tier placement in Cameraman Tower Defense, sourced from the dated community value list.`;
 const pageH1 = cleanName.length > 25 ? `${cleanName} Stats & Value` : `${cleanName} Stats & Value Guide`;
 
 const tocHeadings = [
   { depth: 2, slug: "combat-profile", text: "Combat Profile & Stats" },
   { depth: 2, slug: "trade-valuation", text: "Trading Value & Demand" },
   { depth: 2, slug: "tactical-placements", text: "Optimal Placements & Synergy" },
-  { depth: 2, slug: "evidence-dossier", text: "Verified Evidence Ledger" },
+  { depth: 2, slug: "evidence-dossier", text: "Source Ledger" },
 ];
 
 const jsonLd = [
@@ -104,15 +104,15 @@ const jsonLd = [
           <div class="banner-stats">
             <div class="stat-box">
               <span class="lbl">TRADE VALUE</span>
-              <span class="val cyan">{unit.value.toLocaleString()} <small>pts</small></span>
+              <span class="val cyan">{unit.value > 0 ? <>{unit.value.toLocaleString()} <small>pts</small></> : <><small>No published value</small></>}</span>
             </div>
             <div class="stat-box">
               <span class="lbl">BASE DPS</span>
-              <span class="val">{unit.dps > 0 ? unit.dps.toLocaleString() : 'Support N/A'}</span>
+              <span class="val">Not published</span>
             </div>
             <div class="stat-box">
               <span class="lbl">ATTACK RANGE</span>
-              <span class="val">{unit.range > 0 ? `${unit.range} studs` : 'Global / Field'}</span>
+              <span class="val">Not published</span>
             </div>
             <div class="stat-box">
               <span class="lbl">DEMAND RATING</span>
@@ -142,9 +142,9 @@ const jsonLd = [
                 </tr>
                 <tr>
                   <th>Estimated Peak DPS</th>
-                  <td>{unit.dps > 0 ? `${unit.dps.toLocaleString()} DPS` : 'Non-combat Cash Engine'}</td>
+                  <td>Not published by the developer</td>
                   <th>Targeting Range</th>
-                  <td>{unit.range > 0 ? `${unit.range} Studs` : 'Zero (Cash Farm)'}</td>
+                  <td>Not published by the developer</td>
                 </tr>
                 <tr>
                   <th>Market Trend</th>
@@ -161,12 +161,12 @@ const jsonLd = [
         <section id="trade-valuation" style="margin-top: 3.5rem;">
           <h2>Trading Value & Market Demand</h2>
           <p>
-            In the player-driven trading ecosystem, <strong>{unit.name}</strong> currently holds an estimated benchmark value of <strong>{unit.value.toLocaleString()} trading points</strong> with a community demand score of <strong>{unit.demand}/10</strong>.
+            In the player-driven trading ecosystem, <strong>{unit.name}</strong> {unit.value > 0 ? <>currently holds a community-listed trade value of <strong>{unit.value.toLocaleString()} trading points</strong></> : <>has <strong>no published trade value</strong> on the current community list</>}{unit.demand > 0 ? <> with a demand score of <strong>{unit.demand}/10</strong></> : <> and no published demand score</>}.
           </p>
           <div class="trade-tips-box">
             <h3>Trading Recommendations:</h3>
             <ul>
-              <li><strong>Fair Parity Range:</strong> When exchanging for {unit.name}, ensure incoming offers evaluate within ±10% ({Math.round(unit.value * 0.9).toLocaleString()} – {Math.round(unit.value * 1.1).toLocaleString()} pts).</li>
+              {unit.value > 0 && <li><strong>Fair Parity Range:</strong> When exchanging for {unit.name}, ensure incoming offers evaluate within ±10% ({Math.round(unit.value * 0.9).toLocaleString()} – {Math.round(unit.value * 1.1).toLocaleString()} pts).</li>}
               <li><strong>Market Trend ({unit.trend}):</strong> {unit.trend === 'Rising' ? 'Demand is active and rising due to recent meta buffs or event scarcity.' : unit.trend === 'Falling' ? 'Demand is cooling down as newer units eclipse its raw DPS output.' : 'Consistent market liquidity with stable trade volume across Roblox community servers.'}</li>
               <li><strong>Test Before Trading:</strong> Use our <a href="/values/" style="color: #38bdf8;">Interactive Trade Calculator</a> to verify Win/Fair/Lose balance before finalizing in-game swaps.</li>
             </ul>
@@ -183,7 +183,7 @@ const jsonLd = [
             <div class="synergy-card">
               <h3>Track Positioning</h3>
               <p>
-                {unit.range > 25 ? 'Place in central loop turns or elevated choke intersections where wide range coverage maximizes track uptime.' : 'Place directly adjacent to tight track corners to capitalize on high-velocity localized attacks.'}
+                Aligators Games does not publish unit stats. Placement advice on this page is derived from community recordings, not from an official stat sheet.
               </p>
             </div>
             <div class="synergy-card">
@@ -197,11 +197,11 @@ const jsonLd = [
 
         <!-- SECTION 4: EVIDENCE DOSSIER -->
         <section id="evidence-dossier" style="margin-top: 3.5rem;">
-          <h2>Verified Evidence Dossier & Attribution</h2>
+          <h2>Source Dossier & Attribution</h2>
           <div class="evidence-box">
             <div class="evidence-header">
               <span class="evidence-shield">🛡️ AUDITED SOURCE DOSSIER</span>
-              <span class="evidence-status">VERIFIED {unit.source.retrievedAt.slice(0, 10)}</span>
+              <span class="evidence-status">SOURCE DATED {unit.source.retrievedAt}</span>
             </div>
             <div class="evidence-body">
               <p><strong>Valuation Platform:</strong> {unit.source.platform}</p>
