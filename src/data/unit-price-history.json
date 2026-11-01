@@ -1,0 +1,168 @@
+{
+  "source": {
+    "name": "Vaulted Values X — Cameraman Tower Defense Value List (After Update 4)",
+    "videoId": "7QBiS599euI",
+    "publishedAt": "2026-10-26",
+    "listDate": "2026-10-25",
+    "note": "Trade values between units, not gem prices. Numbers are read from the video's spoken list."
+  },
+  "history": {
+    "tv-spider": {
+      "listed": 6000,
+      "peak": 8800,
+      "dip": 7250,
+      "current": 8000,
+      "story": "Update 3's new exclusive. Listed at 6,000, peaked near 8,800, dipped to about 7,250, and was back at 8,000 on the October 25 list. It and Engineer Cameraman are the only top units that rose after both updates."
+    },
+    "chaos-cameraman": {
+      "listed": 7500,
+      "peak": 10000,
+      "current": 7000,
+      "story": "Went from 7,500 to a 9-10,000 range in under a day, gave all of it back in under three days, and has sat at 7,000 since October 23. The only top-10 entry marked dropping."
+    },
+    "engineer-cameraman": {
+      "before": 3500,
+      "peak": 4200,
+      "current": 4000,
+      "story": "Gained about 10% after Update 3 and climbed from 3,500 to a 4,200 peak on October 22, then held 4,000 from October 23. Carries 8/10 demand."
+    },
+    "executioner-tv-man": {
+      "listed": 5000,
+      "current": 3200,
+      "story": "First appeared as 'OC owner's choice' before it had a number, listed at 5,000 on October 20, and fell to 3,200. Demand is 3.5/10, the second lowest in the top ten, which makes it slow to trade away at full value."
+    },
+    "upgraded-titan-cameraman": {
+      "listed": 3500,
+      "trough": 2500,
+      "current": 2850,
+      "story": "Listed at 3,500, dropped to 2,500 within 14 hours, then climbed back to 2,850. A premium pass alone at 2,550 comes up 300 short of it."
+    },
+    "headless-tv-man": {
+      "listed": 4000,
+      "current": 1900,
+      "story": "Listed at 4,000 and halved to 1,900 in under two days. Demand was 10/10 on day one, 6 that night, 3 two days later, and 2 on October 25."
+    },
+    "titan-cinemaman": {
+      "before": 330,
+      "current": 460,
+      "story": "Rose from 330 before Update 4 to 460, and carries 8/10 demand."
+    },
+    "tv-woman": {
+      "listed": 700,
+      "trough": 480,
+      "peak": 800,
+      "before": 680,
+      "current": 450,
+      "story": "Listed at 700 after Update 3, fell to 480, climbed to 800, was 680 before Update 4, and sat at 450 on October 25 - ten points under Titan Cinemaman."
+    },
+    "jetpack-cameraman": {
+      "before": 280,
+      "current": 400,
+      "story": "Rose from 280 to 400 after Update 4."
+    },
+    "upgraded-videotapper-prototype": {
+      "current": 290,
+      "change": "lost a fifth to a quarter since Update 4",
+      "story": "Lost a fifth to a quarter of its value since Update 4 and is still under where it sat before the patch."
+    },
+    "upgraded-titan-speakerman": {
+      "current": 250,
+      "change": "lost a fifth to a quarter since Update 4",
+      "story": "The cheapest mythic on the list. At 250 it is worth exactly fifty of the old legendaries at 5 points each."
+    },
+    "large-scientist-cameraman": {
+      "before": 125,
+      "current": 250,
+      "story": "Doubled from 125 to 250 after one small dip, climbing four times in a row. Carries the same 8/10 demand as Engineer Cameraman at 4,000."
+    },
+    "pumpkin-farmer": {
+      "current": 70,
+      "status": "unstable",
+      "story": "Marked unstable on the October 25 list."
+    },
+    "camera-repair-drone": {
+      "listed": 120,
+      "current": 50,
+      "story": "First listed at 120 and was down to 50 by October 25."
+    },
+    "dragon-cameraman": {
+      "listed": 120,
+      "peak": 325,
+      "current": 40,
+      "story": "A Halloween crate unit. Went from 120 to about 325 the same day, then collapsed to 40."
+    },
+    "scientist-cameraman": {
+      "low": 30,
+      "peak": 60,
+      "current": 35,
+      "story": "Swung from 30 to 60 and back to 35 in two days."
+    },
+    "camera-spider": {
+      "before": 70,
+      "current": 20,
+      "story": "Down from 70 before Update 4."
+    },
+    "titan-tv-man": {
+      "current": 5,
+      "story": "One of the old legendaries, cut to 5 points each on the October 25 list."
+    },
+    "titan-cameraman": {
+      "current": 5,
+      "story": "One of the old legendaries, cut to 5 points each on the October 25 list."
+    },
+    "titan-speakerman": {
+      "current": 5,
+      "story": "One of the old legendaries, cut to 5 points each on the October 25 list."
+    },
+    "ninja-cameraman": {
+      "current": 5,
+      "story": "One of the old legendaries, cut to 5 points each on the October 25 list."
+    },
+    "laser-cameraman-car": {
+      "current": 5,
+      "story": "One of the old legendaries, cut to 5 points each on the October 25 list."
+    }
+  },
+  "sampleTrades": [
+    {
+      "trade": "Titan Cinemaman for Ninja Cameraman",
+      "verdict": "Huge win",
+      "math": "460 against 5"
+    },
+    {
+      "trade": "Upgraded Videotapper Prototype for Pumpkin Farmer",
+      "verdict": "Loss",
+      "math": "290 against 70, a loss of 220"
+    },
+    {
+      "trade": "Scientist Cameraman for Pumpkin Farmer",
+      "verdict": "Win, but the other side is unstable",
+      "math": "35 against 70"
+    },
+    {
+      "trade": "Upgraded Videotapper Prototype for TV Woman",
+      "verdict": "Win",
+      "math": "290 against 450"
+    },
+    {
+      "trade": "30 old legendaries + Scientist Cameraman + Pumpkin Farmer for Upgraded Titan Speakerman",
+      "verdict": "Fair",
+      "math": "255 against 250"
+    },
+    {
+      "trade": "Upgraded Titan Cameraman for double luck + double money + double speed + Large Scientist Cameraman",
+      "verdict": "Overpay",
+      "math": "2,480 against 2,850, about 370 short"
+    },
+    {
+      "trade": "2x Titan Cinemaman + TV Woman for Headless TV Man",
+      "verdict": "Lowball",
+      "math": "1,370 against 1,900, over 500 short"
+    },
+    {
+      "trade": "Executioner TV Man vs Engineer Cameraman",
+      "verdict": "Engineer preferred",
+      "math": "3,200 against 4,000, and Engineer carries 8/10 demand against 3.5"
+    }
+  ]
+}

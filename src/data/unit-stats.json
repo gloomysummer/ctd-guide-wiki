@@ -1,0 +1,126 @@
+{
+  "source": {
+    "name": "RoboLibrary — Cameraman Tower Defense Units",
+    "url": "https://robolibrary.org/wikis/cameraman-tower-defense/units",
+    "method": "Figures read from in-game stat cards in two independent recordings; only units where both readings agree are listed as verified.",
+    "checkedAt": "2026-10-11"
+  },
+  "verified": {
+    "scientist-cameraman": {
+      "placeCost": 100,
+      "maxDps": null,
+      "range": null,
+      "note": "Economy unit: about 500 cash per wave at max. Four copies pay roughly 2,000 per wave."
+    },
+    "large-speakerman": {
+      "placeCost": 180,
+      "maxDps": 400,
+      "range": 15,
+      "note": "Weakest of the epics."
+    },
+    "large-cameraman": {
+      "placeCost": 200,
+      "maxDps": 500,
+      "range": 20,
+      "note": "Cheap and reliable in the early waves."
+    },
+    "ninja-cameraman": {
+      "placeCost": 200,
+      "maxDps": 1000,
+      "range": 20,
+      "note": "Best damage per cash of any measured unit."
+    },
+    "camera-helicopter": {
+      "placeCost": 200,
+      "maxDps": null,
+      "range": null,
+      "note": "Spawner: summons allies up to 10,000 HP. Blockers, not damage."
+    },
+    "engineer-cameraman": {
+      "placeCost": 200,
+      "maxDps": null,
+      "range": null,
+      "note": "Spawner: allies hit about 3,000 DPS with 100,000 HP, one every ~20s. Deals no damage until maxed."
+    },
+    "laser-cameraman-car": {
+      "placeCost": 300,
+      "maxDps": 2500,
+      "range": 30,
+      "note": "The final upgrade is where the damage is."
+    },
+    "large-scientist-cameraman": {
+      "placeCost": 300,
+      "maxDps": 1250,
+      "range": 20,
+      "note": "Area damage; handles shields."
+    },
+    "jetpack-cameraman": {
+      "placeCost": 300,
+      "maxDps": 5000,
+      "range": 30,
+      "note": "Boss killer. Paid pack only."
+    },
+    "large-tv-man": {
+      "placeCost": 400,
+      "maxDps": 500,
+      "range": 20,
+      "note": "Area damage; community reports a shield problem."
+    },
+    "titan-speakerman": {
+      "placeCost": 500,
+      "maxDps": 2000,
+      "range": 25,
+      "note": "Cheap legendary."
+    },
+    "titan-cameraman": {
+      "placeCost": 800,
+      "maxDps": 3300,
+      "range": 30,
+      "note": "Final upgrade doubles damage. Readings put max DPS at 3,000-3,300."
+    },
+    "tv-man": {
+      "placeCost": 1000,
+      "maxDps": 2000,
+      "range": 25,
+      "note": "Area damage; community reports a shield problem."
+    },
+    "upgraded-titan-speakerman": {
+      "placeCost": 1000,
+      "maxDps": 5000,
+      "range": 25,
+      "note": "Area damage; handles shields at max."
+    },
+    "titan-cinemaman": {
+      "placeCost": 2000,
+      "maxDps": 7000,
+      "range": 30,
+      "note": "Area damage; handles shields."
+    }
+  },
+  "singleSource": {
+    "upgraded-brute-prototype": {
+      "placeCost": null,
+      "maxDps": 9000,
+      "range": null,
+      "note": "Single-source report: about 9,000 area DPS, roughly 41,000 cash to max. No graded card reading."
+    },
+    "upgraded-videotapper-prototype": {
+      "placeCost": null,
+      "maxDps": 7500,
+      "range": 35,
+      "note": "Single-source report: about 7,500 DPS at 35 range; final upgrade doubles attack speed rather than damage."
+    },
+    "tv-spider": {
+      "placeCost": null,
+      "maxDps": 10000,
+      "range": 40,
+      "note": "Single-source report: about 10,000 area DPS at 40 range, the highest damage number in the game."
+    },
+    "glitch-cameraman": {
+      "placeCost": null,
+      "maxDps": null,
+      "range": 25,
+      "note": "Lobby card reports 27 range, in-match card maxes at 25. Final upgrade reportedly triples damage."
+    }
+  }
+}
