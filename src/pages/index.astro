@@ -912,8 +912,11 @@ const websiteJsonLd = {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-    max-width: 860px;
+    max-width: none;
+    width: 100%;
   }
+  /* 答案正文限制可读行宽，避免整行过长 */
+  .faq-answer p { max-width: 78ch; }
   .faq-accordion-item {
     background: #0f172a;
     border: 1px solid #1e293b;
@@ -927,14 +930,18 @@ const websiteJsonLd = {
     padding: 1.1rem 1.25rem;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 0.75rem;
     font-size: 1.05rem;
     font-weight: 600;
     color: #f1f5f9;
     list-style: none;
     user-select: none;
   }
+  /* 问题文字左对齐并占满中间区域，箭头始终靠右 */
+  .faq-question > span:first-of-type { flex: 1 1 auto; }
+  .faq-toggle-icon { margin-left: auto; flex: 0 0 auto; }
   .faq-question::-webkit-details-marker {
     display: none;
   }
