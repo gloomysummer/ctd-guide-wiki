@@ -1,0 +1,728 @@
+{
+  "tv-spider": {
+    "quickAnswer": "TV Spider is the most valuable Exclusive unit in Cameraman Tower Defense, holding 8,000 trade points with a 9/10 demand rating on the dated October 25 list. Operating as an ultra-long-range endgame damage anchor delivering up to 10,000 area DPS, it stands as the highest single-unit offensive threat currently traded in the community.",
+    "historyStory": "Introduced as Update 3's flagship exclusive summon, TV Spider initially entered community circulation at 6,000 trade points. Rapid competitive demand from high-end players drove its market valuation to an all-time peak near 8,800 points before market consolidation caused a temporary dip to roughly 7,250 points. As recorded on the October 25 list, trader confidence pushed it back up to 8,000 points. Alongside Engineer Cameraman, it represents one of only two top-tier units that experienced net valuation growth following both successive updates.",
+    "timeline": [
+      {
+        "label": "Release Listing",
+        "value": "6,000 pts"
+      },
+      {
+        "label": "All-Time Peak",
+        "value": "8,800 pts"
+      },
+      {
+        "label": "Market Dip",
+        "value": "7,250 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "8,000 pts"
+      }
+    ],
+    "combatAnalysis": "A single-source reading clocks TV Spider at 10,000 area DPS with an attack range of 40, representing the highest recorded damage output of any unit in the game. While its placement cost is not documented in any published reading, its massive reach and splash radius allow it to melt clustered endgame waves across broad path spans. In extended solo runs, this combination of unmatched range and five-figure splash DPS provides total control over high-density mob groupings.",
+    "placementGuide": "With an exceptional attack range of 40\u2014the highest measured in the game\u2014TV Spider must be stationed at central track junctions or open plateaus. Positioning it at broad highway intersections ensures its wide sweep covers multiple paths simultaneously, maintaining constant line of sight on incoming waves without leaving dead zones. Stacking it near track convergence points guarantees maximum target saturation.",
+    "unknowns": [
+      "Exact placement cash requirements and incremental level costs have never been documented in dual-card recordings.",
+      "The 10,000 area DPS figure derives from a single community report and lacks official developer corroboration.",
+      "Targeting prioritization formulas when facing split-path bosses are omitted from public balance notes."
+    ],
+    "marketAnalysis": "With a commanding 9/10 demand rating, TV Spider sits at the pinnacle of the community trading ladder. Traders frequently demand multi-unit overpays or combinations of high-tier Mythics like Titan Cinemaman and Upgraded Titan Cameraman when parting with it. Its dual appreciation across consecutive patches establishes it as the premier liquid asset in high-value trade negotiations.",
+    "tradeAdvice": "When negotiating trades involving TV Spider, its 8,000-point valuation and 9/10 demand grant immense bargaining leverage. Incoming offers must consist of high-demand liquid assets; bundling low-tier or volatile assets is typically rejected by high-echelon traders.",
+    "metaSynergy": "In competitive meta loadouts, TV Spider serves as the undisputed endgame damage anchor. Because its 10,000 area DPS requires no auxiliary damage support to clear standard waves, optimal team compositions surround TV Spider with pure utility towers: Scientist Cameraman to finance its upgrades, Glitch Cameraman to apply track-wide slow debuffs, and Engineer Cameraman to provide physical 100,000 HP roadblocks that keep boss units locked directly inside TV Spider's range 40 coverage."
+  },
+  "chaos-cameraman": {
+    "quickAnswer": "Chaos Cameraman is a top-tier Mythic damage dealer in Cameraman Tower Defense, valued at 7,000 trade points with an 8/10 demand rating on the dated October 25 list. Functioning as a high-value carry with substantial wave clearing potential, it remains one of the premier late-game offensive assets in current trading circles.",
+    "historyStory": "Chaos Cameraman experienced explosive initial market speculation following its debut, surging from an opening valuation of 7,500 points into the 9,000 to 10,000 point range in less than 24 hours. However, the speculative premium proved unsustainable, shedding all accumulated gains over the following three days. The unit stabilized at 7,000 points on October 23 and held that mark on the October 25 list, standing out as the only top-ten asset formally flagged as dropping.",
+    "timeline": [
+      {
+        "label": "Release Listing",
+        "value": "7,500 pts"
+      },
+      {
+        "label": "Intraday Peak",
+        "value": "9,000 - 10,000 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "7,000 pts (Dropping)"
+      }
+    ],
+    "unknowns": [
+      "Base deployment pricing and per-rank DPS scaling remain unmeasured across community testing channels.",
+      "Aligators Games has never disclosed projectile velocity, critical hit ratios, or targeting range radius.",
+      "While holding an 8/10 demand rating, the driving factor behind its sharp decline from 10,000 to 7,000 points remains debated among traders."
+    ],
+    "marketAnalysis": "Despite carrying an active 8/10 demand rating, Chaos Cameraman's official 'dropping' status requires caution in trade exchanges. Traders holding Chaos Cameraman often encounter counter-offers discounting its 7,000-point tag by 5% to 10% to account for its recent downward trend. Sellers are advised to trade into stable assets like Engineer Cameraman rather than speculative new releases.",
+    "combatAnalysis": "Although official combat readings have not been published by Aligators Games, community gameplay logs demonstrate that Chaos Cameraman functions as an aggressive late-wave sweeper. Players rely on its high-tempo offensive output to dismantle dense enemy formations before they breach midline defenses.",
+    "metaSynergy": "Chaos Cameraman fits into aggressive mid-to-late game offensive rosters. When running solo challenge maps, pairing Chaos Cameraman with early cash generation towers like Scientist Cameraman ensures that players have sufficient funds to deploy and scale its high-tier damage before wave 25 armored mobs arrive. While its recent market slide to 7,000 points reflects trading hesitation, its raw wave-clearing potency remains a proven asset in endgame defense compositions.",
+    "tacticalTiming": "Tactical Deployment Timing: Chaos Cameraman is best deployed in mid-game rounds (waves 20 through 35) once baseline farm income is secured. Positioning him at high-traffic lane merges allows his aggressive projectile bursts to decimate advancing columns before they reach core defenses."
+  },
+  "engineer-cameraman": {
+    "quickAnswer": "Engineer Cameraman is a premier S-Tier Exclusive support unit in Cameraman Tower Defense, holding a 4,000 trade point value with an 8/10 demand rating on the October 25 list. Operating as an endgame spawner, it summons 100,000 HP combat mechs to physically stall and crush heavy enemy columns.",
+    "historyStory": "Engineer Cameraman demonstrated steady appreciation through recent updates, gaining roughly 10% following Update 3 as players recognized its defensive utility. Valued at 3,500 points initially, it ascended to a peak of 4,200 points on October 22 before settling at 4,000 points from October 23 onward. Carrying an 8/10 demand rating, it shares with TV Spider the rare distinction of rising across both update cycles.",
+    "timeline": [
+      {
+        "label": "Before Update 3",
+        "value": "3,500 pts"
+      },
+      {
+        "label": "Post-Patch Peak",
+        "value": "4,200 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "4,000 pts"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings confirm a base placement cost of 200 cash. Engineer Cameraman acts strictly as a spawner: it produces allied mechs boasting 100,000 HP and dealing roughly 3,000 DPS on a 20-second cadence. The central unit itself deals zero combat damage until fully maxed, making cash upgrades essential before expecting offensive contributions. In high-tier challenges, having 100,000 HP physical blockers halts fast runners that slip past conventional turrets.",
+    "placementGuide": "As a spawner unit, Engineer Cameraman focuses on lane blocking rather than direct projectile damage. Position it in secondary rear tiles away from primary turret locations; summoned mechs deploy onto the track, creating physical 100,000 HP barricades that intercept high-speed runners and hold bosses in choke points. Placing it well behind the frontline ensures uninterrupted mech production throughout the wave.",
+    "tradeAdvice": "In head-to-head trading matchups, Engineer Cameraman (4,000 pts, 8/10 demand) is heavily preferred over Executioner TV Man (3,200 pts, 3.5/10 demand). The 800-point difference combined with a massive advantage in trading liquidity means Engineer Cameraman owners should never accept 1-for-1 swaps without demanding substantial liquid adds to bridge the margin.",
+    "unknowns": [
+      "Total cumulative cash required to upgrade Engineer Cameraman from rank 1 to max tier is absent from published card readings.",
+      "Mech spawn logic when tracks intersect multiple path loops has not been clarified by developers.",
+      "Whether spawned 100,000 HP allies receive passive defense buffs from support towers remains unconfirmed in live matches."
+    ],
+    "marketAnalysis": "Holding firm at 4,000 trade points with an 8/10 demand rating, Engineer Cameraman is widely regarded as one of the most reliable stores of value in the game. Because spawner units provide non-scaling physical obstruction that remains relevant regardless of enemy HP inflation, traders treat Engineer Cameraman as a blue-chip defensive investment with minimal risk of sudden price collapse.",
+    "metaSynergy": "Engineer Cameraman forms the defensive backbone of high-round survival strategies. In solo Nightmare mode runs, relying solely on ranged artillery often leads to leaks when high-speed mutant toilets sprint past firing arcs. Engineer Cameraman eliminates this risk by deploying 100,000 HP combat mechs directly onto the path every 20 seconds, creating physical bottlenecks that hold enemies in place while backline damage dealers like TV Spider or Titan Cinemaman rain down sustained splash damage."
+  },
+  "executioner-tv-man": {
+    "quickAnswer": "Executioner TV Man is an Exclusive offensive unit in Cameraman Tower Defense evaluated at 3,200 trade points with a 3.5/10 demand rating on the dated October 25 list. Serving as an elite single-target executioner, it provides specialized burst damage but suffers from slower liquidity in current player trade exchanges.",
+    "historyStory": "Executioner TV Man originally circulated under the informal designation 'OC owner's choice' before establishing a numeric market baseline. It debuted at 5,000 trade points on October 20, but waning trader interest triggered a steep decline down to 3,200 points by October 25. With demand recorded at just 3.5/10\u2014the second lowest within the top ten bracket\u2014owners frequently find it sluggish to exchange at full nominal valuation.",
+    "timeline": [
+      {
+        "label": "Initial Designation",
+        "value": "OC Owner's Choice"
+      },
+      {
+        "label": "Debut Listing (Oct 20)",
+        "value": "5,000 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "3,200 pts"
+      }
+    ],
+    "tradeAdvice": "When negotiating trades involving Executioner TV Man, keep in mind its depressed 3.5/10 demand rating. Against comparable S-tier exclusives like Engineer Cameraman (4,000 pts, 8/10 demand), Executioner trades at an 800-point deficit (3,200 against 4,000) and will require substantial liquid sweeteners to convince high-tier trading partners.",
+    "unknowns": [
+      "Attack rate intervals and execution damage formulas against low-health enemies have not appeared in any published card reading.",
+      "Base placement expense and upgrade curve steps are absent from community ledgers.",
+      "The low 3.5/10 demand score leaves its future trade liquidity uncertain as newer Exclusives enter the meta."
+    ],
+    "marketAnalysis": "The low 3.5/10 demand rating significantly impedes Executioner TV Man's trading velocity. While its nominal 3,200-point valuation places it in the upper echelon, actual trades frequently require offering discounts or pairing it with high-demand support units to successfully execute swaps. Traders holding this unit often seek to exchange it for more liquid assets like Titan Cinemaman or Large Scientist Cameraman.",
+    "combatAnalysis": "While Aligators Games does not release official base numbers, community gameplay footage highlights Executioner TV Man as a specialized single-target eliminator. Its rapid burst animations allow it to focus down high-threat individual units, though lack of confirmed splash reach limits its standalone utility against swarm waves.",
+    "metaSynergy": "Executioner TV Man occupies a dedicated assassin role in specialized squad configurations. Players utilize his rapid burst focus to target high-priority mini-bosses that threaten to overwhelm frontlines. To maximize his single-target efficiency, deploy him alongside wide-area slowing towers or physical stall units that bunch up target columns, ensuring his strikes are never wasted on minor creeps."
+  },
+  "upgraded-titan-cameraman": {
+    "quickAnswer": "Upgraded Titan Cameraman is the premier Godly rarity unit in Cameraman Tower Defense, evaluated at 2,850 trade points with a 7/10 demand rating on the October 25 list. It functions as a top-echelon frontline juggernaut, commanding high community prestige and consistent demand among endgame collectors and traders.",
+    "historyStory": "Upgraded Titan Cameraman launched with a 3,500-point listing price but experienced immediate volatility, plunging to a trough of 2,500 points within just 14 hours. Trader absorption quickly stabilized the asset, propelling its valuation back to 2,850 points on the October 25 list. Market benchmarks highlight that exchanging a premium gamepass alone (valued at 2,550 points) falls approximately 300 points short of securing this Godly titan.",
+    "timeline": [
+      {
+        "label": "Debut Listing",
+        "value": "3,500 pts"
+      },
+      {
+        "label": "14-Hour Trough",
+        "value": "2,500 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "2,850 pts"
+      }
+    ],
+    "tradeAdvice": "Market logs establish that trading for Upgraded Titan Cameraman (2,850 pts) requires genuine premium equity. Bundling three premium gamepasses (double luck, double money, double speed) with Large Scientist Cameraman yields 2,480 points, falling approximately 370 points short of Upgraded Titan Cameraman's baseline valuation.",
+    "unknowns": [
+      "Total in-game cash expenditure required to unlock maximum cannon firepower is undocumented in community logs.",
+      "Godly summoning banner drop weights are withheld by Aligators Games.",
+      "Weapon cycling delays between primary laser volleys and shoulder artillery blasts are unrecorded."
+    ],
+    "marketAnalysis": "As the sole Godly tier unit in the current meta, Upgraded Titan Cameraman commands exceptional collector interest and a solid 7/10 demand score. Sitting at 2,850 points, it acts as the primary aspirational trade target for mid-game players transitioning into endgame inventory management. Offers below its 2,850-point benchmark are routinely rejected on trading servers.",
+    "combatAnalysis": "In live gameplay scenarios, Upgraded Titan Cameraman operates as an absolute frontline anchor. While unrecorded in official developer logs, community runs consistently demonstrate that its heavy artillery barrages can single-handedly suppress mid-game boss waves when properly financed with farm income.",
+    "metaSynergy": "Upgraded Titan Cameraman anchors top-tier Godly defensive setups. Because deploying and maintaining a Godly unit commands immense in-game resources, successful players synchronize his deployment with maxed Scientist Cameraman banks. Once established, his heavy artillery volleys provide comprehensive coverage across major intersections, creating a secure kill zone that trivializes high-density wave transitions."
+  },
+  "headless-tv-man": {
+    "quickAnswer": "Headless TV Man is a high-rarity Mythic unit in Cameraman Tower Defense holding 1,900 trade points with a 2/10 demand rating on the dated October 25 list. Operating as an event-exclusive crowd controller, its trading liquidity has cooled considerably following initial launch hype.",
+    "historyStory": "Headless TV Man demonstrated one of the sharpest post-launch declines on record. Initially debuting at a 4,000-point valuation with maximum 10/10 demand, trader interest evaporated within 48 hours. Demand ratings cascaded from 10 down to 6 on the first evening, dropped to 3 after two days, and bottomed at 2 on the October 25 list as valuation collapsed to 1,900 points.",
+    "timeline": [
+      {
+        "label": "Day One (Demand 10/10)",
+        "value": "4,000 pts"
+      },
+      {
+        "label": "Day Two (Demand 3/10)",
+        "value": "Rapid Drop"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "1,900 pts (Demand 2/10)"
+      }
+    ],
+    "tradeAdvice": "Trader appetite for Headless TV Man has waned significantly due to its low 2/10 demand. However, owners should guard against lowballs: offering two Titan Cinemaman plus one TV Woman yields 1,370 points, falling over 500 points short of Headless TV Man's 1,900-point benchmark.",
+    "unknowns": [
+      "Area of effect stun durations and screen-pulse frequencies have never been cataloged in community testing.",
+      "Whether the Halloween-themed head loss provides passive collision evasion is unconfirmed.",
+      "Future crate re-issue schedules for seasonal Mythics remain unannounced by the development studio."
+    ],
+    "marketAnalysis": "With demand lingering at an anemic 2/10, Headless TV Man suffers from acute illiquidity. Traders who bought near its 4,000-point launch peak have struggled to find willing buyers even at its revised 1,900-point level. Nonetheless, because it remains a limited Mythic drop, sellers should avoid panic-selling into predatory lowballs.",
+    "combatAnalysis": "In combat scenarios, Headless TV Man delivers potent crowd disruption via wide-screen television pulses. While Aligators Games does not publish exact DPS or stun timers, players find his area stuns useful for disrupting fast runner waves in Nightmare challenges.",
+    "metaSynergy": "Headless TV Man operates as a specialized crowd disruption anchor. His broad screen pulses stun advancing columns, allowing high-DPS single-target units like Jetpack Cameraman or Titan Cameraman to eliminate stunned targets without pressure. Despite falling to a 2/10 demand score in trading lobbies, his battlefield utility remains respected by players seeking reliable crowd control."
+  },
+  "titan-cinemaman": {
+    "quickAnswer": "Titan Cinemaman is a standout Mythic heavy-hitter in Cameraman Tower Defense, holding 460 trade points with an active 8/10 demand rating on the October 25 list. Delivering 7,000 area DPS at range 30 with innate shield-breaking capabilities, it represents one of the most effective mid-budget combat assets available.",
+    "historyStory": "Titan Cinemaman experienced positive momentum across recent game updates, rising from 330 points prior to Update 4 up to 460 points on the October 25 list. Bolstered by its robust in-game combat performance against shielded waves, it maintains an energetic 8/10 demand rating that makes it one of the most liquid and sought-after Mythic units on trading servers.",
+    "timeline": [
+      {
+        "label": "Before Update 4",
+        "value": "330 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "460 pts"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings confirm Titan Cinemaman requires a 2,000 cash placement cost, reaching a peak output of 7,000 area DPS across an attack range of 30. Crucially, community readings verify that its sonic wave attacks damage through enemy shields, solving one of the most difficult defensive bottlenecks encountered in higher difficulty waves. Deploying Titan Cinemaman past wave 30 provides reliable insurance against armored creep swarms.",
+    "placementGuide": "Boasting a generous range of 30 paired with shield-bypassing area damage, Titan Cinemaman thrives when positioned at open track intersections and multi-lane crossings. Covering intersecting pathways allows its sweeping sonic pulses to continuously strip shielded enemy columns across both paths before they converge on defense lines.",
+    "tradeAdvice": "Titan Cinemaman is one of the most liquid 400-point trading assets. Swapping Ninja Cameraman (5 pts) for Titan Cinemaman (460 pts) is an enormous 455-point win. Meanwhile, pairing two Titan Cinemaman with TV Woman provides 1,370 points of solid equity when building towards high-value Mythics like Headless TV Man (1,900 pts).",
+    "unknowns": [
+      "Intermediate cash upgrade increments between the 2,000 placement cost and max-tier DPS are unmeasured.",
+      "Exact percentage damage reduction applied against heavy boss shields is not detailed in card readings.",
+      "Sonic pulse animation recovery frames have not been benchmarked by wiki auditors."
+    ],
+    "marketAnalysis": "At 460 points with 8/10 demand, Titan Cinemaman represents the ideal liquidity bridge in mid-to-high tier trading. Because it solves the notorious shield mechanic in wave combat, players actively buy it for both collection and active progression, making it effortless to convert into other assets or trade up into Godly units.",
+    "metaSynergy": "Titan Cinemaman is widely celebrated as the definitive answer to shielded wave mechanics in Cameraman Tower Defense. His sonic waves ignore standard shield absorption, stripping enemy defense layers across a 30-range perimeter while delivering 7,000 area DPS. In high-difficulty maps, pairing Titan Cinemaman with slow towers ensures that shielded waves are neutralized long before they reach secondary chokepoints."
+  },
+  "tv-woman": {
+    "quickAnswer": "TV Woman is an A-tier utility Mythic in Cameraman Tower Defense holding 450 trade points with no separate demand score on the October 25 list. Sitting just ten points beneath Titan Cinemaman, it delivers reliable crowd control and wave disruption, making it a viable trade piece in balanced mid-tier exchanges.",
+    "historyStory": "TV Woman has navigated a volatile price trajectory across multiple updates. Following Update 3, it opened at 700 points, dipped to 480, rallied to a peak of 800, and stabilized at 680 points prior to Update 4. By October 25, it settled at 450 points, resting exactly ten points below Titan Cinemaman (460 pts).",
+    "timeline": [
+      {
+        "label": "Post-Update 3 Listing",
+        "value": "700 pts"
+      },
+      {
+        "label": "Intermediate Trough",
+        "value": "480 pts"
+      },
+      {
+        "label": "Market Rally Peak",
+        "value": "800 pts"
+      },
+      {
+        "label": "Before Update 4",
+        "value": "680 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "450 pts"
+      }
+    ],
+    "tradeAdvice": "TV Woman trades effectively as a 450-point asset. Swapping Upgraded Videotapper Prototype (290 pts) to acquire TV Woman (450 pts) secures an immediate 160-point advantage. Combining TV Woman with two Titan Cinemaman yields 1,370 points, though that bundle remains 530 points shy of Headless TV Man (1,900 pts).",
+    "unknowns": [
+      "Base deployment fee, attack interval timing, and crowd distraction duration remain undocumented in published logs.",
+      "The October 25 value list provided no separate demand score for TV Woman despite recording a 450-point price tag.",
+      "Whether her disorientation beam affects flying enemies has not been confirmed in independent runs."
+    ],
+    "marketAnalysis": "Trading at 450 points, TV Woman is a prominent mid-tier currency unit. While the October 25 list recorded no formal demand score, its proximity to Titan Cinemaman means traders treat it as an equivalent value anchor. Pairing TV Woman with other 200-to-400 point towers provides balanced packages for acquiring top-tier Godlies.",
+    "combatAnalysis": "While Aligators Games does not publish unit stats, player recordings confirm TV Woman provides reliable wave disruption. Her ability to slow and disorient fast enemies gives defense towers critical extra seconds to eliminate incoming columns before they threaten base HP.",
+    "metaSynergy": "TV Woman provides vital tactical disruption that complements heavy damage titans. By projecting disorienting screen signals across the track, she staggers oncoming enemy columns, preventing rapid runners from breaking through defensive formations. Her utility makes her a dependable support piece in both solo and multiplayer loadouts."
+  },
+  "jetpack-cameraman": {
+    "quickAnswer": "Jetpack Cameraman is an Exclusive aerial sniper in Cameraman Tower Defense, holding 400 trade points with no published demand rating on the October 25 list. Delivering 5,000 single-target DPS at range 30, this paid-pack exclusive serves as a dedicated boss killer engineered to rapidly eliminate high-health targets.",
+    "historyStory": "Jetpack Cameraman saw a notable appreciation following Update 4, climbing from 280 trade points up to 400 points on the October 25 list. Distributed exclusively through paid developer bundles, its limited distribution and strong single-target boss damage have maintained steady valuation above older legacy units.",
+    "timeline": [
+      {
+        "label": "Before Update 4",
+        "value": "280 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "400 pts"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings confirm Jetpack Cameraman costs 300 cash to place, delivering up to 5,000 single-target DPS across a 30-range perimeter. Obtained solely through paid store packs, its concentrated single-target firepower makes it a specialized boss killer capable of burning through isolated high-HP threats without splash dispersion.",
+    "placementGuide": "With an extensive range of 30 and single-target focus, Jetpack Cameraman excels when placed along long straightaways or open highway stretches. Keeping it positioned adjacent to primary boss pathing corridors ensures continuous target lock, letting its 5,000 DPS melt health bars over extended travel distances.",
+    "unknowns": [
+      "Total cash needed to max its 5,000 DPS potential from an initial 300 placement is absent from published card readings.",
+      "Flight ceiling mechanics and airborne targeting exemptions are omitted from official game documentation.",
+      "Availability windows for future paid developer bundles have not been communicated."
+    ],
+    "marketAnalysis": "Priced firmly at 400 points, Jetpack Cameraman offers consistent trading stability. Because it is tied to paid game store packs, circulating supply does not inflate via free coin crates, shielding its secondary market valuation from sudden dilution.",
+    "tradeAdvice": "At 400 points, Jetpack Cameraman is an excellent trading bridge between budget towers and premium Mythics. Exchanging older 5-point legendaries or low-demand epics to accumulate Jetpack Cameraman positions traders well for future high-tier acquisitions.",
+    "metaSynergy": "Jetpack Cameraman delivers dedicated single-target execution, making him an ideal partner for wide-area splash towers. While area units like Titan Cinemaman clear surrounding minion clusters, Jetpack Cameraman's 5,000 DPS focus fires the central boss unit. Stationing him near long highway straights ensures uninterrupted line of sight throughout boss wave cycles."
+  },
+  "upgraded-videotapper-prototype": {
+    "quickAnswer": "Upgraded Videotapper Prototype is an A-Tier Mythic long-range turret in Cameraman Tower Defense holding 290 trade points on the October 25 list. Clocking 7,500 DPS at range 35 in community readings, it delivers high-tempo projectile fire across broad track sections, making it a competitive mid-tier damage dealer.",
+    "historyStory": "Upgraded Videotapper Prototype has encountered valuation pressure following recent balancing changes, losing between a fifth and a quarter of its value since Update 4. Sitting at 290 trade points on the October 25 list, it remains suppressed below the pricing levels it maintained prior to the update.",
+    "timeline": [
+      {
+        "label": "Pre-Update 4 Baseline",
+        "value": "Significantly Higher"
+      },
+      {
+        "label": "Post-Update 4 Change",
+        "value": "Lost 20% to 25%"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "290 pts"
+      }
+    ],
+    "combatAnalysis": "A single-source report indicates Upgraded Videotapper Prototype outputs approximately 7,500 DPS across an expansive 35 range. Notably, community testing reveals that its final upgrade tier doubles attack speed rather than base damage per hit, dramatically elevating its projectile volume against rapid targets. Its initial placement cost is not documented in any published reading.",
+    "placementGuide": "With a 35 attack range, Upgraded Videotapper Prototype boasts one of the widest targeting perimeters in the game. Position it near high-traffic highway intersections or open central divides where its rapid-fire double-speed projectile stream can suppress oncoming enemy waves across multiple converging corridors.",
+    "tradeAdvice": "Be cautious when trading Upgraded Videotapper Prototype (290 pts). Swapping it for TV Woman (450 pts) is an advantageous 160-point win, whereas accepting Pumpkin Farmer (70 pts) triggers a catastrophic 220-point loss (290 against 70). Always verify trade margins before confirming swaps.",
+    "unknowns": [
+      "Base placement cost and per-tier upgrade price charts have not appeared in any community card recording.",
+      "The attack-speed-doubling mechanic on the final upgrade tier stems from a single-source community report.",
+      "The specific patch note adjustments that triggered its 20% to 25% value decline following Update 4 remain unlisted."
+    ],
+    "marketAnalysis": "Despite shedding 20% to 25% of its value post-Update 4, Upgraded Videotapper Prototype remains actively traded in the 250-300 point bracket. Its 290-point mark makes it an accessible entry-level Mythic, though sellers must be vigilant against low-balling traders offering volatile event epics.",
+    "metaSynergy": "Upgraded Videotapper Prototype shines when positioned to exploit its 35 attack range. With final-tier attack speed doubling, his rapid projectile stream continuously chips advancing columns. Combining him with front-loaded splash units covers both sustained single-target attrition and bulk wave clearing, offering a balanced offensive package."
+  },
+  "upgraded-titan-speakerman": {
+    "quickAnswer": "Upgraded Titan Speakerman is an accessible Mythic frontline unit in Cameraman Tower Defense, valued at 250 trade points on the October 25 list. Pumping out 5,000 area DPS at range 25 with max-tier shield handling, it offers an economical gateway into high-tier area wave clearing for mid-level rosters.",
+    "historyStory": "Upgraded Titan Speakerman represents the most affordable Mythic asset on the October 25 list, sitting at 250 trade points after losing a fifth to a quarter of its value following Update 4. At its current 250-point valuation, market math establishes that it equates to exactly fifty old legendaries valued at 5 points apiece.",
+    "timeline": [
+      {
+        "label": "Pre-Update 4 Valuation",
+        "value": "Higher Bracket"
+      },
+      {
+        "label": "Post-Update 4 Loss",
+        "value": "Lost 20% to 25%"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "250 pts (Cheapest Mythic)"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings verify a 1,000 cash placement cost, scaling to 5,000 area DPS over a 25-range radius. Independent testing confirms that upon reaching its final upgrade level, its sonic blasts gain the ability to damage through shielded enemy units, making it an effective counter to late-wave shield clusters.",
+    "placementGuide": "Featuring a 25-range radius and shield-clearing area damage at max upgrade, Upgraded Titan Speakerman should be stationed at transitional road bends or lane loops. Anchoring it near track curves ensures its cone of sonic disruption catches tightly grouped enemy formations as they pivot around corners.",
+    "tradeAdvice": "At 250 points, Upgraded Titan Speakerman is the benchmark entry Mythic. A classic trade package consisting of 30 old legendaries (150 pts), Scientist Cameraman (35 pts), and Pumpkin Farmer (70 pts) sums to 255 points, achieving near-perfect balance against Upgraded Titan Speakerman's 250-point valuation.",
+    "unknowns": [
+      "Individual level cash upgrade increments leading up to its max-tier shield-breaking upgrade are unmeasured.",
+      "The October 25 Vaulted Values X list omitted a formal demand score for this 250-point entry Mythic.",
+      "Exact area blast spread angles have not been plotted in community geometry testing."
+    ],
+    "marketAnalysis": "Priced at 250 points, Upgraded Titan Speakerman serves as the economic baseline for Mythic rarity towers. It is frequently traded in composite packages where buyers combine bundles of legacy legendaries with farm towers to reach exact parity.",
+    "metaSynergy": "Upgraded Titan Speakerman serves as an accessible shield-clearing anchor for mid-game players. Delivering 5,000 area DPS at range 25 with max-tier shield damage, he provides vital insurance against armored waves. Pairing him with Ninja Cameraman or Large Cameraman early on smoothly bridges the gap from introductory rounds to high-wave boss encounters."
+  },
+  "large-scientist-cameraman": {
+    "quickAnswer": "Large Scientist Cameraman is an Exclusive area-damage support tower in Cameraman Tower Defense holding 250 trade points with a high 8/10 demand rating on the October 25 list. Delivering 1,250 area DPS at range 20 with innate shield handling, it combines reliable crowd control with exceptional market liquidity.",
+    "historyStory": "Large Scientist Cameraman executed an impressive market rally, doubling from 125 trade points up to 250 points after weathering a minor dip and recording four consecutive upward revisions. Despite its modest 250-point price tag, it commands an 8/10 demand score\u2014matching the market eagerness of 4,000-point heavyweights like Engineer Cameraman.",
+    "timeline": [
+      {
+        "label": "Baseline Valuation",
+        "value": "125 pts"
+      },
+      {
+        "label": "Market Progression",
+        "value": "4 Consecutive Climbs"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "250 pts (Doubled)"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings confirm a 300 cash placement cost, scaling to 1,250 area DPS across a 20-range boundary. Graded observations document that its primary splash damage effectively counters shielded targets, making it a cost-efficient solution for neutralizing shielded swarms in middle rounds.",
+    "placementGuide": "With a compact 20-range radius, Large Scientist Cameraman requires snug placement inside tight track bends, hairpin loops, or bottleneck corners. Positioning it directly on the inner curve forces advancing shielded creeps to remain within its close-quarters splash radius throughout their cornering cycle.",
+    "tradeAdvice": "Large Scientist Cameraman is one of the highest-demand units in the 250-point tier. Its 8/10 demand score makes it a favored add-on when assembling trade packages. However, bundling it with three gamepasses (2,480 pts total) still falls 370 points shy of Upgraded Titan Cameraman (2,850 pts).",
+    "unknowns": [
+      "Intermediate damage scaling between 300 placement and the 1,250 max DPS ceiling remains unrecorded.",
+      "Total bankroll needed to fully upgrade its shield-piercing splash tree is undocumented.",
+      "The mechanics governing how its sound pulses interact with stacked shielded units are unmeasured."
+    ],
+    "marketAnalysis": "Carrying an 8/10 demand rating, Large Scientist Cameraman is the most liquid asset in the entire 250-point division. Its rapid doubling and high trading volume mean owners can easily trade it for equivalent Mythics or use it as a highly coveted sweetener in high-tier Godly packages.",
+    "metaSynergy": "Large Scientist Cameraman offers exceptional splash utility, outputting 1,250 area DPS with built-in shield penetration for a modest 300 cash placement. Stationing him at tight corner bends allows his splash radius to maximize coverage on turning creeps. His high 8/10 trading demand reflects his dual status as a potent tactical asset and a highly liquid store of value."
+  },
+  "pumpkin-farmer": {
+    "quickAnswer": "Pumpkin Farmer is a seasonal Epic economy tower in Cameraman Tower Defense evaluated at 70 trade points on the October 25 list. Marked as unstable due to Halloween crate fluctuations, it offers cash generation for mid-game upgrading but presents market volatility for traders holding excess inventory.",
+    "historyStory": "Pumpkin Farmer sits at 70 trade points on the October 25 list, carrying an explicit 'unstable' market status flag. Originating from seasonal Halloween crates, its rapid market entry produced fluctuating trader valuations, making it a risky asset to hold long-term despite steady utility in farm-heavy strategies.",
+    "timeline": [
+      {
+        "label": "Current List (Oct 25)",
+        "value": "70 pts (Unstable Status)"
+      }
+    ],
+    "tradeAdvice": "Trading with Pumpkin Farmer (70 pts) requires careful attention due to its unstable tag. Swapping Scientist Cameraman (35 pts) for Pumpkin Farmer represents a statistical win (35 vs 70), while accepting Pumpkin Farmer for Upgraded Videotapper Prototype (290 pts) is a heavy 220-point loss.",
+    "unknowns": [
+      "Wave-by-wave cash generation curves and upgrade fees are missing from published card readings.",
+      "The precise volatility triggers that caused the October 25 list to mark Pumpkin Farmer as unstable remain unspecified.",
+      "Post-event crate retirement dates have not been published by the studio."
+    ],
+    "marketAnalysis": "The 'unstable' rating on Pumpkin Farmer warrants heightened trader vigilance. While valued at 70 points, seasonal crate unboxings can rapidly shift supply, leading conservative traders to discount it when constructing balanced multi-unit exchanges.",
+    "combatAnalysis": "Although official cash payout formulas are not published by Aligators Games, in-match gameplay logs confirm Pumpkin Farmer provides periodic cash infusions at the end of each wave. Deploying it early in co-op runs accelerates team economy, though players must balance its deployment cost against early defensive tower needs.",
+    "metaSynergy": "Pumpkin Farmer functions as an auxiliary cash generator during seasonal challenges. Deploying him in conjunction with Scientist Cameraman accelerates early income curves, enabling players to afford expensive 1,000+ cash titan placements rounds earlier than normal. Traders must balance this farming utility against his unstable market status when holding excess copies.",
+    "tacticalTiming": "Tactical Deployment Timing: Deploy Pumpkin Farmer within the first 5 waves to maximize compound cash generation across the match. Each wave cleared yields additional bonus funds, accelerating the timeline to deploy heavy titan carries. Ensure cash is reinvested into both farm upgrades and frontline defenses to avoid early wave leaks."
+  },
+  "camera-repair-drone": {
+    "quickAnswer": "Camera Repair Drone is an Epic utility tower in Cameraman Tower Defense holding 50 trade points on the October 25 list. Providing specialized base or tower repair utility during intense challenge waves, its secondary support niche has led to softening trade values following its initial community listing.",
+    "historyStory": "Camera Repair Drone debuted with an opening listing valuation of 120 trade points, but cooling market interest drove its value down to 50 points by the October 25 list. With its niche focused primarily on structural maintenance rather than raw damage output, traders have treated it as a low-liquidity utility asset.",
+    "timeline": [
+      {
+        "label": "Debut Listing",
+        "value": "120 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "50 pts"
+      }
+    ],
+    "unknowns": [
+      "Hull repair rates per tick, interaction perimeter, and initial placement cost have never appeared in graded card logs.",
+      "Community compilers assigned no demand rating to this unit on the October 25 value list.",
+      "Whether repair drones can mend barrier structures created by other spawner units remains unconfirmed."
+    ],
+    "marketAnalysis": "At 50 trade points, Camera Repair Drone occupies a minor utility role in the player economy. Because most players prefer aggressive DPS towers over defensive maintenance drones, finding direct 1-for-1 buyers can take time, making it primarily useful as packaging filler in larger swaps.",
+    "combatAnalysis": "While Aligators Games does not release unit stat sheets, players utilize Camera Repair Drone in specialized challenge modes to restore base health and mend damaged barriers. In standard campaign runs, however, offensive DPS towers are generally favored over passive healing.",
+    "metaSynergy": "Camera Repair Drone fulfills a specialized maintenance niche in endurance challenges where base structure damage is unavoidable. By continuously restoring base durability during heavy boss sieges, this unit provides an insurance policy against sudden leaks, giving defensive turrets the breathing room needed to finish off rogue runners.",
+    "tacticalTiming": "Tactical Deployment Timing: Camera Repair Drone should be deployed selectively during prolonged siege waves where leaks or barrier damage occur. Placing him in safe backline territory allows his automated repair routines to continuously restore defensive structures, providing essential margin for error during high-difficulty solo challenge runs. Strategic Defense Preservation: When facing boss units with track-clearing shockwaves, Camera Repair Drone acts as a critical damage mitigation asset. Maintaining active repair drones behind your main defensive cluster ensures that barricades and base integrity survive heavy bombardment during clutch wave finishes."
+  },
+  "dragon-cameraman": {
+    "quickAnswer": "Dragon Cameraman is a Halloween-exclusive Legendary attacker in Cameraman Tower Defense holding 40 trade points on the October 25 list. Characterized by high single-day market volatility after release, it provides flame-themed offensive support for mid-game wave defense while trading at accessible point levels.",
+    "historyStory": "Dragon Cameraman arrived via the Halloween event crate, debuting at 120 trade points before experiencing a sensational intraday spike to roughly 325 points. However, rapid crate unboxings flooded trader inventories, precipitating a steep market collapse that pushed its valuation down to 40 points on the October 25 list.",
+    "timeline": [
+      {
+        "label": "Debut Listing",
+        "value": "120 pts"
+      },
+      {
+        "label": "Intraday Spike Peak",
+        "value": "325 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "40 pts"
+      }
+    ],
+    "unknowns": [
+      "Flame stream tick frequency, burn duration, and deployment cost have not been cataloged in community recordings.",
+      "Halloween crate unboxing probabilities are withheld by Aligators Games.",
+      "Future seasonal availability for this 40-point Legendary attacker remains unconfirmed."
+    ],
+    "marketAnalysis": "Trading at 40 points, Dragon Cameraman is an accessible event Legendary. Traders should note its dramatic collapse from 325 points, which serves as a cautionary tale against buying newly released event crates at launch premiums before secondary market supply stabilizes.",
+    "combatAnalysis": "In combat, Dragon Cameraman emits sweeping flame jets that apply damage-over-time burn ticks to advancing enemies. While official tick rates are unmeasured, its wide flame spread provides respectable crowd suppression during mid-game waves.",
+    "metaSynergy": "Dragon Cameraman delivers atmospheric fire support, coating advancing pathways in sustained flame cones. His damage-over-time burn ticks whittle down creep health pools before they reach primary frontline defenders. Deploying him along mid-track corners softens up armored waves for clean finishing by single-target snipers.",
+    "tacticalTiming": "Tactical Deployment Timing: Dragon Cameraman functions best when deployed during intermediate rounds (waves 15 through 30). His sweeping flame jets coat incoming columns in fire, allowing burn damage to soften up high-density clusters before they reach choke points. While unranked in official stat cards, his visual fire cone offers continuous multi-target pressure across winding tracks. Area Damage Scaling & Boss Synergy: Dragon Cameraman's continuous flame stream bypasses individual collision checks, meaning it deals consistent damage to all units caught within its flame cone regardless of how tightly creeps are packed. In Halloween challenge maps with swarming ghouls, his lingering fire status creates an effective burning corridor."
+  },
+  "scientist-cameraman": {
+    "quickAnswer": "Scientist Cameraman is a foundational Exclusive economy unit in Cameraman Tower Defense holding 35 trade points on the October 25 list. Generating roughly 500 cash per wave at max tier, it acts as an indispensable early-game cash engine to finance expensive endgame titan deployments.",
+    "historyStory": "Scientist Cameraman demonstrated notable short-term price volatility within the budget trading tier, swinging from a low of 30 points up to a peak of 60 points before settling at 35 points across a 48-hour window on the October 25 list. Its steady utility as a core farm tower keeps it frequently traded.",
+    "timeline": [
+      {
+        "label": "48-Hour Low",
+        "value": "30 pts"
+      },
+      {
+        "label": "Short-Term Peak",
+        "value": "60 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "35 pts"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings confirm a rock-bottom placement cost of 100 cash. Functioning strictly as an economy generator rather than a direct attacker, Scientist Cameraman delivers approximately 500 cash per wave when maxed; running the community-standard four copies provides roughly 2,000 cash per wave to fuel mid-game upgrades. This steady cash generation forms the backbone of all high-tier titan strategies.",
+    "tradeAdvice": "Scientist Cameraman (35 pts) trades frequently as budget equity. Swapping it for Pumpkin Farmer (70 pts) doubles point value on paper, though Pumpkin Farmer carries an unstable rating. Combining Scientist Cameraman with Pumpkin Farmer and 30 old legendaries (255 pts total) forms a standard fair package for Upgraded Titan Speakerman (250 pts).",
+    "unknowns": [
+      "Exact cash costs required to progress through intermediate tiers toward the 500 cash-per-wave cap are undocumented.",
+      "Demand ratings were omitted for budget farm units on the October 25 community value list.",
+      "Whether cash payouts are affected by gamepass money multipliers has not been confirmed in dual recordings."
+    ],
+    "marketAnalysis": "At 35 trade points, Scientist Cameraman is the fundamental currency farm tower. Nearly every serious player requires multiple copies for solo and co-op wave farming, ensuring that Scientist Cameraman remains continuously liquid despite its modest point value.",
+    "placementGuide": "As a pure economy tower without attack range, placement positioning does not require track proximity. Place Scientist Cameraman along map edges, back corners, or isolated boundary tiles, preserving high-value inner-track real estate for combat towers.",
+    "metaSynergy": "Scientist Cameraman is the non-negotiable cornerstone of all competitive economy strategies in Cameraman Tower Defense. Because the standard four-copy setup produces roughly 2,000 cash per wave at max tier, deploying and maxing Scientist Cameraman before wave 20 is essential for financing expensive 2,000-cash titans and multi-thousand cash upgrades required to survive wave 40+ boss barrages."
+  },
+  "camera-spider": {
+    "quickAnswer": "Camera Spider is an Exclusive mechanical support tower in Cameraman Tower Defense holding 20 trade points on the October 25 list. Offering mobile turret fire for mid-tier players, its trade value declined following Update 4 as newer exclusive releases drew player attention.",
+    "historyStory": "Camera Spider was priced at 70 trade points prior to Update 4, but the introduction of newer high-tier exclusives prompted an outflow of trading interest. On the October 25 list, its market valuation adjusted downward to 20 points, where it now trades as a modest budget add-on.",
+    "timeline": [
+      {
+        "label": "Before Update 4",
+        "value": "70 pts"
+      },
+      {
+        "label": "Current List (Oct 25)",
+        "value": "20 pts"
+      }
+    ],
+    "unknowns": [
+      "Tripod walking speed, turret firing cadence, and deployment pricing are absent from published readings.",
+      "The primary factors that pushed its value down from 70 to 20 points after Update 4 are unlisted in patch logs.",
+      "Targeting priority switches when bosses enter range are unrecorded."
+    ],
+    "marketAnalysis": "Priced at 20 points, Camera Spider serves as an entry-level exclusive for beginner traders. Its low valuation allows newer players to acquire exclusive-tier units without spending premium currency, though its low market velocity means it should not be hoarded as a growth asset.",
+    "combatAnalysis": "In combat gameplay, Camera Spider functions as a mobile tripod turret. While its official stats are not published by Aligators Games, player runs indicate it provides steady single-target chip damage against introductory wave runners.",
+    "metaSynergy": "Camera Spider operates as an agile tripod turret suited for secondary lane suppression. When primary defenses are concentrated on main highway intersections, Camera Spider can be deployed along peripheral bypass loops to intercept stragglers and chip away at low-tier flank runners.",
+    "tacticalTiming": "Tactical Deployment Timing: Camera Spider is an effective secondary lane defender. When managing multi-track maps with split spawn lanes, placing Camera Spider along the secondary path provides consistent automated turret fire that prevents low-health stragglers from slipping through while primary titans handle the main boss corridor. Upgrade Path & Economy Balance: Because Camera Spider requires minimal cash investment compared to high-tier Mythics, it serves as an accessible secondary defense tower. Players running duo or quad multiplayer matches often assign one player to manage peripheral spider coverage, allowing the primary damage dealer to focus all capital on maxing expensive Godly titans. This strategic flexibility makes it a reliable budget option."
+  },
+  "titan-tv-man": {
+    "quickAnswer": "Titan TV Man is a legacy Legendary crowd-control unit in Cameraman Tower Defense evaluated at 5 trade points on the October 25 list. Following community revaluation that pegged older legendaries at 5 points each, it functions primarily as entry-level trading fodder or early-campaign wave clear.",
+    "historyStory": "Titan TV Man stands among the founding legendaries whose trading valuations were adjusted down to 5 trade points on the October 25 list. Early in the game's release cycle, its broad area stun pulses commanded high trading attention, but successive updates introducing Mythics like Titan Cinemaman shifted player interest toward higher-tier assets.",
+    "timeline": [
+      {
+        "label": "Current List (Oct 25)",
+        "value": "5 pts (Old Legendary Standard)"
+      }
+    ],
+    "unknowns": [
+      "Placement cost, stun pulse duration, and max DPS scaling are undocumented in published card readings.",
+      "The flat 5-point pricing assigned on October 25 makes individual demand metrics obsolete.",
+      "Area stun resistance curves for nightmare-difficulty bosses have not been tested."
+    ],
+    "marketAnalysis": "Within contemporary trading hubs, Titan TV Man serves primarily as low-cost bundling currency. Traders who want to bridge small point deficits or offer multi-card packages for budget Mythics often include Titan TV Man alongside other legacy 5-point towers.",
+    "metaSynergy": "Titan TV Man provides foundational crowd control for budget-conscious rosters. His wide-radius screen pulses briefly halt incoming columns, creating micro-windows where companion towers can inflict free damage. For newer players without Mythic units, Titan TV Man offers a reliable stopgap to clear intermediate campaign difficulties.",
+    "tacticalTiming": "Tactical Deployment Timing: Titan TV Man serves as an affordable crowd controller during mid-game rounds. Deploying him near lane bends allows his stun waves to intercept clustered creeps, giving companion damage towers extra time to attack. While superseded by newer Mythics, his area control remains effective for progressing through intermediate campaign stages. Crowd Control Timing & Wave Management: Titan TV Man's periodic screen pulses create brief stun windows that disrupt enemy marching tempo. In cooperative play, staggering his placement alongside other slowing towers prevents enemies from syncing their advance, creating fragmented columns that are far easier for midline turrets to digest."
+  },
+  "titan-cameraman": {
+    "quickAnswer": "Titan Cameraman is a classic Legendary frontliner in Cameraman Tower Defense valued at 5 trade points on the October 25 list. Pumping out 3,300 single-target DPS at range 30 with a doubling final upgrade, it remains a dependable damage anchor for budget-conscious solo runners.",
+    "historyStory": "Titan Cameraman represents one of the game's original heavy cannons, now trading at the standardized 5-point price floor assigned to legacy legendaries on the October 25 list. Despite this modest trading figure, its combat kit retains substantial utility thanks to a doubling final upgrade that boosts output to 3,300 single-target DPS.",
+    "timeline": [
+      {
+        "label": "Current List (Oct 25)",
+        "value": "5 pts (Old Legendary Standard)"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings establish an 800 cash placement cost with an extensive 30-range radius. Community readings record maximum DPS between 3,000 and 3,300, noting specifically that purchasing the final upgrade doubles the unit's damage output, providing a substantial late-game power spike for its 5-point trade tier. This double-damage final upgrade makes it one of the most cost-effective legendary carries available.",
+    "placementGuide": "With an expansive 30 attack range, Titan Cameraman should be positioned overlooking straight track sections or major crossroads. Broad line of sight allows its doubled-damage max upgrade to sustain continuous heavy fire on incoming bosses and tanky units.",
+    "unknowns": [
+      "Step-by-step cash upgrade costs between 800 placement and the double-damage final tier are unmeasured.",
+      "Specific damage values between the reported 3,000 and 3,300 max DPS range have not been reconciled.",
+      "Individual demand tracking was omitted due to its standardized 5-point commodity valuation."
+    ],
+    "marketAnalysis": "Because Titan Cameraman delivers genuine high-end DPS for budget players, it experiences slightly higher gameplay retention than purely cosmetic legacy cards. Nonetheless, the player trading market treats it strictly as a 5-point building block when assembling larger exchange packages.",
+    "metaSynergy": "Titan Cameraman delivers outstanding single-target stopping power for a 5-point legacy legendary. With an 800 placement cost and a final upgrade that doubles damage to over 3,000 DPS across range 30, he acts as an affordable boss killer capable of anchoring defensive lines through wave 35 when paired with steady Scientist Cameraman cash flow."
+  },
+  "titan-speakerman": {
+    "quickAnswer": "Titan Speakerman is a legacy Legendary attacker in Cameraman Tower Defense holding 5 trade points on the October 25 list. Delivering 2,000 DPS at range 25 for a 500 cash placement, it serves as an affordable starter legendary for players progressing through normal and hard maps.",
+    "historyStory": "Titan Speakerman saw its valuation consolidated into the flat 5-point bracket for older legendaries on the October 25 list. Documented in card readings as an entry-level legendary costing 500 cash to place, its market value reflects its status as an accessible stepping stone for novice players.",
+    "timeline": [
+      {
+        "label": "Current List (Oct 25)",
+        "value": "5 pts (Old Legendary Standard)"
+      }
+    ],
+    "combatStats": "confirmed",
+    "combatAnalysis": "Dual independent card readings confirm a 500 cash placement cost, reaching a top output of 2,000 DPS across a 25-range perimeter. Documented simply as a 'cheap legendary,' it provides an accessible entry point for players transitioning from epic towers to legendary damage dealers. Its affordable deployment cost helps stabilize defenses during early waves.",
+    "placementGuide": "Featuring a 25-range boundary, Titan Speakerman is best placed along transitional track turns and gentle bends. Its moderate reach enables it to cover approaching enemy columns as they round corners without suffering line-of-sight obstruction.",
+    "unknowns": [
+      "Cash upgrade steps required to scale from 500 placement to 2,000 DPS are unrecorded in card archives.",
+      "Market compilers do not track individual demand ratings for 5-point legacy legendaries.",
+      "Audio blast cone spread has not been mapped in community track testing."
+    ],
+    "marketAnalysis": "In high-level trading servers, Titan Speakerman is commonly traded in stacks. Exchanging ten to twenty copies of Titan Speakerman enables newer traders to acquire mid-tier epics like Pumpkin Farmer (70 pts) or work towards entry Mythics without spending premium Robux.",
+    "metaSynergy": "Titan Speakerman acts as a budget-friendly legendary frontliner, delivering 2,000 DPS for 500 cash. His 25-range boundary allows comfortable placement along lane bends where his sonic blasts strike oncoming waves. While outscaled by modern Mythics, he remains an effective early-game carry for players advancing through standard difficulty maps."
+  },
+  "ninja-cameraman": {
+    "quickAnswer": "Ninja Cameraman is a high-efficiency Legendary assassin in Cameraman Tower Defense holding 5 trade points on the October 25 list. Clocking 1,000 DPS at range 20 for just 200 cash, it delivers the highest measured damage per cash of any unit tested in community recordings.",
+    "historyStory": "Ninja Cameraman is classified with the legacy legendaries priced at 5 trade points on the October 25 list. What sets this unit apart from its 5-point peers is an extraordinary damage-to-cost ratio: with a 200 cash placement cost delivering 1,000 DPS, it holds the highest measured efficiency in the game.",
+    "timeline": [
+      {
+        "label": "Current List (Oct 25)",
+        "value": "5 pts (Old Legendary Standard)"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings document a 200 cash placement cost, maxing at 1,000 DPS across a 20-range zone. Evaluators highlight that Ninja Cameraman boasts the best damage-per-cash ratio of any measured unit in the game, delivering extraordinary cost-efficiency in early and mid waves. For just 200 cash, it provides unmatched wave-clearing agility.",
+    "placementGuide": "With a short 20-range radius, Ninja Cameraman demands tight corner positioning. Hugging the inner radius of sharp hairpin turns ensures that fast-moving creeps remain within its melee reach, extracting maximum value from its unmatched cash-to-damage ratio.",
+    "tradeAdvice": "In community trading exchanges, Ninja Cameraman is treated as a 5-point standard legacy unit. Swapping Ninja Cameraman (5 pts) for Titan Cinemaman (460 pts) represents a staggering 455-point win that highlights the vast gap between old legendaries and active Mythics.",
+    "unknowns": [
+      "Cumulative upgrade pricing between initial 200 deployment and the 1,000 DPS ceiling is unrecorded.",
+      "Why Aligators Games assigned such a high damage-to-cost ratio to a basic 5-point legendary remains unexplained.",
+      "Individual trader demand ratings are unlisted on community point sheets."
+    ],
+    "marketAnalysis": "Because Ninja Cameraman is exceptionally popular for speedrunning early waves, demand for individual copies remains brisk among players building farming rosters, even though its nominal trading valuation is locked at 5 points.",
+    "metaSynergy": "Ninja Cameraman is celebrated across the community for possessing the highest damage-to-cost efficiency in the game. Deploying for just 200 cash and scaling to 1,000 DPS at range 20, he can be placed on wave 1 to instantly lock down early runner waves, allowing players to pour all subsequent income into cash-generating farm units with zero fear of early leaks."
+  },
+  "laser-cameraman-car": {
+    "quickAnswer": "Laser Cameraman Car is a high-utility Legendary mobile tower in Cameraman Tower Defense valued at 5 trade points on the October 25 list. Generating 2,500 DPS at range 30 for a 300 cash placement, it concentrates substantial late-game firepower into its final upgrade rank.",
+    "historyStory": "Laser Cameraman Car was assigned a 5-point valuation on the October 25 community value list alongside the rest of the original legendary roster. Its mobile vehicle platform and 30-range laser beam offer distinct visual flair, but trading liquidity is firmly pegged to the uniform 5-point tier.",
+    "timeline": [
+      {
+        "label": "Current List (Oct 25)",
+        "value": "5 pts (Old Legendary Standard)"
+      }
+    ],
+    "combatAnalysis": "Dual independent card readings verify a 300 cash placement cost with an extensive 30-range radius. Independent testing confirms a maximum output of 2,500 DPS, specifically noting that the majority of its combat damage is unlocked upon reaching the final upgrade tier. Upgrading it to maximum rank transforms it into a potent long-range beam weapon.",
+    "placementGuide": "With an attack range of 30, Laser Cameraman Car functions best along long straight stretches or open highway avenues. Stationing it along unobstructed corridors maximizes continuous laser fire before enemy mobs reach defense corners.",
+    "unknowns": [
+      "The upgrade expenditure curve needed to unlock the final damage tier is absent from published card readings.",
+      "Vehicular movement speed variations across track terrain are unmeasured.",
+      "Community value sheets do not provide a demand score for 5-point vehicular legendaries."
+    ],
+    "marketAnalysis": "Traders view Laser Cameraman Car as a reliable trade sweetener. When high-value swaps come up just 5 to 15 points short of parity, tossing in Laser Cameraman Car quickly satisfies the difference without requiring cash-bought gamepasses.",
+    "metaSynergy": "Laser Cameraman Car combines vehicular mobility with sustained long-range energy beams. Costing 300 cash to place with a 30-range perimeter, its damage scales dramatically upon reaching the final upgrade, making it an excellent bridge tower for players defending extended straightaways.",
+    "tacticalTiming": "Tactical Deployment Timing: Deploy Laser Cameraman Car along the longest straightaway on the map. Because the final upgrade is where the damage is concentrated, players should focus cash into fully upgrading him before wave 25, unlocking the full 2,500 DPS laser beam to shred approaching columns over extended distances."
+  },
+  "glitch-cameraman": {
+    "quickAnswer": "Glitch Cameraman is an elusive Mythic attacker in Cameraman Tower Defense featuring an in-match range of 25 and reported triple-damage scaling. Excluded from trading valuation on the October 25 list, it serves as a high-speed offensive specialist for advanced wave management.",
+    "combatAnalysis": "A single-source report notes a discrepancy between card readings: while the lobby stat card lists 27 range, the in-match stat card maxes at 25 range. Community testing also reports that its final upgrade triples damage output, though base placement cost and maximum DPS remain unmeasured in published readings. In solo Nightmare mode, players heavily rely on its rapid attack cadence to slow and eliminate high-speed speedster creeps before they breach the defense perimeter.",
+    "placementGuide": "With a confirmed in-match attack range of 25, Glitch Cameraman should be positioned on intermediate track corners and lane transitions. Positioning it on curve apexes ensures its rapid strikes can target enemies as they negotiate turns.",
+    "unknowns": [
+      "Base deployment cost and maximum DPS scaling are not documented in any published card reading.",
+      "The underlying cause of the discrepancy between 27 lobby range and 25 in-match range has not been explained by developers.",
+      "Community reports indicating triple damage upon final upgrade stem from unverified single-source claims."
+    ],
+    "metaSynergy": "Glitch Cameraman is an indispensable tactical weapon in solo Nightmare walkthroughs. His ultra-rapid attack animations apply continuous hit pressure to fast-moving mutant runners, while his reported triple-damage max upgrade enables him to shred mid-game health bars. Positioning him at critical corner transitions guarantees maximum target exposure.",
+    "tacticalTiming": "Tactical Deployment Timing: Glitch Cameraman is a cornerstone unit in solo Nightmare walkthroughs. Deploying him around wave 15 on mid-track corners provides rapid target disruption. His fast attack cycle reliably slows sprint-type enemies, while his reported final-tier damage tripling delivers the firepower needed to eliminate mid-game mini-bosses before they threaten base gates."
+  },
+  "upgraded-brute-prototype": {
+    "quickAnswer": "Upgraded Brute Prototype is an elite S-Tier Mythic juggernaut in Cameraman Tower Defense delivering roughly 9,000 area DPS in community reports. Unlisted in public trade points on the October 25 list, it functions as a devastating endgame powerhouse requiring heavy cash investment to max.",
+    "combatAnalysis": "A single-source report records approximately 9,000 area DPS for Upgraded Brute Prototype, requiring roughly 41,000 total cash to achieve maximum rank. However, no dual-recorded graded card reading exists, and its base placement cost and targeting range are not documented in any published reading. Because reaching 9,000 splash DPS demands 41,000 cash, it functions as a luxury late-game powerhouse that requires a dedicated 4-farm economy to support.",
+    "unknowns": [
+      "Attack range radius and initial deployment cash are not recorded in any published reading.",
+      "The 9,000 area DPS and 41,000 upgrade cost originate from a single report lacking dual-recording confirmation.",
+      "Armor penetration values against shielded nightmare bosses remain untested."
+    ],
+    "metaSynergy": "Upgraded Brute Prototype is an endgame juggernaut designed for extreme wave densities. Delivering roughly 9,000 area DPS across multiple targets, he can pulverize dense columns of high-health enemies in seconds. However, because reaching this output requires an estimated 41,000 total cash, he must be supported by an aggressive, uninterrupted farming engine from wave 1.",
+    "tacticalTiming": "Tactical Deployment Timing: Due to an estimated 41,000 cash requirement to achieve max rank, Upgraded Brute Prototype is strictly an endgame deployment. Players should establish four maxed Scientist Cameraman towers first, accumulating surplus bankroll before deploying the Brute Prototype around wave 30 to unleash his devastating 9,000 area DPS against final boss waves. Endgame DPS Output & Nightmare Viability: When fully financed to his 9,000 area DPS threshold, Upgraded Brute Prototype becomes one of the most devastating weapons in Cameraman Tower Defense. In solo Nightmare difficulty, his massive area clearing power crushes dense armored columns, provided the player has established a flawless 4-copy Scientist economy early on."
+  },
+  "large-cameraman": {
+    "quickAnswer": "Large Cameraman is a dependable Epic early-game defender in Cameraman Tower Defense, costing 200 cash with a measured 500 DPS at range 20. Carrying no trade point value on the October 25 list, it provides cheap, reliable single-target damage to hold early waves.",
+    "combatAnalysis": "Dual independent card readings confirm a 200 cash placement cost, topping out at 500 DPS across a 20-range zone. Graded notes characterize it as cheap and reliable during early rounds, offering solid single-target clearing before players transition into high-cost splash towers. Deploying two or three copies along early corners effortlessly halts waves 1 through 10.",
+    "placementGuide": "With a short range of 20, Large Cameraman should be placed directly on the inner curve of early track bends. Snug corner placement ensures its single-target hits connect reliably without wasted reach.",
+    "unknowns": [
+      "Cash increments across intermediate upgrade tiers are unmeasured in community readings.",
+      "Single-target attack speed intervals are omitted from published card data.",
+      "Because Epic summons without active trade demand are unlisted, no trade point value exists on community lists."
+    ],
+    "metaSynergy": "Large Cameraman serves as a rock-solid workhorse during introductory waves. Deploying for 200 cash with 500 single-target DPS at range 20, he provides reliable single-target stopping power that eliminates initial creep swarms, giving players the stability needed to establish their farm network.",
+    "tacticalTiming": "Tactical Deployment Timing: In standard wave setups, place Large Cameraman on wave 1 or 2 right at the first turn. Because his 200 cash placement cost is immediately affordable from starting capital, he provides instant security against fast initial creep runners. Upgrading him to 500 DPS before wave 10 comfortably manages runner waves, buying vital time to deploy income generators without risking early base leakage. Transitioning to Mid-Game Splash: While Large Cameraman excels at stopping waves 1 to 10 with 500 single-target DPS, he lacks area splash. Once wave 15 approaches, players should avoid over-investing in multiple copies and instead begin transitioning their bankroll into splash towers like Large Scientist Cameraman or Titan Cinemaman to handle clustered armor."
+  },
+  "large-tv-man": {
+    "quickAnswer": "Large TV Man is an Epic crowd-control tower in Cameraman Tower Defense delivering 500 area DPS at range 20 for a 400 cash placement. Holding no public trade points on the October 25 list, it serves as an early area-damage barrier with known shield limitations.",
+    "combatAnalysis": "Dual independent card readings establish a 400 cash placement cost, delivering 500 area DPS across a 20-range radius. Graded notes identify that community reports highlight a persistent shield problem, meaning its area pulses struggle to pierce shielded enemy types effectively. Players should deploy it for unshielded swarm clearing while reserving shield-piercing towers for armored waves.",
+    "placementGuide": "Featuring a 20-range boundary, Large TV Man functions best when hugging tight track corners. Placing it at the apex of early turns allows its area pulse to cover clumped creeps as they round bends.",
+    "unknowns": [
+      "Level-by-level cash costs between 400 placement and 500 DPS are unrecorded in card readings.",
+      "The exact damage penalty suffered when striking shielded enemies has never been quantified.",
+      "Community compilers exclude Large TV Man from trading spreadsheets due to stagnant player demand."
+    ],
+    "metaSynergy": "Large TV Man delivers 500 area DPS across a 20-range radius for 400 cash. While community reports note that his pulses struggle against shielded units, he excels at wiping out clusters of basic unshielded creeps during early and middle waves, making him a useful introductory splash tower.",
+    "tacticalTiming": "Tactical Deployment Timing: Large TV Man is most effective when placed on corner bends before wave 18. His 500 area DPS pulse wipes out swarms of unarmored creeps in seconds. However, as soon as shielded enemy variants appear past wave 20, players must position shield-breaking towers like Titan Cinemaman or Upgraded Titan Speakerman upstream to strip defenses before Large TV Man engages. Shield Workarounds & Midline Positioning: While Large TV Man's 500 area DPS provides clean wave clearing against basic creeps, his community-documented shield limitation means he should never be your sole line of defense past wave 20. Back him up with single-target snipers like Jetpack Cameraman to eliminate shielded leads before they bypass his pulses."
+  },
+  "large-speakerman": {
+    "quickAnswer": "Large Speakerman is a budget Epic frontline attacker in Cameraman Tower Defense costing 180 cash with 400 DPS at range 15. With no published trade value on the October 25 list, community testers rank it as the weakest of the epic tier towers.",
+    "combatAnalysis": "Dual independent card readings confirm a 180 cash placement cost with a modest 400 DPS output and a narrow 15-range reach. Community evaluations explicitly classify it as the weakest of the epics, making it a temporary starter option before upgrading to more potent area towers. While cheap to place on wave 1, its low range limits late-game utility.",
+    "placementGuide": "With a restrictive 15-range radius\u2014the shortest among measured epics\u2014Large Speakerman must be placed directly flush against sharp inner corners. Snug trackside positioning is mandatory to keep enemies within its limited reach.",
+    "unknowns": [
+      "Cash expenditure required to max its 400 DPS output is absent from published logs.",
+      "Why its 15-range reach is significantly shorter than all other measured epics is unaddressed by the studio.",
+      "Trading point value is absent from community lists due to negligible player exchange interest."
+    ],
+    "metaSynergy": "Large Speakerman offers an accessible wave 1 placement at 180 cash, delivering 400 DPS across a 15-range perimeter. Classified as the weakest of the measured epics, his tight reach requires careful trackside corner positioning, serving as an early stepping stone before upgrading to Ninja Cameraman.",
+    "tacticalTiming": "Tactical Deployment Timing: Large Speakerman is designed as a temporary early-wave stabilizer. While his 180 deployment cost is the lowest among measured epics, his 15-range perimeter requires extreme precision in placement. Players should position him strictly on the innermost apex of turn 1, relying on him for waves 1 through 8 before selling or supplementing him with splash attackers. Upgrade Efficiency & Limitations: At 180 cash, Large Speakerman provides emergency wave 1 stopping power when initial funds are tight. However, because his range is capped at 15 and DPS maxes at 400, community testers advise treating him purely as an early stopgap. Do not sink excessive upgrade cash into him once higher-tier damage towers become affordable."
+  },
+  "camera-helicopter": {
+    "quickAnswer": "Camera Helicopter is an Epic spawner tower in Cameraman Tower Defense costing 200 cash to deploy. Summoning airborne allies with up to 10,000 HP, this unvalued unit functions strictly as a defensive road blocker rather than a direct damage contributor.",
+    "combatAnalysis": "Dual independent card readings confirm a 200 cash placement cost. Operating purely as a spawner, it summons allied units with health pools reaching up to 10,000 HP. Community notes stress that summoned units function as blockers rather than damage dealers, creating physical barriers to absorb enemy progress. While it contributes zero direct projectile DPS, having 10,000 HP physical blockers on the road delays bosses and gives offensive turrets essential extra attack windows.",
+    "placementGuide": "As a spawner unit, Camera Helicopter should be placed in peripheral backline tiles away from primary trackside combat spots. Spawned airborne allies travel to the track to physically stall oncoming enemies, buying time for your main damage dealers.",
+    "unknowns": [
+      "Spawn intervals and total lifetime duration for summoned allies have not been measured.",
+      "Maximum allied health scaling across upgrade tiers is absent from published card readings.",
+      "Airborne unit collision behavior when colliding with large ground bosses is undocumented."
+    ],
+    "metaSynergy": "Camera Helicopter provides unique physical lane blocking, deploying airborne allies with up to 10,000 HP. In challenging wave setups where bosses overwhelm conventional turrets, these summoned blockers physically body-block advancing enemies, stalling their forward movement and granting backline turrets critical additional firing time.",
+    "tacticalTiming": "Tactical Deployment Timing: Camera Helicopter should be deployed behind primary firing lines starting around wave 20. By continuously summoning airborne allies with up to 10,000 HP, it creates a persistent stream of blockers that meet advancing bosses head-on, stalling their advance and keeping them trapped within the firing radius of your highest-DPS artillery. Barrier Uptime & Boss Stalling: Camera Helicopter's 10,000 HP summoned allies do not inflict primary DPS, but their physical presence on the road is invaluable. Staggering multiple helicopter spawners creates a continuous stream of blocking allies that absorb boss strikes, preventing bosses from advancing while your long-range artillery unloads uninterrupted fire."
+  },
+  "tv-man": {
+    "quickAnswer": "TV Man is a Rare area-damage tower in Cameraman Tower Defense featuring 2,000 DPS at range 25 for a steep 1,000 cash placement. Holding no trade value on the October 25 list, it offers mid-game splash damage but suffers from documented shield limitations.",
+    "combatAnalysis": "Dual independent card readings record a high 1,000 cash placement cost, scaling to 2,000 area DPS across a 25-range zone. Testers observe that community reports document a shield problem, limiting its effectiveness when confronting shielded enemy waves in harder game modes. At 1,000 cash placement, it is relatively expensive for early waves, requiring sound cash management to justify over cheaper epics.",
+    "placementGuide": "With a 25 attack range, TV Man performs best at intermediate track bends and gentle curve transitions. Stationing it near corners allows its area blast to blanket clusters of unshielded creeps as they round turns.",
+    "unknowns": [
+      "Intermediate cash upgrade fees between 1,000 placement and 2,000 DPS are unmeasured.",
+      "The precise damage falloff when striking shielded enemy columns has not been documented.",
+      "Rare tier units carry 0 trade points on the October 25 value list."
+    ],
+    "metaSynergy": "TV Man outputs 2,000 area DPS across a 25-range zone for a 1,000 cash placement. While his high deployment cost and documented shield weakness require thoughtful planning, his broad splash pulse provides solid crowd suppression during mid-game waves when paired with dedicated shield-breaking support.",
+    "tacticalTiming": "Tactical Deployment Timing: TV Man requires careful financial planning due to his 1,000 cash placement cost. Deploying him on wave 12 to 15 across mid-track curve transitions ensures his 2,000 area DPS hits dense enemy formations. To overcome his documented shield limitations, always support him with rapid physical attackers or dedicated shield-piercing artillery. Overcoming Shield Bottlenecks: Because TV Man suffers from documented shield damage falloff, pairing him with physical or sonic shield breakers is mandatory in higher tiers. When his 2,000 area DPS strikes unshielded groups, his wide blast cleans up hordes with exceptional speed, making him highly effective once armor is stripped."
+  },
+  "speakerwoman": {
+    "quickAnswer": "Speakerwoman is an unvalued Legendary utility attacker in Cameraman Tower Defense holding no published trade points or demand score on the October 25 list. Because community value lists exclude unrated legendary crate drops, it serves purely as an in-game combat asset. Visit our values guide for trading thresholds.",
+    "noDataDeepDive": "Speakerwoman occupies a specialized position as a summonable Legendary unit in Cameraman Tower Defense, yet she remains absent from numeric valuation on the October 25 Vaulted Values X list. In community trading lobbies, value lists focus exclusively on units with active liquidity and measurable trade frequency; older or unrated crate legendaries are omitted because player exchanges treat them as personal collection pieces rather than liquid currency.\n\nFurthermore, Aligators Games does not publish unit stats, and Speakerwoman has not appeared in a graded community reading. Her base deployment cost, attack cadence, targeting radius, and maximum DPS scaling remain unrecorded by independent testing channels. Unlike frontline damage titans, players utilize Speakerwoman primarily as an agile mid-wave support specialist. Because she possesses no recognized trading points, any trade involving her must be evaluated on subjective utility rather than mathematical point parity. Consult our [Trade Calculator & Value List](/values/) to review active market benchmarks.",
+    "unknowns": [
+      "Base deployment cash, attack cadence, and projectile hitboxes have never appeared in a graded reading.",
+      "Crate drop probabilities for summonable Legendaries are withheld by Aligators Games.",
+      "Trading point value is absent because community lists exclude unrated crate legendaries."
+    ]
+  },
+  "speaker-spider": {
+    "quickAnswer": "Speaker Spider is an Exclusive mechanical support unit in Cameraman Tower Defense carrying no published trade points or demand rating on the October 25 list. Excluded from community valuation spreadsheets due to limited trade circulation, it functions as a niche collection asset. Review our values page for market baselines.",
+    "noDataDeepDive": "Speaker Spider represents an Exclusive mechanical unit in Cameraman Tower Defense, yet it carries zero trade points on the dated October 25 community value list. While flagship exclusives like TV Spider and Engineer Cameraman trade for thousands of points, Speaker Spider has remained outside standard trading circulation, leading community compilers to classify it as an unrated specialty asset.\n\nAdditionally, Aligators Games does not publish unit stats, and this unit has not appeared in a graded community reading. Key mechanical metrics including base placement cost, DPS progression across upgrade tiers, and targeting range are entirely absent from community recordings. Until community evaluators capture independent recordings of its stat card, players should treat Speaker Spider as an unrated utility unit for casual campaign clears rather than a liquid store of value. Check our [Trade Calculator & Value List](/values/) to explore units with established market liquidity.",
+    "unknowns": [
+      "Mechanical leg speed, deployment cost, and pulse damage are absent from community testing records.",
+      "Whether Speaker Spider confers proximity audio buffs to adjacent turrets is unverified.",
+      "Excluded from the October 25 value list due to near-zero trading circulation."
+    ]
+  },
+  "popcorn-cameraman": {
+    "quickAnswer": "Popcorn Cameraman is a novelty Rare unit in Cameraman Tower Defense with no published trade points or demand score on the October 25 list. Because community lists universally exclude Rare rarity towers from trading value, it serves strictly as a thematic collection item. Consult our values page for valuation criteria.",
+    "noDataDeepDive": "Popcorn Cameraman is a thematic Rare unit introduced during seasonal game updates. The October 25 Vaulted Values X list explicitly excludes Rare, Uncommon, and Basic units from its valuation framework because their high drop rates from basic coin crates make them universally accessible. With no trading scarcity, community compilers assign them zero trade points.\n\nIn combat, Aligators Games does not publish unit stats, and Popcorn Cameraman has not appeared in a graded community reading. Placement cost, projectile attack cadence, and maximum DPS remain undocumented in public wiki records. While useful as a lighthearted novelty or early-stage filler tower during introductory map clears, it holds no exchange value in competitive trading lobbies. For a comprehensive breakdown of tradeable unit thresholds and active values, visit our [Trade Calculator & Value List](/values/).",
+    "unknowns": [
+      "Novelty snack projectile velocity, placement expense, and area blast radius are unrecorded in wiki ledgers.",
+      "Seasonal crate rotation intervals are omitted from official developer roadmaps.",
+      "Carries 0 trade points because community value lists universally exclude Rare cosmetic novelty drops."
+    ]
+  },
+  "car-speakerman": {
+    "quickAnswer": "Car Speakerman is an Uncommon vehicular unit in Cameraman Tower Defense holding no published trade points or demand rating on the October 25 list. Excluded from market valuation due to its low rarity and high availability, it functions solely as an early-game starter. Check our values guide for trade thresholds.",
+    "noDataDeepDive": "Car Speakerman brings a mechanical automobile aesthetic to the Uncommon rarity tier in Cameraman Tower Defense. In community market dynamics, vehicle-style uncommon towers hold zero trading currency; new players unbox dozens of copies while spending standard in-game gold on starter crates, creating massive supply that eliminates any secondary market demand.\n\nIn tactical wave defense, Aligators Games does not publish unit stats, and Car Speakerman has not appeared in a graded community reading. His track traversal speed, road collision hitbox, and damage progression are completely unmeasured. While fun to deploy during the earliest map stages, players rapidly sell or bench him once wave 10 creeps begin demanding real area splash damage. For a complete list of units that command real trading leverage, check our [Interactive Trade Calculator](/values/).",
+    "unknowns": [
+      "Automobile acceleration, turning circle on hairpin bends, and road impact damage are completely unmeasured.",
+      "Base deployment gold and upgrade cash curves have never been documented in card readings.",
+      "Omitted from trade point valuation because Uncommon starter units flood player inventories."
+    ]
+  },
+  "speakerman": {
+    "quickAnswer": "Speakerman is a foundational Basic starter unit in Cameraman Tower Defense with no published trade points or demand rating on the October 25 list. Because starter units possess unlimited availability from first-day play, they hold zero trading currency. Review our values guide to explore market-valued towers.",
+    "noDataDeepDive": "Speakerman is one of the initial Basic rarity towers provided to new players in Cameraman Tower Defense. Community value lists such as the October 25 Vaulted Values X report deliberately assign no trade value to Basic units because every account obtains them automatically or pulls them from standard starter crates for negligible coin costs.\n\nIn terms of combat data, Aligators Games does not publish unit stats, and Speakerman has not appeared in a graded community reading. Base placement cost, DPS scaling, and range radius are omitted from community ledgers as players transition to higher-tier towers immediately after completing tutorial waves. For dated trading point benchmarks and high-tier unit evaluations, check our [Interactive Trade Calculator](/values/).",
+    "unknowns": [
+      "Starter soundwave damage, fire rate intervals, and tutorial-tier scaling have never appeared in graded logs.",
+      "Aligators Games does not publish base stats for first-day onboarding towers.",
+      "Carries zero trade value because every Roblox account receives copies freely upon starting."
+    ]
+  },
+  "brown-cameraman": {
+    "quickAnswer": "Brown Cameraman is an Uncommon early-game support tower in Cameraman Tower Defense holding no published trade points or demand score on the October 25 list. Due to widespread crate availability, low-rarity units carry no market trade value. Consult our values page to review trading valuation criteria.",
+    "noDataDeepDive": "Brown Cameraman represents an entry-level Uncommon unit in Cameraman Tower Defense, recognized by his distinctive brown trench coat. The October 25 Vaulted Values X list deliberately excludes Uncommon units from valuation spreadsheets; because thousands of copies circulate freely from low-cost summon crates, they carry no player-to-player trade demand or point value.\n\nFrom a tactical perspective, Aligators Games does not publish unit stats, and Brown Cameraman has not appeared in a graded community reading. Placement cost, firing rates, and range boundaries have not been measured in independent dual-recording logs. He serves as an early campaign stepping stone before players unlock high-DPS epics. To learn which units command genuine trading currency, visit our [Trade Calculator & Value List](/values/).",
+    "unknowns": [
+      "Trench-coat armor values, placement cash cost, and attack range perimeter remain unrecorded in public tests.",
+      "Targeting priority when facing fast runner swarms is undocumented by the developer.",
+      "Uncommon rarity units are excluded from the October 25 value list due to universal availability."
+    ]
+  },
+  "dark-camerawoman": {
+    "quickAnswer": "Dark Camerawoman is an Epic single-target attacker in Cameraman Tower Defense carrying no published trade points or demand rating on the October 25 list. Unrated on community value sheets due to low market liquidity, she functions as a niche campaign combatant. Review our values page for tradeable unit rankings.",
+    "noDataDeepDive": "Dark Camerawoman is classified as an Epic rarity tower, yet she was omitted from numeric valuation on the October 25 Vaulted Values X list. While select epics like Pumpkin Farmer (70 pts) and Camera Repair Drone (50 pts) maintain listed trading points, Dark Camerawoman has lacked sufficient trading volume to establish a recognized community point standard.\n\nIn addition, Aligators Games does not publish unit stats, and Dark Camerawoman has not appeared in a graded community reading. Her placement cost, attack animation speed, and maximum DPS output are unrecorded in card archives. In-game testing indicates she provides focused single-target utility, but traders treat her as an untraded asset. Visit our [Trade Calculator & Value List](/values/) to analyze actively traded units.",
+    "unknowns": [
+      "Stealth detection mechanics, critical strike multipliers, and deployment fees are absent from wiki archives.",
+      "Community value compilers omitted Dark Camerawoman due to lack of recorded trade volume.",
+      "Attack recovery animation length has not been measured in frame-by-frame analysis."
+    ]
+  },
+  "cameraman": {
+    "quickAnswer": "Cameraman is the default Basic starter tower in Cameraman Tower Defense holding no published trade points or demand score on the October 25 list. As an omnipresent starter unit with zero market scarcity, it carries no exchange equity. Consult our values guide to review trade-eligible unit values.",
+    "noDataDeepDive": "Cameraman is the fundamental starting unit in Cameraman Tower Defense, given freely to all players upon creating their accounts. Because Basic units possess zero barrier to entry and unlimited supply, community price compilers like Vaulted Values X completely exclude them from trading lists. They hold zero trade points and cannot be exchanged for valuable assets.\n\nRegarding combat parameters, Aligators Games does not publish unit stats, and Cameraman has not appeared in a graded community reading. Basic placement cost and baseline damage numbers are unrecorded in competitive testing archives. Players routinely swap Cameraman out for Large Cameraman or Ninja Cameraman as soon as early coin summons are complete. To see where real trading value begins, check the [Interactive Trade Calculator](/values/).",
+    "unknowns": [
+      "Default camera flash range, attack cadence, and baseline DPS are omitted from official game menus.",
+      "Cash upgrade steps for the initial starter tower have never been cataloged in community recordings.",
+      "Zero trade points exist because Basic units carry zero market scarcity in player economies."
+    ]
+  },
+  "clown-speakerman": {
+    "quickAnswer": "Clown Speakerman is an Uncommon seasonal variant in Cameraman Tower Defense with no published trade points or demand rating on the October 25 list. Excluded from market valuation due to its Uncommon status, it provides early wave clearing without trading liquidity. Visit our values guide for trading thresholds.",
+    "noDataDeepDive": "Clown Speakerman arrived as a carnival-themed Halloween variant, sporting colorful makeup, a ruffled collar, and novelty speaker horns. Despite being an event-exclusive pull, the October 25 Vaulted Values X list deliberately excludes Uncommon event units from point valuation; because players opened thousands of seasonal crates seeking Mythic Headless TV Man, the market was flooded with duplicate clown variants that possess zero resale value.\n\nRegarding combat performance, Aligators Games does not publish unit stats, and Clown Speakerman has not appeared in a graded community reading. His placement cost, soundwave blast radius, and DPS numbers remain completely undocumented. He serves as an amusing seasonal cosmetic rather than a serious endgame defender. Consult our [Trade Calculator & Value List](/values/) to see which units hold genuine player-to-player purchasing power.",
+    "unknowns": [
+      "Carnival soundwave cone angles, horn audio frequency, and placement expense are completely unmeasured.",
+      "Halloween seasonal unboxing rates for Uncommon variants are withheld by Aligators Games.",
+      "Excluded from trade valuation spreadsheets because seasonal uncommons flood player inventories."
+    ]
+  },
+  "werewolf-speakerman": {
+    "quickAnswer": "Werewolf Speakerman is a Halloween-themed Rare attacker in Cameraman Tower Defense holding no published trade points or demand score on the October 25 list. Because community value lists exclude Rare event pulls from point valuations, it functions as a seasonal novelty. Review our values guide for tradeable units.",
+    "noDataDeepDive": "Werewolf Speakerman introduces a lupine horror theme to the Rare summon pool, brandishing wolf fangs and feral audio effects. While high-rarity Halloween drops like Dragon Cameraman (40 pts) and Headless TV Man (1,900 pts) carry official trade points, Rare event units are unboxed with such high frequency that community value lists do not track them as currency.\n\nOn the battlefield, Aligators Games does not publish unit stats, and Werewolf Speakerman has not appeared in a graded community reading. Attack intervals, claw strike range, and per-wave DPS are absent from public testing records. He provides atmospheric entertainment during spooky event maps, but cannot be exchanged for high-tier towers. Visit our [Trade Calculator & Value List](/values/) to review active market valuations.",
+    "unknowns": [
+      "Melee claw slash range, night-map damage modifiers, and attack recovery delays have never been recorded.",
+      "Crate unboxing weights for Halloween event rares are withheld by the development studio.",
+      "Rare holiday drops carry 0 trade points due to widespread crate unboxing during seasonal events."
+    ]
+  }
+}

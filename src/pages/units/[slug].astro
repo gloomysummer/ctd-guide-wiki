@@ -3,6 +3,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import DualSidebar from "../../components/DualSidebar.astro";
 import { siteConfig } from "../../config/site.config";
 import valuesData from "../../data/values.json";
+import unitStatsData from "../../data/unit-stats.json";
+import unitPriceHistoryData from "../../data/unit-price-history.json";
+import unitEditorialData from "../../data/unit-editorial.json";
 
 export async function getStaticPaths() {
   return valuesData.map((unit) => ({
@@ -12,36 +15,80 @@ export async function getStaticPaths() {
 }
 
 const { unit } = Astro.props;
+const unitId = unit.id;
+const editorial = unitEditorialData[unitId] || {};
+
+// Dataset Lookups
+const statVerified = unitStatsData.verified[unitId] || null;
+const statSingleSource = unitStatsData.singleSource[unitId] || null;
+const statEntry = statVerified || statSingleSource || null;
+const statVerificationType = statVerified
+  ? "Two independent card readings agree"
+  : statSingleSource
+  ? "Single-source report"
+  : null;
+
+const priceHistory = unitPriceHistoryData.history[unitId] || null;
+
+const TRADE_UNIT_MAP: Record<string, number[]> = {
+  "titan-cinemaman": [0, 6],
+  "ninja-cameraman": [0],
+  "upgraded-videotapper-prototype": [1, 3],
+  "pumpkin-farmer": [1, 2, 4],
+  "scientist-cameraman": [2, 4],
+  "tv-woman": [3, 6],
+  "upgraded-titan-speakerman": [4],
+  "upgraded-titan-cameraman": [5],
+  "large-scientist-cameraman": [5],
+  "headless-tv-man": [6],
+  "executioner-tv-man": [7],
+  "engineer-cameraman": [7],
+};
+
+const tradeIndices = TRADE_UNIT_MAP[unitId] || [];
+const sampleTrades = tradeIndices.map((i) => unitPriceHistoryData.sampleTrades[i]).filter(Boolean);
+
+const hasRange = statEntry && statEntry.range !== null;
+const isSpawner = statEntry && statEntry.note && statEntry.note.includes("Spawner");
+const hasPlacement = hasRange || isSpawner;
+
+const hasHistory = !!priceHistory;
+const hasStats = !!statEntry;
+const hasTrades = sampleTrades.length > 0;
 
 // SERP TDH optimization (Title <= 60, Meta Description <= 160, H1 <= 50)
-const cleanName = unit.name.replace(/\s*\([^)]*\)/g, '').trim();
+const cleanName = unit.name.replace(/\s*\([^)]*\)/g, "").trim();
 const pageTitle = cleanName.length > 25 ? `${cleanName} Stats & Value` : `${cleanName} Stats & Trade Value`;
 const metaDesc = `${cleanName} trade value, demand score and tier placement in Cameraman Tower Defense, sourced from the dated community value list.`;
 const pageH1 = cleanName.length > 25 ? `${cleanName} Stats & Value` : `${cleanName} Stats & Value Guide`;
 
+// Dynamic Table of Contents — strictly omit sections without data
 const tocHeadings = [
-  { depth: 2, slug: "combat-profile", text: "Combat Profile & Stats" },
-  { depth: 2, slug: "trade-valuation", text: "Trading Value & Demand" },
-  { depth: 2, slug: "tactical-placements", text: "Optimal Placements & Synergy" },
-  { depth: 2, slug: "evidence-dossier", text: "Source Ledger" },
+  { depth: 2, slug: "quick-answer", text: "Quick Answer" },
+  ...(hasHistory ? [{ depth: 2, slug: "value-history", text: "Value & Price History" }] : []),
+  ...(hasStats ? [{ depth: 2, slug: "combat-stats", text: "Combat Stats" }] : []),
+  ...(hasTrades ? [{ depth: 2, slug: "how-to-trade", text: "How to Trade It" }] : []),
+  ...(hasPlacement ? [{ depth: 2, slug: "placement-notes", text: "Placement Notes" }] : []),
+  { depth: 2, slug: "what-we-dont-know", text: "What We Don't Know" },
+  { depth: 2, slug: "source-ledger", text: "Source Ledger" },
 ];
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "ItemPage",
-    "name": `${unit.name} - Cameraman Tower Defense Unit Guide`,
-    "description": metaDesc,
-    "url": `${siteConfig.siteUrl}/units/${unit.id}/`,
-    "image": `${siteConfig.siteUrl}/images/units/${unit.id}.webp`,
+    name: `${unit.name} - Cameraman Tower Defense Unit Guide`,
+    description: metaDesc,
+    url: `${siteConfig.siteUrl}/units/${unit.id}/`,
+    image: `${siteConfig.siteUrl}/images/units/${unit.id}.webp`,
   },
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.siteUrl },
-      { "@type": "ListItem", "position": 2, "name": "Units", "item": `${siteConfig.siteUrl}/units/` },
-      { "@type": "ListItem", "position": 3, "name": unit.name, "item": `${siteConfig.siteUrl}/units/${unit.id}/` },
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.siteUrl },
+      { "@type": "ListItem", position: 2, name: "Units", item: `${siteConfig.siteUrl}/units/` },
+      { "@type": "ListItem", position: 3, name: unit.name, item: `${siteConfig.siteUrl}/units/${unit.id}/` },
     ],
   },
 ];
@@ -70,7 +117,7 @@ const jsonLd = [
       </div>
       <h1>{pageH1}</h1>
       <p class="guide-lead">
-        Dated community trade value, demand score and tier placement for <strong>{unit.name}</strong> in Roblox Cameraman Tower Defense. Combat stats are not published by the developer and are not reproduced here.
+        Dated community trade value, demand score, and gameplay guide for <strong>{unit.name}</strong> in Roblox Cameraman Tower Defense.
       </p>
     </header>
 
@@ -104,114 +151,198 @@ const jsonLd = [
           <div class="banner-stats">
             <div class="stat-box">
               <span class="lbl">TRADE VALUE</span>
-              <span class="val cyan">{unit.value > 0 ? <>{unit.value.toLocaleString()} <small>pts</small></> : <><small>No published value</small></>}</span>
+              <span class="val cyan">{unit.value > 0 ? <>{unit.value.toLocaleString()} <small>pts</small></> : <small>No published value</small>}</span>
             </div>
             <div class="stat-box">
               <span class="lbl">BASE DPS</span>
-              <span class="val">Not published</span>
+              <span class="val">{statEntry && statEntry.maxDps !== null ? statEntry.maxDps.toLocaleString() : <small>Not in any published reading</small>}</span>
             </div>
             <div class="stat-box">
               <span class="lbl">ATTACK RANGE</span>
-              <span class="val">Not published</span>
+              <span class="val">{statEntry && statEntry.range !== null ? statEntry.range : <small>Not in any published reading</small>}</span>
             </div>
             <div class="stat-box">
               <span class="lbl">DEMAND RATING</span>
-              <span class="val">{unit.demand} / 10</span>
+              <span class="val">{unit.demand > 0 ? `${unit.demand} / 10` : <small>Not published</small>}</span>
             </div>
           </div>
         </div>
 
-        <!-- SECTION 1: COMBAT PROFILE -->
-        <section id="combat-profile" style="margin-top: 2.5rem;">
-          <h2>Combat Profile & Stats</h2>
-          <p>{unit.description}</p>
-          <div class="table-responsive">
-            <div class="table-scroll">
-            <table class="specs-table">
-              <tbody>
-                <tr>
-                  <th>Unit Name</th>
-                  <td><strong>{unit.name}</strong></td>
-                  <th>Rarity Classification</th>
-                  <td><span class={`rarity-tag tag-${unit.rarity.toLowerCase()}`}>{unit.rarity}</span></td>
-                </tr>
-                <tr>
-                  <th>Tactical Role</th>
-                  <td>{unit.category}</td>
-                  <th>Overall Meta Tier</th>
-                  <td><span class={`tier-pill tier-${unit.tier.toLowerCase()}`}>{unit.tier} Tier</span></td>
-                </tr>
-                <tr>
-                  <th>Estimated Peak DPS</th>
-                  <td>Not published by the developer</td>
-                  <th>Targeting Range</th>
-                  <td>Not published by the developer</td>
-                </tr>
-                <tr>
-                  <th>Market Trend</th>
-                  <td>{unit.trend === 'Rising' ? '▲ Rising' : unit.trend === 'Dropping' ? '▼ Dropping' : unit.trend === 'Unstable' ? '◆ Unstable' : unit.trend === 'Volatile' ? '◇ Volatile' : unit.trend === 'Stable' ? '● Stable' : '— Unknown'}</td>
-                  <th>Calculator Integration</th>
-                  <td><a href="/values/" style="color: #38bdf8;">Add to Trade Calculator →</a></td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- SECTION 1: QUICK ANSWER -->
+        <section id="quick-answer" class="guide-section" style="margin-top: 2.5rem;">
+          <h2>Quick Answer</h2>
+          <div class="quick-answer-card">
+            <p class="quick-answer-text">{editorial.quickAnswer}</p>
+          </div>
+          {!hasHistory && !hasStats && editorial.noDataDeepDive && (
+            <div class="no-data-analysis" style="margin-top: 1.25rem;">
+              {editorial.noDataDeepDive.split('\n\n').map((p) => (
+                <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem;">{p}</p>
+              ))}
             </div>
-          </div>
+          )}
         </section>
 
-        <!-- SECTION 2: TRADE VALUATION -->
-        <section id="trade-valuation" style="margin-top: 3.5rem;">
-          <h2>Trading Value & Market Demand</h2>
-          <p>
-            In the player-driven trading ecosystem, <strong>{unit.name}</strong> {unit.value > 0 ? <>currently holds a community-listed trade value of <strong>{unit.value.toLocaleString()} trading points</strong></> : <>has <strong>no published trade value</strong> on the current community list</>}{unit.demand > 0 ? <> with a demand score of <strong>{unit.demand}/10</strong></> : <> and no published demand score</>}.
-          </p>
-          <div class="trade-tips-box">
-            <h3>Trading Recommendations:</h3>
-            <ul>
-              {unit.value > 0 && <li><strong>Fair Parity Range:</strong> When exchanging for {unit.name}, ensure incoming offers evaluate within ±10% ({Math.round(unit.value * 0.9).toLocaleString()} – {Math.round(unit.value * 1.1).toLocaleString()} pts).</li>}
-              <li><strong>Market Trend ({unit.trend}):</strong> {unit.trend === 'Rising' ? 'Demand is active and rising on the current community list.' : unit.trend === 'Dropping' ? 'Value has fallen since the last patch and the list marks it as dropping.' : unit.trend === 'Unstable' ? 'The source marks this unit as unstable, so re-check before trading.' : unit.trend === 'Volatile' ? 'The source marks this unit as volatile; value has swung sharply.' : unit.trend === 'Stable' ? 'Holding steady on the current community list.' : 'The source does not publish a trend for this unit.'}</li>
-              <li><strong>Test Before Trading:</strong> Use our <a href="/values/" style="color: #38bdf8;">Interactive Trade Calculator</a> to verify Win/Fair/Lose balance before finalizing in-game swaps.</li>
-            </ul>
-          </div>
-        </section>
+        <!-- SECTION 2: VALUE & PRICE HISTORY (Only if hasHistory) -->
+        {hasHistory && (
+          <section id="value-history" class="guide-section" style="margin-top: 3.5rem;">
+            <h2>Value & Price History</h2>
+            <p class="section-lead">{editorial.historyStory}</p>
+            {editorial.timeline && editorial.timeline.length > 0 && (
+              <div class="timeline-container">
+                <h3 class="timeline-title">Historical Price Benchmarks</h3>
+                <div class="timeline-grid">
+                  {editorial.timeline.map((step, idx) => (
+                    <div class="timeline-step">
+                      <span class="step-num">0{idx + 1}</span>
+                      <span class="step-label">{step.label}</span>
+                      <span class="step-val">{step.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {editorial.marketAnalysis && (
+              <p class="section-subtext" style="margin-top: 1.2rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.marketAnalysis}
+              </p>
+            )}
+            {!hasStats && editorial.metaSynergy && (
+              <p class="section-subtext" style="margin-top: 0.8rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.metaSynergy}
+              </p>
+            )}
+            {!hasStats && editorial.tacticalTiming && (
+              <p class="section-subtext" style="margin-top: 0.8rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.tacticalTiming}
+              </p>
+            )}
+            <div class="source-citation">
+              <span>Source: Vaulted Values X, list dated 2026-10-25</span>
+            </div>
+          </section>
+        )}
 
-        <!-- SECTION 3: TACTICAL PLACEMENTS -->
-        <section id="tactical-placements" style="margin-top: 3.5rem;">
-          <h2>Optimal Placements & Team Synergy</h2>
-          <p>
-            Maximizing the efficacy of {unit.name} depends heavily on track geometry and complementary support units:
-          </p>
-          <div class="synergy-grid">
-            <div class="synergy-card">
-              <h3>Track Positioning</h3>
-              <p>
-                Aligators Games does not publish unit stats. Placement advice on this page is derived from community recordings, not from an official stat sheet.
+        <!-- SECTION 3: COMBAT STATS (Only if hasStats) -->
+        {hasStats && (
+          <section id="combat-stats" class="guide-section" style="margin-top: 3.5rem;">
+            <h2>Combat Stats</h2>
+            <div class="stat-evidence-badge">
+              <span class="badge-dot">●</span>
+              <span>Evidence Standard: {statVerificationType}</span>
+            </div>
+            <div class="table-responsive">
+              <div class="table-scroll">
+                <table class="specs-table">
+                  <tbody>
+                    <tr>
+                      <th>Placement Cost</th>
+                      <td>{statEntry.placeCost !== null ? `$${statEntry.placeCost}` : 'Not in any published reading'}</td>
+                      <th>Maximum DPS</th>
+                      <td>{statEntry.maxDps !== null ? statEntry.maxDps.toLocaleString() : 'Not in any published reading'}</td>
+                    </tr>
+                    <tr>
+                      <th>Attack Range</th>
+                      <td>{statEntry.range !== null ? statEntry.range : 'Not in any published reading'}</td>
+                      <th>Card Reading Note</th>
+                      <td>{statEntry.note || 'None recorded'}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {editorial.combatAnalysis && (
+              <p class="section-subtext" style="margin-top: 1.2rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.combatAnalysis}
+              </p>
+            )}
+            {editorial.metaSynergy && (
+              <p class="section-subtext" style="margin-top: 0.8rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.metaSynergy}
+              </p>
+            )}
+            {editorial.tacticalTiming && (
+              <p class="section-subtext" style="margin-top: 0.8rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.tacticalTiming}
+              </p>
+            )}
+            <div class="source-citation">
+              <span>Source: RoboLibrary, reading dated 2026-10-11</span>
+            </div>
+          </section>
+        )}
+
+        <!-- SECTION 4: HOW TO TRADE IT (Only if hasTrades) -->
+        {hasTrades && (
+          <section id="how-to-trade" class="guide-section" style="margin-top: 3.5rem;">
+            <h2>How to Trade It</h2>
+            <p class="section-lead">
+              Community trade logs record documented peer-to-peer exchanges involving {unit.name} on dated list values:
+            </p>
+            <div class="trades-grid">
+              {sampleTrades.map((t) => (
+                <div class="trade-card">
+                  <div class="trade-header">
+                    <span class="trade-label">Documented Trade</span>
+                    <span class="trade-verdict">{t.verdict}</span>
+                  </div>
+                  <p class="trade-pairing"><strong>Trade:</strong> {t.trade}</p>
+                  <p class="trade-math"><strong>Math:</strong> {t.math}</p>
+                </div>
+              ))}
+            </div>
+            {editorial.tradeAdvice && (
+              <p class="section-subtext" style="margin-top: 1.2rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.tradeAdvice}
+              </p>
+            )}
+          </section>
+        )}
+
+        <!-- SECTION 5: PLACEMENT NOTES (Only if hasPlacement) -->
+        {hasPlacement && (
+          <section id="placement-notes" class="guide-section" style="margin-top: 3.5rem;">
+            <h2>Placement Notes</h2>
+            <div class="placement-box">
+              <p style="margin: 0; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.placementGuide}
               </p>
             </div>
-            <div class="synergy-card">
-              <h3>Economy Synchronization</h3>
-              <p>
-                Pair with <em>Pumpkin Farmer</em> or <em>Scientist Cameraman</em> to ensure your cash generation comfortably supports upgrading this unit to its final tiers before wave 35.
-              </p>
-            </div>
-          </div>
+          </section>
+        )}
+
+        <!-- SECTION 6: WHAT WE DON'T KNOW (All units) -->
+        <section id="what-we-dont-know" class="guide-section" style="margin-top: 3.5rem;">
+          <h2>What We Don't Know</h2>
+          <p class="section-lead">
+            To maintain strict data integrity, our encyclopedia documents what is currently unmeasured for {unit.name}:
+          </p>
+          <ul class="unknowns-list">
+            {editorial.unknowns && editorial.unknowns.map((unk) => (
+              <li>{unk}</li>
+            ))}
+          </ul>
+          <p class="dev-disclosure">
+            Aligators Games does not publish official balance patches, stat cards, or damage formulas in public patch notes.
+          </p>
         </section>
 
-        <!-- SECTION 4: EVIDENCE DOSSIER -->
-        <section id="evidence-dossier" style="margin-top: 3.5rem;">
-          <h2>Source Dossier & Attribution</h2>
+        <!-- SECTION 7: SOURCE LEDGER (All units) -->
+        <section id="source-ledger" class="guide-section" style="margin-top: 3.5rem;">
+          <h2>Source Ledger & Attribution</h2>
           <div class="evidence-box">
             <div class="evidence-header">
-              <span class="evidence-shield">🛡️ SOURCE DOSSIER</span>
-              <span class="evidence-status">SOURCE DATED {unit.source.retrievedAt}</span>
+              <span class="evidence-shield">DATED SOURCE RECORD</span>
+              <span class="evidence-status">LAST UPDATED: 2026-11-01</span>
             </div>
             <div class="evidence-body">
-              <p><strong>Valuation Platform:</strong> {unit.source.platform}</p>
-              <p><strong>Reference Video Anchor:</strong> <a href={`https://www.youtube.com/watch?v=${unit.source.refVideoId}`} target="_blank" rel="noopener">YouTube (ID: {unit.source.refVideoId})</a></p>
-              <p><strong>Auditor Notes:</strong> {unit.source.notes}</p>
-              <blockquote>
-                <em>"All stats audited against live server Universe 10762636904. Stat numbers represent base scaling without temporary gamepass multipliers."</em>
-              </blockquote>
+              <p><strong>Primary Valuation Anchor:</strong> Vaulted Values X (Video ID: {unitPriceHistoryData.source.videoId}), list dated {unitPriceHistoryData.source.listDate}.</p>
+              {hasStats ? (
+                <p><strong>Combat Stat Reference:</strong> RoboLibrary community stat cards, reading dated {unitStatsData.source.checkedAt} ({statVerificationType}).</p>
+              ) : (
+                <p><strong>Combat Stat Reference:</strong> Aligators Games does not publish unit stats, and this unit has not appeared in a graded community reading.</p>
+              )}
+              <p><strong>Valuation Scope:</strong> Trade points between units on a player-to-player basis, not developer gem prices. Commons, uncommons, and rares carry no trade points on community lists.</p>
             </div>
           </div>
         </section>
@@ -273,13 +404,89 @@ const jsonLd = [
     font-family: var(--font-mono, monospace);
   }
   .stat-box .val.cyan { color: #38bdf8; }
-  .stat-box .val small { font-size: 0.8rem; color: #64748b; }
+  .stat-box .val small { font-size: 0.8rem; color: #64748b; font-weight: 400; }
+
+  .quick-answer-card {
+    background: rgba(56, 189, 248, 0.06);
+    border-left: 4px solid #38bdf8;
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  .quick-answer-text {
+    margin: 0;
+    color: #e2e8f0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .timeline-container {
+    background: #090e18;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .timeline-title {
+    margin: 0 0 1rem 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.75rem;
+  }
+  .timeline-step {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .step-num {
+    font-size: 0.7rem;
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+    font-weight: 700;
+  }
+  .step-label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+  .step-val {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .stat-evidence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .badge-dot { font-size: 0.6rem; color: #38bdf8; }
 
   .specs-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
   .specs-table th {
     background: #090e18;
@@ -299,54 +506,85 @@ const jsonLd = [
     width: 25%;
   }
 
-  .trade-tips-box {
+  .trades-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .trade-card {
     background: #0b1120;
     border: 1px solid #1e293b;
     border-radius: 8px;
-    padding: 1.25rem;
+    padding: 1rem 1.25rem;
+  }
+  .trade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .trade-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-mono, monospace);
+  }
+  .trade-verdict {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .trade-pairing {
+    margin: 0.25rem 0;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+  }
+  .trade-math {
+    margin: 0.25rem 0 0 0;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .placement-box {
+    background: #090e18;
+    border-left: 3px solid #38bdf8;
+    padding: 1rem 1.25rem;
+    border-radius: 0 6px 6px 0;
     margin-top: 1rem;
   }
-  .trade-tips-box h3 {
-    margin: 0 0 0.75rem 0;
-    color: #38bdf8;
-    font-size: 1.05rem;
-  }
-  .trade-tips-box ul {
-    margin: 0;
+
+  .unknowns-list {
+    margin: 0.75rem 0 0 0;
     padding-left: 1.25rem;
     color: #cbd5e1;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
   }
-
-  .synergy-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+  .unknowns-list li {
+    margin-bottom: 0.4rem;
+  }
+  .dev-disclosure {
+    color: #64748b;
+    font-size: 0.85rem;
+    font-style: italic;
     margin-top: 1rem;
   }
-  @media (max-width: 640px) {
-    .synergy-grid { grid-template-columns: 1fr; }
-  }
-  .synergy-card {
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 8px;
-    padding: 1.25rem;
-  }
-  .synergy-card h3 {
-    margin: 0 0 0.5rem 0;
-    color: #f1f5f9;
-    font-size: 1.05rem;
-  }
-  .synergy-card p {
-    margin: 0;
-    color: #94a3b8;
-    font-size: 0.875rem;
-    line-height: 1.5;
+
+  .source-citation {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #64748b;
+    font-style: italic;
   }
 
-  .rarity-badge, .rarity-tag {
+  .rarity-badge {
     display: inline-block;
     padding: 0.2rem 0.6rem;
     border-radius: 4px;
@@ -359,21 +597,8 @@ const jsonLd = [
   .tag-legendary { background: rgba(234, 179, 8, 0.15); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
   .tag-epic { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
   .tag-rare { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+  .tag-uncommon { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
   .tag-basic { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
-
-  .tier-pill {
-    display: inline-block;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    font-weight: 800;
-    font-size: 0.8rem;
-    font-family: var(--font-mono, monospace);
-  }
-  .tier-s { background: #e11d48; color: #fff; }
-  .tier-a { background: #ea580c; color: #fff; }
-  .tier-b { background: #ca8a04; color: #fff; }
-  .tier-c { background: #2563eb; color: #fff; }
-  .tier-d { background: #475569; color: #fff; }
 
   /* Evidence Box */
   .evidence-box {
@@ -409,13 +634,5 @@ const jsonLd = [
     font-size: 0.875rem;
     color: #cbd5e1;
     margin: 0.4rem 0;
-  }
-  .evidence-body blockquote {
-    border-left: 3px solid #38bdf8;
-    margin: 0.8rem 0 0 0;
-    padding-left: 0.8rem;
-    color: #94a3b8;
-    font-size: 0.85rem;
-    font-style: italic;
   }
 </style>
