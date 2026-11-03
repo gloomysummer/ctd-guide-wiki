@@ -1,0 +1,57 @@
+{
+  "source": {
+    "name": "RoboLibrary — Cameraman Tower Defense Units, section 'Crate Odds Behind These Units'",
+    "url": "https://robolibrary.org/wikis/cameraman-tower-defense/units",
+    "checkedAt": "2026-10-11"
+  },
+  "crates": {
+    "spider": {
+      "name": "Spider Crate",
+      "cost": "100 gems per summon",
+      "odds": "90% Speaker Spider, 9.8% Camera Spider, 0.2% TV Spider"
+    },
+    "scientist": {
+      "name": "Scientist Crate",
+      "cost": "49 / 139 / 399 Robux",
+      "odds": "89% / 10% / 1%, with Engineer Cameraman on the 1%"
+    },
+    "basic": {
+      "name": "Basic Crate",
+      "cost": "in-match currency",
+      "odds": "Basic, uncommon and rare pulls make up roughly 95%; one slot is shared at 1-in-1,000",
+      "note": "Rotates its featured units every 20 minutes, so summoning while the unit you want is showing is a real lever."
+    },
+    "woman": {
+      "name": "Woman Crate",
+      "cost": "Not purchasable — win drop only",
+      "odds": "Drops 10% of the time on Insane and 2% on Easy"
+    }
+  },
+  "units": {
+    "speaker-spider": {
+      "crate": "spider",
+      "odds": "90%"
+    },
+    "camera-spider": {
+      "crate": "spider",
+      "odds": "9.8%"
+    },
+    "tv-spider": {
+      "crate": "spider",
+      "odds": "0.2%",
+      "extra": "That works out to roughly one TV Spider per 500 summons at 100 gems each."
+    },
+    "engineer-cameraman": {
+      "crate": "scientist",
+      "odds": "1%"
+    },
+    "tv-woman": {
+      "crate": "woman"
+    }
+  },
+  "byRarity": {
+    "Basic": "basic",
+    "Uncommon": "basic",
+    "Rare": "basic"
+  }
+}
