@@ -16,6 +16,18 @@ const totalUnits = valuesData.length;
 const godlyUnits = valuesData.filter(u => u.rarity === 'Godly').length;
 const mythicUnits = valuesData.filter(u => u.rarity === 'Mythic').length;
 
+// Only the 22 units with a published point value can participate in arithmetic.
+// The other 17 are real units with no sourced value — treating them as "worth
+// zero" silently is what makes a calculator give a confident wrong answer, so
+// they are passed separately and disclosed in the UI instead.
+const pricedUnits = valuesData.filter(u => u.value > 0);
+const unpricedCount = valuesData.length - pricedUnits.length;
+
+// Packed for the client-side gap advisor: short keys keep the inline payload small.
+const calcUnits = pricedUnits.map(u => ({
+  id: u.id, name: u.name, value: u.value, rarity: u.rarity, trend: u.trend,
+}));
+
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -88,7 +100,7 @@ const jsonLd = [
         <section id="trade-calculator" class="calc-section">
           <div class="section-title-wrap">
             <h2>Interactive 4-Slot Trade Calculator</h2>
-            <p class="section-desc">Select units for your side and their side. The calculator sums points, measures net difference, and evaluates the trade against the ±10% fairness band.</p>
+            <p class="section-desc">Select units for your side and their side. The calculator sums points, measures net difference, and evaluates the trade against the ±10% fairness band. When an offer is off balance it names the unit or pair that closes the gap, and flags deals where the points balance but the value direction does not.</p>
           </div>
 
           <div class="calculator-card">
@@ -171,6 +183,25 @@ const jsonLd = [
                 <strong id="summary-margin">0.0%</strong>
               </div>
               <button type="button" class="btn-reset-all" id="reset-all-btn">Reset All</button>
+            </div>
+
+            <!-- Units with no published value must be disclosed even when the
+                 gap advisor stays quiet, so this sits outside that panel. -->
+            <p class="gap-caveat" id="gap-caveat" hidden></p>
+
+            <!-- Gap-Fill Advisor -->
+            <div id="gap-panel" class="gap-panel" hidden>
+              <div class="gap-head">
+                <span class="gap-title">Close the gap</span>
+                <span class="gap-sub" id="gap-sub"></span>
+              </div>
+              <div class="gap-list" id="gap-list"></div>
+            </div>
+
+            <!-- Risk note + shareable trade link -->
+            <div class="calc-tools-row">
+              <div id="risk-note" class="risk-note" hidden></div>
+              <button type="button" class="btn-share" id="share-btn">Copy trade link</button>
             </div>
           </div>
         </section>
@@ -326,7 +357,7 @@ const jsonLd = [
   </div>
 </BaseLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ calcUnits, unpricedCount }}>
   // Interactive Trade Calculator Client Logic
   (function() {
     const valuesMap = {};
@@ -424,7 +455,234 @@ const jsonLd = [
           verdictSub.textContent = `Underpaid offer. You are taking a ${Math.abs(margin).toFixed(1)}% deficit`;
         }
       }
+
+      updateAdvisor(yourSum, theirSum);
+      syncHash();
     }
+
+    /* ---------------------------------------------------------------
+       Trading advisor: turns a verdict into an action.
+       A number tells you the trade is off by 340 points; it does not tell
+       you what to ask for. That gap is the single most common question in
+       every trade chat, so it is computed here instead of left to the user.
+       --------------------------------------------------------------- */
+
+    const gapPanel = document.getElementById('gap-panel');
+    const gapList = document.getElementById('gap-list');
+    const gapSub = document.getElementById('gap-sub');
+    const gapCaveat = document.getElementById('gap-caveat');
+    const riskNote = document.getElementById('risk-note');
+
+    function sidePicks(slots) {
+      const picked = [];
+      slots.forEach(row => {
+        const sel = row.querySelector('.unit-select');
+        const id = sel.value;
+        if (!id) return;
+        const qty = parseInt(row.querySelector('.unit-qty').value, 10) || 1;
+        const meta = calcUnits.find(u => u.id === id);
+        // Unpriced units are not in calcUnits, so read their label off the
+        // option rather than printing a raw slug back at the user.
+        const label = sel.options[sel.selectedIndex]
+          ? sel.options[sel.selectedIndex].text.replace(/\s*\(.*\)\s*$/, '').trim()
+          : id;
+        picked.push({
+          id, qty,
+          value: meta ? meta.value : 0,
+          name: meta ? meta.name : label,
+          trend: meta ? meta.trend : 'Unknown',
+          priced: Boolean(meta),
+        });
+      });
+      return picked;
+    }
+
+    function nameList(items) {
+      return items.map(p => p.qty > 1 ? `${p.name} ×${p.qty}` : p.name).join(', ');
+    }
+
+    function renderGapSuggestions(yourSum, theirSum, diff, ownedIds) {
+      const base = yourSum;
+      const band = base * 0.10;
+      gapList.innerHTML = '';
+
+      if (yourSum === 0 || theirSum === 0) {
+        gapPanel.hidden = true;
+        return;
+      }
+      gapPanel.hidden = false;
+
+      if (Math.abs(diff) <= band) {
+        gapSub.textContent = `Already inside the ±10% fair band — no filler needed.`;
+        return;
+      }
+
+      const owedBy = diff > 0 ? 'them' : 'you';
+      const need = Math.abs(diff);
+      gapSub.textContent = owedBy === 'them'
+        ? `They are short ${need.toLocaleString()} pts. Ask for one of these.`
+        : `You are short ${need.toLocaleString()} pts. Offer one of these.`;
+
+      // Candidates: the priced units not already in the deal, single or paired.
+      // 22 units -> 22 singles + 231 pairs, cheap enough to score on every keystroke.
+      const pool = calcUnits.filter(u => !ownedIds.has(u.id));
+      const candidates = [];
+      for (let i = 0; i < pool.length; i++) {
+        candidates.push({ sum: pool[i].value, items: [pool[i]] });
+        for (let j = i + 1; j < pool.length; j++) {
+          candidates.push({ sum: pool[i].value + pool[j].value, items: [pool[i], pool[j]] });
+        }
+      }
+
+      const scored = candidates.map(c => {
+        // Adding to the deficient side moves the difference toward zero by `sum`.
+        const newDiff = diff - Math.sign(diff) * c.sum;
+        const newBase = owedBy === 'you' ? base + c.sum : base;
+        const newMargin = newBase > 0 ? (newDiff / newBase) * 100 : 0;
+        return { ...c, newDiff, newMargin };
+      })
+        .filter(c => Math.abs(c.newMargin) <= 10 && Math.abs(c.newDiff) < Math.abs(diff))
+        .sort((a, b) => a.items.length - b.items.length
+          || Math.abs(a.newDiff) - Math.abs(b.newDiff)
+          || a.sum - b.sum)
+        .slice(0, 3);
+
+      if (!scored.length) {
+        gapSub.textContent = need / base > 0.5
+          ? `The gap is ${need.toLocaleString()} pts — more than half your side. That is a different trade, not a filler add-on.`
+          : `No single unit or pair lands inside ±10% of that gap. Try two mid-tier units instead.`;
+        return;
+      }
+
+      scored.forEach(c => {
+        const chip = document.createElement('div');
+        chip.className = 'gap-chip';
+        const thumbs = c.items.map(u => `<img src="/images/units/${u.id}.webp" alt="" width="28" height="18" loading="lazy">`).join('');
+        const label = c.items.map(u => u.name).join(' + ');
+        const sign = c.newMargin >= 0 ? '+' : '';
+        chip.innerHTML = `${thumbs}<span class="gap-chip-name">${label}</span>`
+          + `<span class="gap-chip-val">${c.sum.toLocaleString()} pts</span>`
+          + `<span class="gap-chip-result">${sign}${c.newMargin.toFixed(1)}%</span>`;
+        gapList.appendChild(chip);
+      });
+    }
+
+    function renderRiskNote(yourPicks, theirPicks, yourSum, theirSum) {
+      const risingGiven = yourPicks.filter(p => p.trend === 'Rising');
+      const droppingReceived = theirPicks.filter(p => p.trend === 'Dropping');
+      const droppingGiven = yourPicks.filter(p => p.trend === 'Dropping');
+      const risingReceived = theirPicks.filter(p => p.trend === 'Rising');
+
+      const notes = [];
+      if (risingGiven.length && droppingReceived.length) {
+        notes.push(`<strong>Direction risk:</strong> you give ${nameList(risingGiven)} (Rising) for ${nameList(droppingReceived)} (Dropping). The points can balance while the value moves against you next update.`);
+      }
+      if (droppingGiven.length && risingReceived.length) {
+        notes.push(`<strong>Direction in your favour:</strong> you give ${nameList(droppingGiven)} (Dropping) for ${nameList(risingReceived)} (Rising).`);
+      }
+
+      if (!notes.length) {
+        riskNote.hidden = true;
+        riskNote.innerHTML = '';
+        return;
+      }
+      riskNote.hidden = false;
+      riskNote.innerHTML = notes.join(' ')
+        + ` <span class="risk-source">Trend column from the sourced Update 4 value list — a heuristic, not a guarantee.</span>`;
+    }
+
+    function updateAdvisor(yourSum, theirSum) {
+      const yourPicks = sidePicks(yourSlots);
+      const theirPicks = sidePicks(theirSlots);
+      const diff = theirSum - yourSum;
+      const ownedIds = new Set([...yourPicks, ...theirPicks].map(p => p.id));
+
+      renderGapSuggestions(yourSum, theirSum, diff, ownedIds);
+      renderRiskNote(yourPicks, theirPicks, yourSum, theirSum);
+
+      // 17 units carry no published point value. Saying nothing lets a user
+      // read a confident verdict off a deal that contains units we cannot price.
+      const unpricedUsed = [...yourPicks, ...theirPicks].filter(p => !p.priced);
+      if (unpricedUsed.length) {
+        gapCaveat.hidden = false;
+        gapCaveat.textContent = `${unpricedUsed.length} unit${unpricedUsed.length > 1 ? 's' : ''} in this deal `
+          + `(${nameList(unpricedUsed)}) ${unpricedUsed.length > 1 ? 'have' : 'has'} no published point value and `
+          + `${unpricedUsed.length > 1 ? 'count' : 'counts'} as 0 — the verdict above only reflects the ${calcUnits.length} priced units.`;
+      } else {
+        gapCaveat.hidden = true;
+      }
+    }
+
+    /* ---------------------------------------------------------------
+       Shareable trade link. State lives in the URL hash, so a trade can be
+       pasted into Discord for the other trader to inspect, and a user who
+       closes the tab does not lose the offer they were building.
+       --------------------------------------------------------------- */
+
+    const shareBtn = document.getElementById('share-btn');
+
+    function encodeSide(slots) {
+      // Slot index is encoded so a restored trade keeps the arrangement the
+      // sender built, instead of silently repacking units into the first slots.
+      return [...slots].map((row, idx) => {
+        const id = row.querySelector('.unit-select').value;
+        if (!id) return null;
+        const qty = parseInt(row.querySelector('.unit-qty').value, 10) || 1;
+        return `${idx}:${id}*${qty}`;
+      }).filter(Boolean).join(',');
+    }
+
+    function syncHash() {
+      const state = `${encodeSide(yourSlots)}|${encodeSide(theirSlots)}`;
+      const next = state === '|' ? '' : `#t=${state}`;
+      if (next !== (location.hash || '')) {
+        history.replaceState(null, '', next || location.pathname + location.search);
+      }
+    }
+
+    function applyHash() {
+      const raw = location.hash.replace(/^#t=/, '');
+      if (!location.hash.startsWith('#t=') || !raw) return false;
+      const [yourRaw, theirRaw] = raw.split('|');
+      const fill = (slots, spec) => {
+        if (!spec) return;
+        spec.split(',').forEach((entry, fallbackIdx) => {
+          const [slotRaw, rest] = entry.split(':');
+          const [id, qtyRaw] = (rest || slotRaw).split('*');
+          const slotIdx = rest ? parseInt(slotRaw, 10) : fallbackIdx;
+          const row = slots[slotIdx];
+          if (!row || !calcUnits.some(u => u.id === id)) return;
+          row.querySelector('.unit-select').value = id;
+          const q = parseInt(qtyRaw, 10);
+          row.querySelector('.unit-qty').value = (q >= 1 && q <= 10) ? q : 1;
+        });
+      };
+      fill(yourSlots, yourRaw);
+      fill(theirSlots, theirRaw);
+      return true;
+    }
+
+    shareBtn.addEventListener('click', async () => {
+      syncHash();
+      const url = location.href;
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch (e) {
+        const tmp = document.createElement('textarea');
+        tmp.value = url;
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand('copy');
+        tmp.remove();
+      }
+      const original = shareBtn.textContent;
+      shareBtn.textContent = 'Link copied ✓';
+      shareBtn.classList.add('copied');
+      setTimeout(() => {
+        shareBtn.textContent = original;
+        shareBtn.classList.remove('copied');
+      }, 2000);
+    });
 
     // Attach listeners to slots
     document.querySelectorAll('.calc-column .unit-select, .calc-column .unit-qty').forEach(el => {
@@ -516,6 +774,11 @@ const jsonLd = [
         filterTable();
       });
     });
+
+    // Restore a trade pasted from a shared link before the first render, so the
+    // opening state is the state that was shared rather than an empty calculator.
+    applyHash();
+    calculateTrade();
   })();
 </script>
 
@@ -637,6 +900,22 @@ const jsonLd = [
     font-size: 0.85rem;
     color: #94a3b8;
     text-align: right;
+  }
+
+  /* Mobile: the four-column slot row leaves the unit picker about 100px, which
+     truncates every name to five characters ("Pumpk▾"). Most of this site's
+     traffic is mobile, so the picker gets its own line and the quantity and
+     subtotal drop underneath it. */
+  @media (max-width: 640px) {
+    .slot-row {
+      grid-template-columns: 26px 1fr 56px;
+      row-gap: 0.3rem;
+      margin-bottom: 0.9rem;
+    }
+    .slot-number { grid-row: 1 / 3; }
+    .unit-select { grid-column: 2 / 4; }
+    .unit-qty { grid-column: 2; justify-self: start; width: 62px; }
+    .slot-subtotal { grid-column: 3; }
   }
 
   .btn-clear-side, .btn-reset-all {
@@ -953,4 +1232,136 @@ const jsonLd = [
   .values-data-table .rarity-tag { padding: 2px 6px; font-size: 0.68rem; }
   .values-data-table .unit-mini-thumb { margin-right: 6px; width: 40px; height: 25px; }
   .values-data-table .unit-cell { gap: 6px; }
+</style>
+
+<style is:global>
+  /* Gap-fill advisor */
+  .gap-panel {
+    margin-top: 1.25rem;
+    padding: 1rem 1.1rem;
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 8px;
+  }
+  .gap-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .gap-title {
+    font-family: var(--font-display, sans-serif);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    letter-spacing: 0.02em;
+  }
+  .gap-sub {
+    font-size: 0.82rem;
+    color: #94a3b8;
+  }
+  .gap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .gap-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.6rem;
+    background: #0b1322;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+  .gap-chip img {
+    flex: 0 0 auto;
+    border-radius: 3px;
+    object-fit: cover;
+    background: #111a2e;
+  }
+  .gap-chip-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    color: #e2e8f0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .gap-chip-val {
+    flex: 0 0 auto;
+    color: #94a3b8;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+  }
+  .gap-chip-result {
+    flex: 0 0 auto;
+    min-width: 62px;
+    text-align: right;
+    color: #4ade80;
+    font-family: var(--font-mono, monospace);
+    font-weight: 700;
+    font-size: 0.82rem;
+  }
+  .gap-caveat {
+    margin: 0.7rem 0 0 0;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #94a3b8;
+    border-left: 2px solid #f59e0b;
+    padding-left: 0.6rem;
+  }
+
+  /* Risk note + share control */
+  .calc-tools-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .risk-note {
+    flex: 1 1 320px;
+    font-size: 0.83rem;
+    line-height: 1.55;
+    color: #cbd5e1;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+  }
+  .risk-note strong { color: #fbbf24; }
+  .risk-source {
+    display: block;
+    margin-top: 0.35rem;
+    color: #94a3b8;
+    font-size: 0.76rem;
+  }
+  .btn-share {
+    flex: 0 0 auto;
+    margin-left: auto;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-share:hover {
+    background: rgba(56, 189, 248, 0.2);
+    color: #7dd3fc;
+  }
+  .btn-share.copied {
+    background: rgba(34, 197, 94, 0.16);
+    border-color: rgba(34, 197, 94, 0.45);
+    color: #4ade80;
+  }
+  @media (max-width: 640px) {
+    .btn-share { margin-left: 0; width: 100%; }
+  }
 </style>
