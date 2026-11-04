@@ -52,6 +52,7 @@ const faqItems = [
   {
     question: "How does the trading calculator and value list work?",
     answer: "Our interactive trade calculator lets you place up to 4 units on each side to compare total market points. If the difference between offers is within ±10%, it is classified as a Fair Trade. Offers exceeding +10% to +30% represent a Win (W), while over +30% is a Big Win (BW).",
+    cta: { text: "Open the Cameraman Tower Defense trade calculator", href: "/values/" },
   },
   {
     question: "Why does the game say I cannot redeem promo codes?",
@@ -470,7 +471,7 @@ const websiteJsonLd = {
               <span class="faq-toggle-icon">▾</span>
             </summary>
             <div class="faq-answer">
-              <p>{item.answer}</p>
+              <p>{item.answer}{item.cta && <> <a href={item.cta.href}>{item.cta.text}</a>.</>}</p>
             </div>
           </details>
         ))}
