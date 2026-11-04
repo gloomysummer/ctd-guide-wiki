@@ -21,7 +21,16 @@ const mythicUnits = valuesData.filter(u => u.rarity === 'Mythic').length;
 // zero" silently is what makes a calculator give a confident wrong answer, so
 // they are passed separately and disclosed in the UI instead.
 const pricedUnits = valuesData.filter(u => u.value > 0);
-const unpricedCount = valuesData.length - pricedUnits.length;
+
+// The snapshot date is read from the data, never typed into the page. A hand-written
+// date is how a table ends up sourced to a list it was not actually read from.
+const snapshotDates = [...new Set(
+  valuesData.map(u => u.source?.retrievedAt).filter(Boolean)
+)].sort() as string[];
+const snapshotDate = snapshotDates.length
+  ? new Date(snapshotDates[snapshotDates.length - 1] + "T00:00:00Z")
+      .toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+  : null;
 
 // Packed for the client-side gap advisor: short keys keep the inline payload small.
 const calcUnits = pricedUnits.map(u => ({
@@ -73,7 +82,7 @@ const jsonLd = [
         Audit real-time trading values, calculate Win / Fair / Lose trade balance across 4 offer slots, and reference demand ratings for all 39 units in Roblox Cameraman Tower Defense.
       </p>
       <p class="value-provenance">
-        Point values read from the <a href="https://cameraman-td.vaultedvaluesx.com/value-list" target="_blank" rel="noopener">Vaulted Values X</a> list on <strong>25 October 2026</strong>. That list is revised after every patch, so treat these figures as indicative rather than a quote — the calculator is for sanity-checking an offer, not for pricing a trade you have already agreed.
+        Point values read from the <a href="https://cameraman-td.vaultedvaluesx.com/value-list" target="_blank" rel="noopener">Vaulted Values X</a> list on <strong>{snapshotDate ?? "a date not recorded"}</strong>. That list is revised after every patch, so treat these figures as indicative rather than a quote — the calculator is for sanity-checking an offer, not for pricing a trade you have already agreed.
       </p>
     </header>
 
@@ -360,7 +369,7 @@ const jsonLd = [
   </div>
 </BaseLayout>
 
-<script is:inline define:vars={{ calcUnits, unpricedCount }}>
+<script is:inline define:vars={{ calcUnits }}>
   // Interactive Trade Calculator Client Logic
   (function() {
     const valuesMap = {};
@@ -603,7 +612,7 @@ const jsonLd = [
       renderGapSuggestions(yourSum, theirSum, diff, ownedIds);
       renderRiskNote(yourPicks, theirPicks, yourSum, theirSum);
 
-      // 17 units carry no published point value. Saying nothing lets a user
+      // Some units carry no published point value. Saying nothing lets a user
       // read a confident verdict off a deal that contains units we cannot price.
       const unpricedUsed = [...yourPicks, ...theirPicks].filter(p => !p.priced);
       if (unpricedUsed.length) {

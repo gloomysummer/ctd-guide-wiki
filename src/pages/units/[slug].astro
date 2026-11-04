@@ -70,6 +70,14 @@ const acquisition = acqCrate ? {
 } : null;
 const hasAcquisition = !!acquisition;
 
+// The hero card and the history section sit on the same screen, so a reader
+// comparing "525 pts" against "1,900 on the October 25 list" needs to see which
+// number is current. The date comes from the data, not from this template.
+const valueAsOf = unit.source?.retrievedAt
+  ? new Date(unit.source.retrievedAt + "T00:00:00Z")
+      .toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })
+  : null;
+
 // SERP TDH optimization (Title <= 60, Meta Description <= 160, H1 <= 50)
 const cleanName = unit.name.replace(/\s*\([^)]*\)/g, "").trim();
 const pageTitle = cleanName.length > 25 ? `${cleanName} Stats & Value` : `${cleanName} Stats & Trade Value`;
@@ -165,7 +173,7 @@ const jsonLd = [
           </div>
           <div class="banner-stats">
             <div class="stat-box">
-              <span class="lbl">TRADE VALUE</span>
+              <span class="lbl">TRADE VALUE{valueAsOf ? ` · ${valueAsOf}` : ""}</span>
               <span class="val cyan">{unit.value > 0 ? <>{unit.value.toLocaleString()} <small>pts</small></> : <small>No published value</small>}</span>
             </div>
             <div class="stat-box">

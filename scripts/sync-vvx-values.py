@@ -15,9 +15,14 @@ each other, so values from two different dates produce confident nonsense
 that table has to arrive on the same footing as the ones already in it.
 
 This script does not decide anything. It prints the diff and exits. Writing is
-opt-in via --write, and even then it only touches `value` and `valueStatus`;
-`demand`, `trend`, `tier` and every editorial string are left alone because
-this source does not publish them.
+opt-in via --write, and even then it only touches `value`, `valueStatus` and the
+`source` block; `demand`, `trend`, `tier` and every editorial string are left
+alone because this source does not publish them.
+
+`--write` also stamps `source.retrievedAt` on every row, not just the drifted
+ones: a sync reads the whole list, and a provenance date that lags behind the
+figures is how the page ends up citing a list it was not read from. The
+`/values/` page derives its visible date from that field.
 
 Usage:
     python3 scripts/sync-vvx-values.py                 # diff against live site
@@ -33,6 +38,7 @@ import json
 import re
 import sys
 import urllib.request
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -97,6 +103,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--from-file", type=Path, help="parse a saved copy instead of fetching")
     ap.add_argument("--write", action="store_true", help="apply matched value changes")
+    ap.add_argument("--as-of", default=date.today().isoformat(),
+                    help="date stamped on every row's source.retrievedAt (default: today)")
     args = ap.parse_args(argv)
 
     try:
@@ -165,9 +173,17 @@ def main(argv: list[str] | None = None) -> int:
         target["valueStatus"] = "published"
         target.setdefault("source", {})
         target["source"]["notes"] = (
-            f"Re-synced to the live Vaulted Values X list on 2026-11-04 "
+            f"Re-synced to the live Vaulted Values X list on {args.as_of} "
             f"({SOURCE_URL}); previously {target.get('source', {}).get('notes', 'n/a')}"
         )[:400]
+
+    # A sync reads the whole list, so every row's provenance moves to this date —
+    # not just the rows whose number happened to change. Leaving retrievedAt behind
+    # is how the page ends up sourced to a list the figures were not read from.
+    for u in ours:
+        src = u.setdefault("source", {})
+        src["retrievedAt"] = args.as_of
+        src["url"] = SOURCE_URL
 
     VALUES.write_text(json.dumps(ours, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {len(changed)} changes to {VALUES.relative_to(ROOT)}")
