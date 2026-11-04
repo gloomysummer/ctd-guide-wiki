@@ -50,44 +50,44 @@ CAVEAT_RE = re.compile(
 
 
 def decompose(n, values, sentence_nums, names_here, name_value):
-    """Justify n as arithmetic only when the sentence itself points at the parts.
+    """Justify n as arithmetic only when the sentence accounts for every part.
 
     A sum is not evidence. With ~40 published values, a three-term search reaches
     a large share of arbitrary integers, so 'it is reachable' proves nothing.
-    A bundle price is justified only if the sentence either quotes one of the
-    addends, or names a unit whose published value is one of them.
+    It is not enough for one named unit to appear among the operands either: the
+    sentence 'gamepasses with Large Scientist Cameraman yields 2,480' names the
+    575 and nothing else, and 2,480 is still a number we cannot check. Every
+    operand must be either the value of a unit named here, or a figure quoted
+    in this sentence.
     """
     vs = sorted({v for v in values if v and v > 0}, reverse=True)
+    allowed = {name_value[nm] for nm in names_here} | sentence_nums
 
-    def justifies(operands):
-        quoted = [o for o in operands if o in sentence_nums and o != n]
-        if quoted:
-            return f"quotes {quoted[0]:,} in the same sentence"
-        named = [nm for nm, val in name_value.items() if val in operands and nm in names_here]
-        if named:
-            return "adds up the units named here: " + ", ".join(sorted(set(named))[:3])
+    def check(operands):
+        if set(operands) <= allowed:
+            parts = ", ".join(f"{o:,}" for o in sorted(set(operands)))
+            srcs = []
+            if {name_value[nm] for nm in names_here} & set(operands):
+                srcs.append("named units")
+            if sentence_nums & set(operands):
+                srcs.append("figures quoted here")
+            return f"every operand accounted for by {' and '.join(srcs)}: {parts}"
         return None
 
     for i, a in enumerate(vs):
         if a == n:
             continue
         b = n - a
-        if b in vs:
-            basis = justifies({a, b})
-            if basis:
-                return f"{a:,} + {b:,}", basis
+        if b in vs and (basis := check({a, b})):
+            return f"{a:,} + {b:,}", basis
         for j in range(i, len(vs)):
             c = vs[j]
             d = n - a - c
-            if d in vs:
-                basis = justifies({a, c, d})
-                if basis:
-                    return f"{a:,} + {c:,} + {d:,}", basis
+            if d in vs and (basis := check({a, c, d})):
+                return f"{a:,} + {c:,} + {d:,}", basis
         for gap in vs:
-            if abs(gap - n) in vs and abs(gap - n) > 0:
-                basis = justifies({gap, abs(gap - n)})
-                if basis:
-                    return f"{gap:,} - {abs(gap - n):,}", basis
+            if abs(gap - n) in vs and abs(gap - n) > 0 and (basis := check({gap, abs(gap - n)})):
+                return f"{gap:,} - {abs(gap - n):,}", basis
     return None, None
 
 
@@ -187,7 +187,9 @@ def main():
         if isinstance(nm, str) and val is not None:
             name_value[nm.lower()] = val
 
-    # prose corpus, used only for the weakest tier
+    # prose corpus, used only for the weakest tiers. Stat notes come from graded
+    # card readings; history stories are our own retellings and cannot vouch for
+    # anything, so the two are kept apart.
     prose_corpus: dict[int, list[str]] = {}
     prose_docs = [(f"stats.{s}", rows) for s, rows in stat_sections.items()] + [("history", hist)]
     for label, doc in prose_docs:
@@ -229,14 +231,19 @@ def main():
                 tier = "SELF"
             elif n in stat_own.get(owner, set()) or (near_combat and n in stat_numbers):
                 tier = "STATS"
-            elif n in global_numeric:
-                tier = "OTHER"
             else:
+                # try arithmetic before the catch-all: "up 2,000 from the 8,000 it
+                # held" is a checkable claim, while "it equals one of forty other
+                # numbers" is not an explanation at all
                 trace, basis = decompose(n, self_union, sentence_nums, names_here, name_value)
                 if trace:
                     tier = "DERIVED"
-                elif n in prose_corpus:
+                elif n in global_numeric:
+                    tier = "OTHER"
+                elif any(p.startswith("stats.") for p in prose_corpus.get(n, [])):
                     tier = "PROSE"
+                elif n in prose_corpus:
+                    tier = "STORY"
                 else:
                     tier = "NONE"
 
@@ -259,14 +266,15 @@ def main():
                 "prose_src": sorted(set(prose_corpus.get(n, [])))[:3],
             })
 
-    order = {"NONE": 0, "OTHER": 1, "PROSE": 2, "DERIVED": 3, "STATS": 4}
+    order = {"NONE": 0, "STORY": 1, "OTHER": 2, "PROSE": 3, "DERIVED": 4, "STATS": 5}
     findings.sort(key=lambda f: (order.get(f["tier"], 9), f["owner"], f["field"]))
 
-    shown = [f for f in findings if not args.quiet or f["tier"] in ("NONE", "OTHER")]
+    shown = [f for f in findings if not args.quiet or f["tier"] in ("NONE", "STORY", "OTHER")]
 
     counts = {t: sum(1 for f in findings if f["tier"] == t) for t in order}
     print(f"checked {len(targets)} text fields in 2 files")
     print(f"  NONE    {counts['NONE']:>3}  no source anywhere")
+    print(f"  STORY   {counts['STORY']:>3}  only inside a history story — our own retelling, does not count")
     xref_bad = [f for f in findings if f["tier"] == "OTHER" and not f["named_match"]]
     print(f"  OTHER   {counts['OTHER']:>3}  another unit's number in this sentence "
           f"({len(xref_bad)} name no match)")
@@ -298,6 +306,8 @@ def main():
                     tail += f" / stat of {', '.join(f['stat_of'])}"
         elif f["tier"] == "PROSE":
             tail = f"  <- only in prose: {', '.join(f['prose_src'])}"
+        elif f["tier"] == "STORY":
+            tail = f"  <- only in a history story: {', '.join(f['prose_src'])}"
         elif f["tier"] == "DERIVED":
             tail = f"  <- {f['trace']}  ({f['basis']})"
         elif f["tier"] == "NONE":
@@ -305,12 +315,14 @@ def main():
         print(f"[{f['tier']:7}] {f['owner']:<28} {f['num']:>7}{tail}")
         print(f"           {f['ctx']}")
 
-    hard = [f for f in findings if f["tier"] == "NONE" and not f["caveat"]]
+    hard = [f for f in findings if f["tier"] in ("NONE", "STORY")]
     soft = [f for f in findings if f["tier"] == "NONE" and f["caveat"]]
     if soft:
         print(f"\n{len(soft)} unsourceable figure(s) sit inside a sentence that calls them unconfirmed — allowed, keep the caveat.")
     if hard:
-        print(f"\nFAIL: {len(hard)} number(s) with no source in the data tables.")
+        n_none = sum(1 for f in hard if f["tier"] == "NONE")
+        n_story = len(hard) - n_none
+        print(f"\nFAIL: {n_none} number(s) with no source anywhere, {n_story} that exist only inside a history story.")
         return 1
     print("\nPASS: every 3+ digit number in the copy traces to a data table or to arithmetic on one.")
     return 0
