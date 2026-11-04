@@ -10,3 +10,6 @@ dist/
 .env*
 !.env.example
 state/
+
+# Third-party page captures used as audit evidence (17MB, regenerable)
+docs/research/raw/
