@@ -28,10 +28,11 @@ OUT = ROOT / "public" / "ads"
 
 PLACEHOLDER = "0" * 32
 
-# The ad network serves invoke.js from one of these hosts. Which one is per-zone:
-# banners copied from the dashboard have used both highrevenueformat.com and
-# highperformanceformat.com. This is only the fallback — site.config.ts may set
-# `host` per banner, and it should, because guessing wrong fails silently.
+# The ad network serves the loader from an address that differs per account AND
+# per zone. On ctd-guide.wiki the dashboard hands out https://bauval.org/22/<key>
+# — a path segment, and no invoke.js suffix. Other sites in the matrix get
+# highrevenueformat.com/<key>/invoke.js. So `host` in the config is the whole
+# prefix, not a bare domain, and it is copied from the dashboard verbatim.
 DEFAULT_HOST = "https://www.highrevenueformat.com"
 BLOCK_RE = re.compile(r'"(banner-\d+x\d+)":\s*\{([^}]*)\}', re.S)
 FIELD_RE = {
@@ -86,7 +87,7 @@ TEMPLATE = """<!DOCTYPE html>
       'params': {{}}
     }};
   </script>
-  <script type="text/javascript" src="{host}/{key}/invoke.js"></script>
+  <script type="text/javascript" src="{host}/{key}"></script>
 </body>
 </html>
 """

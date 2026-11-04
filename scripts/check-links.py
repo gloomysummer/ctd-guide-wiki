@@ -22,7 +22,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse, unquote
 
-ATTR_RE = re.compile(r'(?:href|src)\s*=\s*["\']([^"\']+)["\']', re.IGNORECASE)
+# `(?<![.\w])` keeps this to real HTML attributes. Without it, an assignment like
+# `f.src = '/ads/' + zone + '.html'` inside an inline script reads as a link to
+# "/ads/" and fails the build gate on a path that is assembled at runtime.
+ATTR_RE = re.compile(r'(?<![.\w])(?:href|src)\s*=\s*["\']([^"\']+)["\']', re.IGNORECASE)
 SKIP_PREFIXES = ("mailto:", "tel:", "javascript:", "data:", "#")
 EXTERNAL_RE = re.compile(r"^(https?:)?//", re.IGNORECASE)
 

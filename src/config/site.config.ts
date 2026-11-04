@@ -46,17 +46,17 @@ export const siteConfig = {
    * 漏掉那段 CSS 会导致两个横幅位**同时显示**（模板 2026-10-14 前的缺陷，已修）。
    */
   adsterra: {
-    enabled: false,
+    enabled: true,
     banners: {
       // host 是后台「Get code」里 <script src="..."> 的域名，不同 Zone 可能不同
       // （highrevenueformat.com / highperformanceformat.com）。留空则用脚本默认值，
       // 但**复制代码时请照抄后台给的域名**，猜错会静默不出广告。
-      "banner-160x300": { key: "", host: "", width: 160, height: 300, enabled: true },
-      "banner-160x600": { key: "", host: "", width: 160, height: 600, enabled: true },
-      "banner-300x250": { key: "", host: "", width: 300, height: 250, enabled: true },
-      "banner-320x50": { key: "", host: "", width: 320, height: 50, enabled: true },
-      "banner-468x60": { key: "", host: "", width: 468, height: 60, enabled: true },
-      "banner-728x90": { key: "", host: "", width: 728, height: 90, enabled: true },
+      "banner-160x300": { key: "f0a35d4fdb800b80bf95ad853e3a11c5", host: "https://bauval.org/22", width: 160, height: 300, enabled: true },
+      "banner-160x600": { key: "8f106c415dea061626b75d557f8bd7a7", host: "https://bauval.org/22", width: 160, height: 600, enabled: true },
+      "banner-300x250": { key: "05fbe08e1fe2b9ace4b75cf6125cf468", host: "https://bauval.org/22", width: 300, height: 250, enabled: true },
+      "banner-320x50": { key: "abe1ab37eb97be10d9e73b6ab4226d6e", host: "https://bauval.org/22", width: 320, height: 50, enabled: true },
+      "banner-468x60": { key: "e94df023792ca71129f9f6376ea3d73f", host: "https://bauval.org/22", width: 468, height: 60, enabled: true },
+      "banner-728x90": { key: "6e2bb78b30fc71e70205de0314d472ac", host: "https://bauval.org/22", width: 728, height: 90, enabled: true },
     },
   },
   /** 搜索引擎站长验权 */

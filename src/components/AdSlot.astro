@@ -33,6 +33,11 @@ const DIMS: Record<ZoneKey, { w: number; h: number }> = {
 };
 const dim = DIMS[zone];
 
+// The iframe source is built in the client script below as '/ads/' + zone + '.html'
+// and injected on viewport approach. That path is deliberately not written into a
+// template comment: Astro emits comments to the browser, and the site's own link
+// checker then reads it as a real /ads/ link and fails the build gate.
+
 // 占位符防御（SOP 七.3 红线）：key 必须是 32 位小写 hex，否则整个槽位不渲染
 const KEY_RE = /^[a-f0-9]{32}$/;
 /**
@@ -70,9 +75,7 @@ const uniqueId = `ad-${zone}-${Math.random().toString(36).substring(2, 9)}`;
       class="ad-slot-container"
       style={`min-height:${dim.h}px;min-width:${dim.w}px;`}
       id={`box-${uniqueId}`}
-    >
-      <!-- 客户端视口触达后注入同域 iframe（/ads/banner-<size>.html） -->
-    </div>
+    ></div>
   </aside>
 )}
 
