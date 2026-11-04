@@ -63,7 +63,9 @@ def load_redirects(repo_root: Path) -> dict[str, str]:
 
 
 def check(dist: Path) -> dict:
-    pages = sorted(dist.rglob("*.html"))
+    # /ads/*.html are ad iframe shells, not site pages — they carry no internal
+    # links of ours and counting them inflates the page total the report quotes.
+    pages = sorted(p for p in dist.rglob("*.html") if p.parent.name != "ads")
     repo_root = dist.parent
     redirects = load_redirects(repo_root)
     broken: list[dict] = []

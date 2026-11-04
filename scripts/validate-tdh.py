@@ -31,6 +31,11 @@ def validate_dist(dist_dir: Path, strict: bool = True) -> bool:
 
     html_files = []
     for root, _, files in os.walk(dist_dir):
+        # /ads/*.html are self-hosted ad iframe documents: noindex, no TDH by
+        # design. Counting them made this gate fail on the ad shells rather than
+        # on anything a reader ever sees.
+        if Path(root).name == "ads":
+            continue
         for f in files:
             if f.endswith(".html") and not f.startswith("google") and f != "404.html":
                 html_files.append(Path(root) / f)

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advertisement</title>
+  <meta name="robots" content="noindex, nofollow">
+  <!--
+    GENERATED FILE — do not edit by hand.
+    Source of truth: src/config/site.config.ts -> adsterra.banners["banner-728x90"].key
+    Regenerate:      python3 scripts/build-ad-banners.py   (both values in one commit)
+
+    [GREY FEATURE] 反嵌套探针伪装 (SOP 六.2)
+    作用: 让 invoke.js 的 iframe 自检 (window.top === window.self) 恒为真,
+          按"顶层原生页"全价出价, 而不是 iframe 降级价.
+    它不伪造展示/点击/统计数字, 只改广告脚本对自身环境的判断 —— 条款灰区.
+
+    ▶ 秒级撤回: 删掉下面那个 <script> 块即为纯净直出版本.
+  -->
+  <script>
+    try {
+      Object.defineProperty(window, 'top', { get: function() { return window.self; } });
+      Object.defineProperty(window, 'parent', { get: function() { return window.self; } });
+      Object.defineProperty(window, 'frameElement', { get: function() { return null; } });
+    } catch (e) {}
+  </script>
+  <style>
+    body {
+      margin: 0; padding: 0; overflow: hidden; background: transparent;
+      display: flex; justify-content: center; align-items: center;
+      width: 728px; height: 90px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Zone: ctd-guide.wiki · banner-728x90 · key=00000000000000000000000000000000 -->
+  <script type="text/javascript">
+    atOptions = {
+      'key': '00000000000000000000000000000000',
+      'format': 'iframe',
+      'height': 90,
+      'width': 728,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="https://www.highrevenueformat.com/00000000000000000000000000000000/invoke.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import AdSlot from "../../components/AdSlot.astro";
 import DualSidebar from "../../components/DualSidebar.astro";
 import { siteConfig } from "../../config/site.config";
 import codesData from "../../data/verified-codes.json";
@@ -87,6 +88,11 @@ const jsonLd = [
             </p>
           </div>
         </div>
+
+        <!-- 广告位 1/2：H1 之后、正文之前。468x60 在窄屏（<520px）由 AdSlot 的
+             scoped CSS 整槽隐藏，避免裁切；页尾第二位由 BaseLayout 统一挂载。
+             索引页只放 2 位——承接流量的深度页才铺满 3 位，索引页堆满反而稀释可见率。 -->
+        <AdSlot zone="banner-468x60" />
 
         <!-- SECTION 1: ACTIVE CODES -->
         <section id="active-codes" style="margin-top: 2rem;">

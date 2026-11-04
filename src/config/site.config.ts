@@ -48,9 +48,15 @@ export const siteConfig = {
   adsterra: {
     enabled: false,
     banners: {
-      "banner-300x250": { key: "", width: 300, height: 250, enabled: true },
-      "banner-728x90": { key: "", width: 728, height: 90, enabled: true },
-      "banner-320x50": { key: "", width: 320, height: 50, enabled: true },
+      // host 是后台「Get code」里 <script src="..."> 的域名，不同 Zone 可能不同
+      // （highrevenueformat.com / highperformanceformat.com）。留空则用脚本默认值，
+      // 但**复制代码时请照抄后台给的域名**，猜错会静默不出广告。
+      "banner-160x300": { key: "", host: "", width: 160, height: 300, enabled: true },
+      "banner-160x600": { key: "", host: "", width: 160, height: 600, enabled: true },
+      "banner-300x250": { key: "", host: "", width: 300, height: 250, enabled: true },
+      "banner-320x50": { key: "", host: "", width: 320, height: 50, enabled: true },
+      "banner-468x60": { key: "", host: "", width: 468, height: 60, enabled: true },
+      "banner-728x90": { key: "", host: "", width: 728, height: 90, enabled: true },
     },
   },
   /** 搜索引擎站长验权 */

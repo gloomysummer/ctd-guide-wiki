@@ -9,6 +9,10 @@ import codesData from '../data/verified-codes.json';
 import { siteConfig } from '../config/site.config';
 import { CHANNELS } from '../config/channels';
 import JsonLd from '../components/JsonLd.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+// 404 页不放广告（AdSense 明令，Adsterra 同理）—— 本矩阵 2026-10-05 定案。
+const isAdFreePage = /^\/404\/?$/.test(Astro.url.pathname);
 
 const searchItems = [
   {
@@ -261,6 +265,17 @@ const brandRest = brandParts.slice(1).join(' ') || 'WIKI';
     <main id="main-content">
       <slot />
     </main>
+
+    <!-- 页尾广告位：桌面 728x90 / 移动 320x50 二选一。
+         二选一由 global.css 的 .ad-slot-footer 编排块完成（缺那段 CSS 会让两个位同时显示）。
+         放在正文之后、mega footer 之前：页尾位的可见率依赖用户滚到底，所以只作为第三个位
+         补曝光，真正的首屏曝光由各页面内的第一个位负责。 -->
+    {!isAdFreePage && (
+      <div class="ad-slot-footer" style="max-width: 1100px; margin: 3rem auto 2rem; padding: 0 1rem;">
+        <AdSlot zone="banner-728x90" className="ad-slot-wide" />
+        <AdSlot zone="banner-320x50" className="ad-slot-narrow" />
+      </div>
+    )}
 
     <!-- 全局 Footer 对称深层矩阵 (Mega Footer) -->
     <footer class="site-mega-footer">

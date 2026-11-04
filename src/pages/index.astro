@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import VideoEmbed from "../components/VideoEmbed.astro";
+import AdSlot from "../components/AdSlot.astro";
 import { siteConfig } from "../config/site.config";
 import { CHANNELS, TOTAL_GUIDES_COUNT } from "../config/channels";
 import dossier from "../data/dossier.json";
@@ -208,6 +209,13 @@ const websiteJsonLd = {
     </div>
   </section>
 
+  <!-- 广告位 1/3：首屏下方（hero + 视频之后，统计条之前）。
+       300x250 是本矩阵填充率最稳的尺寸；放在这里是因为 hero 太高，
+       再往上放会顶掉 H1 与 CTA，反而伤首屏转化。 -->
+  <div class="container" style="max-width: 960px;">
+    <AdSlot zone="banner-300x250" />
+  </div>
+
   <!-- 4 STATS COUNTER BAR -->
   <section class="metrics-bar-section">
     <div class="container">
@@ -289,6 +297,14 @@ const websiteJsonLd = {
         </article>
       </div>
     </section>
+
+    <!-- 广告位 2/3：三个频道段之间的自然断点。
+         用 160x300 而不是 160x600：首页没有侧栏，160x600 那种 600px 高的竖幅在手机上
+         会吃掉整屏，而 160x300 桌面移动都放得下。160x600 留给有侧栏的页面（DualSidebar 自带）。
+         同页尺寸不与位 1（300x250）和页尾（728x90 / 320x50）重复。 -->
+    <div class="container" style="max-width: 960px;">
+      <AdSlot zone="banner-160x300" />
+    </div>
 
     <!-- CATEGORIZED CHANNEL 3: UNITS -->
     <section class="channel-section" id="channel-units" style="margin-top: 4rem;">

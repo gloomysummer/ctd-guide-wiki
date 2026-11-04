@@ -13,7 +13,7 @@
  */
 import { siteConfig } from '../config/site.config';
 
-export type ZoneKey = 'banner-300x250' | 'banner-728x90' | 'banner-320x50';
+export type ZoneKey = 'banner-160x300' | 'banner-160x600' | 'banner-300x250' | 'banner-320x50' | 'banner-468x60' | 'banner-728x90';
 
 interface Props {
   zone: ZoneKey;
@@ -24,9 +24,12 @@ interface Props {
 const { zone, className = '', label = 'Advertisement' } = Astro.props;
 
 const DIMS: Record<ZoneKey, { w: number; h: number }> = {
+  'banner-160x300': { w: 160, h: 300 },
+  'banner-160x600': { w: 160, h: 600 },
   'banner-300x250': { w: 300, h: 250 },
-  'banner-728x90': { w: 728, h: 90 },
   'banner-320x50': { w: 320, h: 50 },
+  'banner-468x60': { w: 468, h: 60 },
+  'banner-728x90': { w: 728, h: 90 },
 };
 const dim = DIMS[zone];
 
@@ -166,11 +169,20 @@ const uniqueId = `ad-${zone}-${Math.random().toString(36).substring(2, 9)}`;
   .ad-slot-banner-300x250 .ad-slot-container { width: 300px; height: 250px; }
   .ad-slot-banner-728x90 .ad-slot-container { width: 728px; height: 90px; max-width: 100%; }
   .ad-slot-banner-320x50 .ad-slot-container { width: 320px; height: 50px; max-width: 100%; }
+  .ad-slot-banner-160x300 .ad-slot-container { width: 160px; height: 300px; }
+  .ad-slot-banner-160x600 .ad-slot-container { width: 160px; height: 600px; }
+  .ad-slot-banner-468x60 .ad-slot-container { width: 468px; height: 60px; max-width: 100%; }
   /* 移动端：728x90 物理放不下（iframe 固定 728px），隐藏整槽防横向溢出与变形。
      调用方应同时挂一个 320x50 窄幅位做切换（见 global.css 的 .ad-slot-footer 编排块）。
      2026-10-14 对标 invokyr.wiki 补齐。 */
   @media (max-width: 768px) {
     .ad-slot-banner-728x90 {
+      display: none;
+    }
+  }
+  /* 468 + 内边距在窄屏会裁切，直接不渲染（photomaly.wiki 2026-10-14 实测） */
+  @media (max-width: 520px) {
+    .ad-slot-banner-468x60 {
       display: none;
     }
   }

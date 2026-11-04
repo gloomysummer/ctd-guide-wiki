@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import AdSlot from "../../components/AdSlot.astro";
 import DualSidebar from "../../components/DualSidebar.astro";
 import VideoEmbed from "../../components/VideoEmbed.astro";
 import { siteConfig } from "../../config/site.config";
@@ -94,6 +95,11 @@ const jsonLd = [
             Rankings reflect the <strong>Halloween Update 4</strong> on Roblox Universe <code>10762636904</code>. The UTTVM update is scheduled for November 4, 2026. Includes recent damage buffs to Executioner TV Man and slight stun adjustments to TV Woman.
           </p>
         </div>
+
+        <!-- 广告位 1/2：H1 之后、正文之前。468x60 在窄屏（<520px）由 AdSlot 的
+             scoped CSS 整槽隐藏，避免裁切；页尾第二位由 BaseLayout 统一挂载。
+             索引页只放 2 位——承接流量的深度页才铺满 3 位，索引页堆满反而稀释可见率。 -->
+        <AdSlot zone="banner-468x60" />
 
         <!-- SECTION 1: TIER RANKINGS SUMMARY -->
         <section id="tier-rankings" style="margin-top: 2rem;">
