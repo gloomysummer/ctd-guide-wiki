@@ -9,11 +9,18 @@ absence. It is:
 
   1. the new value must appear in the unit's `quickAnswer`, which is the page's
      lead sentence and the one place a reader looks for the number;
-  2. neither field may present the old value as the price today.
+  2. neither field may present the old value as the price today;
+  3. no *other* unit's copy may quote this unit's old value as if it were
+     current. A unit that did not change price can still go stale because a
+     unit it compares itself against did — "ten points below Titan Cinemaman
+     (460 pts)" keeps its arithmetic while the 460 becomes fiction.
 
 `description` is not required to quote a figure at all — it sits next to the
 value on the card, and "the cheapest mythic on the list" is a perfectly good
 sentence. It is only barred from quoting the wrong one.
+
+Sentences anchored to a past date are exempt throughout: on 25 October the old
+figure was the real figure, and saying so is the point of a price history.
 
 Usage:
     python3 scripts/check-current-value.py                 # against the last commit
@@ -66,6 +73,13 @@ def asserts_as_current(text: str, num: int) -> str | None:
     return None
 
 
+PAST_RE = re.compile(
+    r"(oct(?:ober)?\.?\s*\d|\d{1,2}\s+october|25 october|at launch|on release|on debut|"
+    r"debut|prior to update|before update|after update|first listed|listed at)",
+    re.I,
+)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--base", default="HEAD", help="git ref holding the previous values (default: HEAD)")
@@ -102,15 +116,42 @@ def main() -> int:
     print(f"units whose value moved : {len(moved)}")
     print(f"copy missing the new price: {len(missing_new)}")
     print(f"old price asserted as current: {len(stale_claim)}")
+
+    # 3. a unit that never moved can still quote a stale figure for one that did
+    old_values = {uid: ov for uid, ov, _ in moved if ov}
+    names = {uid: u["name"].lower() for uid, u in new_units.items()}
+    stale_xref = []
+    for uid, fields in editorial.items():
+        if not isinstance(fields, dict):
+            continue
+        for field, text in fields.items():
+            if not isinstance(text, str):
+                continue
+            for sentence in re.split(r"(?<=[.!?])\s+", text):
+                if PAST_RE.search(sentence):
+                    continue
+                low = sentence.lower()
+                for other, ov in old_values.items():
+                    if other == uid or names.get(other, "\0") not in low:
+                        continue
+                    # must read as a price: "70 pts" or "70 points". Without this,
+                    # "wave 35 ... Scientist Cameraman" looks like a quote of 35.
+                    if re.search(rf"(?<![\d,]){ov:,}\s*(?:pts|points|pt)\b", sentence, re.I):
+                        stale_xref.append(f"{uid}.{field} quotes {other} at {ov:,}: {sentence.strip()[:120]}")
+
+    print(f"stale figure for another unit: {len(stale_xref)}")
     print()
 
     for line in missing_new:
         print("  MISSING ", line)
     for line in stale_claim:
         print("  STALE   ", line)
+    for line in stale_xref:
+        print("  XREF    ", line)
 
-    if missing_new or stale_claim:
-        print(f"\nFAIL: {len(missing_new)} missing mention(s), {len(stale_claim)} stale claim(s).")
+    if missing_new or stale_claim or stale_xref:
+        print(f"\nFAIL: {len(missing_new)} missing mention(s), {len(stale_claim)} stale claim(s), "
+              f"{len(stale_xref)} stale cross-reference(s).")
         return 1
     print("\nPASS: every moved unit states its new price, and no old price is presented as current.")
     return 0
