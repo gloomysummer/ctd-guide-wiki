@@ -32,6 +32,10 @@ const snapshotDate = snapshotDates.length
       .toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
   : null;
 
+// Stamped into feedback so a complaint about "the calculator is broken" can be
+// matched to the build that was live when it was written.
+const buildStamp = new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC";
+
 // Packed for the client-side gap advisor: short keys keep the inline payload small.
 const calcUnits = pricedUnits.map(u => ({
   id: u.id, name: u.name, value: u.value, rarity: u.rarity, trend: u.trend,
@@ -215,6 +219,51 @@ const jsonLd = [
               <div id="risk-note" class="risk-note" hidden></div>
               <button type="button" class="btn-share" id="share-btn">Copy trade link</button>
             </div>
+
+            <!-- Reader feedback. Collapsed by default: a tool that works should
+                 not open with a complaint box. What it sends is deliberately
+                 thin — two questions and the deal on screen, so we can reproduce
+                 the problem without asking the reader to describe it. -->
+            <details class="calc-feedback" id="calc-feedback">
+              <summary>
+                <span class="fb-sum">Something wrong with this calculator?</span>
+                <span class="fb-hint">30 seconds, goes straight to our issue sheet</span>
+              </summary>
+              <form id="fb-form" novalidate>
+                <fieldset class="fb-sat">
+                  <legend>How does it feel overall?</legend>
+                  <label><input type="radio" name="satisfaction" value="good" /><span>Works fine</span></label>
+                  <label><input type="radio" name="satisfaction" value="meh" /><span>A bit confusing</span></label>
+                  <label><input type="radio" name="satisfaction" value="bad" /><span>Couldn't use it</span></label>
+                </fieldset>
+
+                <label class="fb-field">
+                  <span class="fb-label">What went wrong?</span>
+                  <textarea id="fb-complaint" rows="3" maxlength="1200"
+                    placeholder="Couldn't find my unit / the verdict made no sense / these numbers look off / buttons don't work on my phone"></textarea>
+                </label>
+
+                <label class="fb-field">
+                  <span class="fb-label">What were you trying to do? <em>optional</em></span>
+                  <input id="fb-wanted" type="text" maxlength="300"
+                    placeholder="e.g. work out whether 3 TV Spiders buy one Chaos Cameraman" />
+                </label>
+
+                <!-- Honeypot: hidden from people, filled by anything that walks the DOM. -->
+                <div class="fb-hp" aria-hidden="true">
+                  <label>Website<input id="fb-website" type="text" tabindex="-1" autocomplete="off" /></label>
+                </div>
+
+                <div class="fb-actions">
+                  <button type="submit" id="fb-submit">Send</button>
+                  <span class="fb-status" id="fb-status" role="status"></span>
+                </div>
+                <p class="fb-note">
+                  This includes the trade currently on screen so we can reproduce it.
+                  No name, no email, nothing that identifies you.
+                </p>
+              </form>
+            </details>
           </div>
         </section>
 
@@ -794,6 +843,147 @@ const jsonLd = [
   })();
 </script>
 
+<script is:inline define:vars={{ buildStamp }}>
+  // Reader feedback. Two questions and whatever the calculator is showing.
+  //
+  // A failed send is never pretended away: if the route is not configured the
+  // reader is told nothing was recorded, and the note is kept in localStorage
+  // and retried on the next visit rather than dropped on the floor.
+  (() => {
+    const form = document.getElementById('fb-form');
+    if (!form) return;
+
+    const details = document.getElementById('calc-feedback');
+    const statusEl = document.getElementById('fb-status');
+    const submitBtn = document.getElementById('fb-submit');
+    const QUEUE_KEY = 'ctd-feedback-queue';
+    let openedAt = 0;
+
+    details.addEventListener('toggle', () => {
+      if (details.open && !openedAt) openedAt = Date.now();
+    });
+
+    function readSide(selector) {
+      const out = [];
+      document.querySelectorAll(selector + ' .slot-row').forEach((row) => {
+        const sel = row.querySelector('.unit-select');
+        if (!sel || !sel.value) return;
+        const opt = sel.options[sel.selectedIndex];
+        const label = opt ? opt.text.replace(/\s*\(.*\)\s*$/, '').trim() : sel.value;
+        const qtyEl = row.querySelector('.unit-qty');
+        const qty = qtyEl ? Math.max(1, parseInt(qtyEl.value, 10) || 1) : 1;
+        out.push(qty > 1 ? label + ' ×' + qty : label);
+      });
+      return out;
+    }
+
+    function dealSnapshot() {
+      const yours = readSide('#your-slots');
+      const theirs = readSide('#their-slots');
+      if (!yours.length && !theirs.length) return '';
+      const text = (id) => (document.getElementById(id)?.textContent || '').trim();
+      return (
+        'They give: ' + (theirs.join(', ') || 'nothing') +
+        ' | You give: ' + (yours.join(', ') || 'nothing') +
+        ' | Verdict: ' + text('verdict-text') +
+        ' | Diff: ' + text('summary-diff') +
+        ' | Margin: ' + text('summary-margin')
+      );
+    }
+
+    function buildPayload() {
+      const checked = form.querySelector('input[name="satisfaction"]:checked');
+      return {
+        satisfaction: checked ? checked.value : '',
+        complaint: document.getElementById('fb-complaint').value,
+        wanted: document.getElementById('fb-wanted').value,
+        website: document.getElementById('fb-website').value,
+        dwell: openedAt ? Date.now() - openedAt : 0,
+        deal: dealSnapshot(),
+        page: location.pathname,
+        device: window.matchMedia('(pointer: coarse)').matches ? 'mobile' : 'desktop',
+        viewport: window.innerWidth + '×' + window.innerHeight,
+        referrer: document.referrer || '',
+        version: buildStamp,
+      };
+    }
+
+    async function post(payload) {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      return { ok: res.ok && data.ok === true, status: res.status, error: data.error || '' };
+    }
+
+    function queue(payload) {
+      try {
+        const items = JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]');
+        items.push(payload);
+        localStorage.setItem(QUEUE_KEY, JSON.stringify(items.slice(-5)));
+      } catch (_) { /* storage disabled — nothing else to do */ }
+    }
+
+    async function flushQueue() {
+      let items;
+      try {
+        items = JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]');
+      } catch (_) { return; }
+      if (!items.length) return;
+      const keep = [];
+      for (const item of items) {
+        try {
+          const r = await post(item);
+          if (!r.ok) keep.push(item);
+        } catch (_) { keep.push(item); }
+      }
+      try {
+        if (keep.length) localStorage.setItem(QUEUE_KEY, JSON.stringify(keep));
+        else localStorage.removeItem(QUEUE_KEY);
+      } catch (_) { /* ignore */ }
+    }
+
+    function setStatus(msg, kind) {
+      statusEl.textContent = msg;
+      statusEl.className = 'fb-status' + (kind ? ' ' + kind : '');
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const payload = buildPayload();
+      if (!payload.satisfaction && !payload.complaint.trim() && !payload.wanted.trim()) {
+        setStatus('Pick a rating or write something first.', 'err');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      setStatus('Sending…', '');
+      try {
+        const result = await post(payload);
+        if (result.ok) {
+          form.reset();
+          setStatus('Thanks — that landed in our issue sheet.', 'ok');
+        } else if (result.status === 503) {
+          queue(payload);
+          setStatus('Feedback is not wired up yet, so nothing was sent. Kept on this device.', 'err');
+        } else {
+          queue(payload);
+          setStatus('Could not send that. Kept on this device and retried next visit.', 'err');
+        }
+      } catch (_) {
+        queue(payload);
+        setStatus('Could not send that. Kept on this device and retried next visit.', 'err');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    flushQueue();
+  })();
+</script>
+
 <style>
   .calc-section {
     background: #0d1525;
@@ -1256,6 +1446,118 @@ const jsonLd = [
   .values-data-table .rarity-tag { padding: 2px 6px; font-size: 0.68rem; }
   .values-data-table .unit-mini-thumb { margin-right: 6px; width: 40px; height: 25px; }
   .values-data-table .unit-cell { gap: 6px; }
+
+  /* Reader feedback — deliberately quiet until opened */
+  .calc-feedback {
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+    padding-top: 0.9rem;
+  }
+  .calc-feedback summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.86rem;
+    color: #94a3b8;
+  }
+  .calc-feedback summary::-webkit-details-marker { display: none; }
+  .calc-feedback summary::before {
+    content: "›";
+    color: #38bdf8;
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 0.15s ease;
+  }
+  .calc-feedback[open] summary::before { transform: rotate(90deg); }
+  .calc-feedback summary:hover .fb-sum { color: #e2e8f0; }
+  .fb-sum { font-weight: 600; color: #cbd5e1; }
+  .fb-hint { font-size: 0.76rem; color: #64748b; }
+
+  .calc-feedback form { margin-top: 1rem; display: grid; gap: 0.9rem; }
+  .fb-sat { border: 0; margin: 0; padding: 0; }
+  .fb-sat legend { font-size: 0.78rem; color: #94a3b8; margin-bottom: 0.45rem; padding: 0; }
+  .fb-sat label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.35rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .fb-sat label:hover { border-color: rgba(56, 189, 248, 0.5); }
+  .fb-sat label:has(input:checked) {
+    border-color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    color: #e2e8f0;
+  }
+  .fb-sat input { accent-color: #38bdf8; margin: 0; }
+
+  .fb-field { display: grid; gap: 0.35rem; }
+  .fb-label { font-size: 0.78rem; color: #94a3b8; }
+  .fb-label em { font-style: normal; color: #64748b; }
+  .fb-field textarea,
+  .fb-field input[type="text"] {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-family: inherit;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    padding: 0.55rem 0.7rem;
+    resize: vertical;
+  }
+  .fb-field textarea:focus,
+  .fb-field input[type="text"]:focus {
+    outline: none;
+    border-color: #38bdf8;
+  }
+
+  .fb-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .fb-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+  .fb-actions button {
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #38bdf8;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .fb-actions button:hover:not(:disabled) { background: rgba(56, 189, 248, 0.24); }
+  .fb-actions button:disabled { opacity: 0.55; cursor: default; }
+  .fb-status { font-size: 0.8rem; }
+  .fb-status.ok { color: #4ade80; }
+  .fb-status.err { color: #f87171; }
+
+  .fb-note {
+    margin: 0;
+    font-size: 0.74rem;
+    line-height: 1.5;
+    color: #64748b;
+  }
+  @media (max-width: 640px) {
+    .fb-sat label { display: flex; margin-right: 0; }
+  }
 </style>
 
 <style is:global>
