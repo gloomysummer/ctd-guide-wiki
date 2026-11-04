@@ -72,6 +72,9 @@ const jsonLd = [
       <p class="guide-lead">
         Audit real-time trading values, calculate Win / Fair / Lose trade balance across 4 offer slots, and reference demand ratings for all 39 units in Roblox Cameraman Tower Defense.
       </p>
+      <p class="value-provenance">
+        Point values read from the <a href="https://cameraman-td.vaultedvaluesx.com/value-list" target="_blank" rel="noopener">Vaulted Values X</a> list on <strong>25 October 2026</strong>. That list is revised after every patch, so treat these figures as indicative rather than a quote — the calculator is for sanity-checking an offer, not for pricing a trade you have already agreed.
+      </p>
     </header>
 
     <div class="article-layout has-dual-sidebar">
@@ -790,6 +793,18 @@ const jsonLd = [
     padding: 1.5rem;
     margin-top: 1.5rem;
   }
+  .value-provenance {
+    max-width: 78ch;
+    margin: 0.9rem 0 0 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    border-left: 2px solid #38bdf8;
+    padding-left: 0.75rem;
+  }
+  .value-provenance a { color: #38bdf8; }
+  .value-provenance strong { color: #cbd5e1; }
+
   .section-title-wrap h2 {
     margin: 0 0 0.5rem 0;
     font-family: var(--font-display, sans-serif);
