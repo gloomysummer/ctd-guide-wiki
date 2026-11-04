@@ -152,6 +152,15 @@ def main() -> int:
     for path in files:
         problems.extend(check_file(path))
     print(f"📄 check-content: {len(files)} 个内容文件")
+    if not files:
+        # Every page in this repo is .astro, not markdown, so src/content/ holds
+        # nothing to scan. Printing "全绿" here was a pass with no subjects and
+        # it read as evidence for months. Say what actually happened instead.
+        print("⚠️  src/content/ 下没有 .md 文件 —— 本门禁在本仓库无被检对象，"
+              "不构成任何内容质量保证。")
+        print("    实际适用的是：scripts/verify-copy-numbers.py（数字出处）、"
+              "check-links.py、check-config.py。")
+        return 0
     if problems:
         print(f"❌ {len(problems)} 个问题:")
         for p in problems:
