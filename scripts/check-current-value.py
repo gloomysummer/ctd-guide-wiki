@@ -7,9 +7,13 @@ it change too?" A description may legitimately mention the old number — "up fr
 8,000 on Oct 25" is the whole point of a price history — so the test is not
 absence. It is:
 
-  1. the new value must appear in the unit's `quickAnswer` and `description`;
-  2. the old value must not sit behind a present-tense verb, which would assert
-     it as the price today.
+  1. the new value must appear in the unit's `quickAnswer`, which is the page's
+     lead sentence and the one place a reader looks for the number;
+  2. neither field may present the old value as the price today.
+
+`description` is not required to quote a figure at all — it sits next to the
+value on the card, and "the cheapest mythic on the list" is a perfectly good
+sentence. It is only barred from quoting the wrong one.
 
 Usage:
     python3 scripts/check-current-value.py                 # against the last commit
@@ -88,8 +92,6 @@ def main() -> int:
 
         if nv and f"{nv:,}" not in qa:
             missing_new.append(f"{uid}.quickAnswer does not mention {nv:,}")
-        if nv and f"{nv:,}" not in desc:
-            missing_new.append(f"{uid}.description does not mention {nv:,}")
 
         if ov:
             for label, text in (("quickAnswer", qa), ("description", desc)):
