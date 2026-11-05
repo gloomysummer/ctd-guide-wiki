@@ -93,10 +93,34 @@ def _rows(token: str, start: str, end: str, dims: list[str]) -> list[dict]:
     return data.get("rows") or []
 
 
+def _latest_data_date(token: str, lookback_days: int = 12) -> date | None:
+    """Find the most recent day Search Console actually has final data for.
+
+    2026-11-05: this script reported NO-GO on a day when the site had jumped to
+    826 impressions. The numbers were not wrong, the window was: `--lag 3` cut
+    the range at 11-02, while 11-03 was already final and 20x larger. A fixed
+    number of days to drop is a guess about someone else's pipeline, and when
+    the guess is wrong the verdict is wrong in the direction that stalls work.
+    """
+    end = date.today() - timedelta(days=1)
+    start = end - timedelta(days=lookback_days)
+    try:
+        rows = _rows(token, start.isoformat(), end.isoformat(), ["date"])
+    except (urllib.error.URLError, urllib.error.HTTPError, KeyError):
+        return None
+    dated = [(r["keys"][0], float(r.get("impressions", 0))) for r in rows]
+    dated = [(d, i) for d, i in dated if i > 0]
+    if not dated:
+        return None
+    return max(date.fromisoformat(d) for d, _ in dated)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--days", type=int, default=28, help="lookback window (default 28)")
-    ap.add_argument("--lag", type=int, default=3, help="days to drop from the end (GSC lag, default 3)")
+    ap.add_argument("--lag", type=int, default=None,
+                    help="force the window to end N days ago instead of using the "
+                         "latest day that has data")
     ap.add_argument("--json", action="store_true", help="machine-readable output")
     ap.add_argument("--token-file",
                     default=os.path.expanduser("~/.gemini/config/google-oauth-token.json"))
@@ -104,11 +128,23 @@ def main(argv: list[str] | None = None) -> int:
                     default=os.path.expanduser("~/.gemini/config/google-oauth-client.json"))
     args = ap.parse_args(argv)
 
-    end = date.today() - timedelta(days=args.lag)
+    try:
+        token = _access_token(args.client_file, args.token_file)
+    except (urllib.error.URLError, urllib.error.HTTPError, KeyError) as exc:
+        print(f"ERROR: could not read Search Console: {exc}", file=sys.stderr)
+        return 2
+
+    if args.lag is not None:
+        end = date.today() - timedelta(days=args.lag)
+    else:
+        latest = _latest_data_date(token)
+        if latest is None:
+            print("ERROR: no day with any impressions in the last 12 days", file=sys.stderr)
+            return 2
+        end = latest
     start = end - timedelta(days=args.days - 1)
 
     try:
-        token = _access_token(args.client_file, args.token_file)
         query_rows = _rows(token, start.isoformat(), end.isoformat(), ["query"])
         page_rows = _rows(token, start.isoformat(), end.isoformat(), ["page"])
     except (urllib.error.URLError, urllib.error.HTTPError, KeyError) as exc:
@@ -166,7 +202,8 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return 0 if go else 1
 
-    print(f"ctd-guide.wiki  {start} -> {end}  ({args.days}d, GSC lag {args.lag}d)")
+    window_note = f"forced lag {args.lag}d" if args.lag is not None else "ends on latest day with data"
+    print(f"ctd-guide.wiki  {start} -> {end}  ({args.days}d, {window_note})")
     print(f"  clicks {total_clicks:.0f} | impressions {total_imp:.0f} | "
           f"attributable queries {len(query_rows)} | URLs with impressions {len(page_rows)}")
     if top_query:
