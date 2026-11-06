@@ -42,8 +42,8 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title="Cameraman Tower Defense Tier List (Update 4)"
-  description="Cameraman Tower Defense tier list for Update 4. Discover S-Tier meta rankings, best DPS carries, economy units, and boss counters."
+  title="CTD Tier List (Update 4) | Cameraman Tower Defense"
+  description="Comprehensive CTD tier list for Update 4. Discover S-Tier meta rankings, best DPS carries, economy units, and boss counters in Cameraman Tower Defense."
   canonical="/tier-list/"
   jsonLd={jsonLd}
 >
@@ -60,9 +60,9 @@ const jsonLd = [
         <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">NOVEMBER 2026 META</span>
         <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">39 UNITS RANKED</span>
       </div>
-      <h1>Cameraman Tower Defense Meta Tier List</h1>
+      <h1>CTD Meta Tier List: Cameraman Tower Defense</h1>
       <p class="guide-lead">
-        Comprehensive rankings for all 39 units in Roblox Cameraman Tower Defense. Evaluated on DPS-to-cost efficiency, wave-clearing radius, boss damage, and solo Nightmare mode utility.
+        Comprehensive CTD tier list rankings for all 39 units in Roblox Cameraman Tower Defense. Evaluated on DPS-to-cost efficiency, wave-clearing radius, boss damage, and solo Nightmare mode utility.
       </p>
     </header>
 
@@ -292,6 +292,34 @@ const jsonLd = [
           uploadDate="2026-10-19"
           captionLabel="Halloween update tier list reference"
         />
+
+        <!-- Tactical Workflow & Strategy Hubs -->
+        <div class="tier-ecosystem-box" style="margin-top: 3.5rem;">
+          <div class="ecosystem-title">CTD META WORKFLOW & STRATEGY HUBS</div>
+          <div class="ecosystem-links-grid">
+            <div class="ecosystem-link-item">
+              <span class="icon">⚖️</span>
+              <div>
+                <strong>Check Trading Points</strong>
+                <p>Verify current valuations and demand scores for every tier tower in the <a href="/values/">CTD Values List & Trade Calculator</a>.</p>
+              </div>
+            </div>
+            <div class="ecosystem-link-item">
+              <span class="icon">🏆</span>
+              <div>
+                <strong>Deploy Meta Builds</strong>
+                <p>Put S-Tier carries into action using our proven 50-wave <a href="/how-to-solo-nightmare-mode/">How to Solo Nightmare Mode Blueprint</a>.</p>
+              </div>
+            </div>
+            <div class="ecosystem-link-item">
+              <span class="icon">🎁</span>
+              <div>
+                <strong>Free Summon Currency</strong>
+                <p>Claim daily working coin rewards from the verified <a href="/codes/">CTD Codes Guide</a> to unlock top-tier units.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- SECTION 7: EVIDENCE DOSSIER -->
         <section id="evidence-dossier" style="margin-top: 3.5rem;">
@@ -553,5 +581,62 @@ const jsonLd = [
     color: #94a3b8;
     font-size: 0.85rem;
     font-style: italic;
+  }
+
+  /* Tactical Ecosystem Box */
+  .tier-ecosystem-box {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .ecosystem-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.5rem;
+  }
+  .ecosystem-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .ecosystem-links-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ecosystem-link-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .ecosystem-link-item .icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+  .ecosystem-link-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #f1f5f9;
+    margin-bottom: 0.25rem;
+  }
+  .ecosystem-link-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .ecosystem-link-item a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+  .ecosystem-link-item a:hover {
+    text-decoration: underline;
   }
 </style>
