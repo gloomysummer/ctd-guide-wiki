@@ -136,11 +136,11 @@ const jsonLd = [
                 <span class="loadout-badge">98% CLEAR RATE</span>
               </div>
               <ul class="unit-check-list">
-                <li><strong>Glitch Cameraman</strong>: Essential teleport crowd-control and slowing field.</li>
-                <li><strong>Titan Cinemaman / Headless TV Man</strong>: Heavy wave-clearing AoE and boss burst.</li>
-                <li><strong>Pumpkin Farmer / Scientist Cameraman</strong>: Early cash multiplier.</li>
-                <li><strong>Camera Repair Drone</strong>: Mitigates stun pulses and base chip damage.</li>
-                <li><strong>Ninja Cameraman / TV Spider</strong>: Cheap wave 1–10 defense.</li>
+                <li><strong><a href="/units/glitch-cameraman/">Glitch Cameraman</a></strong>: Essential teleport crowd-control and slowing field.</li>
+                <li><strong><a href="/units/titan-cinemaman/">Titan Cinemaman</a></strong> / <strong><a href="/units/headless-tv-man/">Headless TV Man</a></strong>: Heavy wave-clearing AoE and boss burst.</li>
+                <li><strong><a href="/units/pumpkin-farmer/">Pumpkin Farmer</a></strong> / <strong><a href="/units/scientist-cameraman/">Scientist Cameraman</a></strong>: Early cash multiplier.</li>
+                <li><strong><a href="/units/camera-repair-drone/">Camera Repair Drone</a></strong>: Mitigates stun pulses and base chip damage.</li>
+                <li><strong><a href="/units/ninja-cameraman/">Ninja Cameraman</a></strong> / <strong><a href="/units/tv-spider/">TV Spider</a></strong>: Cheap wave 1–10 defense.</li>
               </ul>
             </div>
 
@@ -150,11 +150,11 @@ const jsonLd = [
                 <span class="loadout-badge">REQUIRES TIMING</span>
               </div>
               <ul class="unit-check-list">
-                <li><strong>TV Spider</strong>: Primary splash carry along track corners.</li>
-                <li><strong>Chaos Cameraman / Upgraded Videotapper</strong>: Main single-target DPS.</li>
-                <li><strong>Scientist Cameraman</strong>: Foundational cash engine.</li>
-                <li><strong>Camera Repair Drone</strong>: Anti-stun protection.</li>
-                <li><strong>Ninja Cameraman</strong>: Low-cost early placement.</li>
+                <li><strong><a href="/units/tv-spider/">TV Spider</a></strong>: Primary splash carry along track corners.</li>
+                <li><strong><a href="/units/chaos-cameraman/">Chaos Cameraman</a></strong> / <strong><a href="/units/upgraded-videotapper-prototype/">Upgraded Videotapper</a></strong>: Main single-target DPS.</li>
+                <li><strong><a href="/units/scientist-cameraman/">Scientist Cameraman</a></strong>: Foundational cash engine.</li>
+                <li><strong><a href="/units/camera-repair-drone/">Camera Repair Drone</a></strong>: Anti-stun protection.</li>
+                <li><strong><a href="/units/ninja-cameraman/">Ninja Cameraman</a></strong>: Low-cost early placement.</li>
               </ul>
             </div>
           </div>
@@ -213,8 +213,8 @@ const jsonLd = [
             Recent updates boosted the final Nightmare Boss's health pool by approximately <strong>+20%</strong>. To counter this:
           </p>
           <ul>
-            <li>Ensure your Glitch Cameraman is maxed out to sustain permanent 40% movement speed reduction on the boss.</li>
-            <li>Focus all remaining cash into max-upgrading your central Titans (Upgraded Titan Cameraman / TV Spider / Executioner TV Man).</li>
+            <li>Ensure your <a href="/units/glitch-cameraman/">Glitch Cameraman</a> is maxed out to sustain permanent 40% movement speed reduction on the boss.</li>
+            <li>Focus all remaining cash into max-upgrading your central Titans (<a href="/units/upgraded-titan-cameraman/">Upgraded Titan Cameraman</a> / <a href="/units/tv-spider/">TV Spider</a> / <a href="/units/executioner-tv-man/">Executioner TV Man</a>).</li>
             <li>If the boss enters the final third of the track, sell your front-line Ninja Cameramen and immediately re-place secondary DPS near the exit gate.</li>
           </ul>
 
@@ -246,6 +246,34 @@ const jsonLd = [
             </div>
           </div>
         </section>
+
+        <!-- Tactical Ecosystem Box: Codes, Values & Discord -->
+        <div class="tactical-ecosystem-box" style="margin-top: 3.5rem;">
+          <div class="ecosystem-title">TACTICAL PREPARATION & COMMUNITY COORDINATION</div>
+          <div class="ecosystem-links-grid">
+            <div class="ecosystem-link-item">
+              <span class="icon">🎁</span>
+              <div>
+                <strong>Need Coins for Summons?</strong>
+                <p>Claim active coin drops in our daily-verified <a href="/codes/">Codes Guide</a> to fund early summon crates.</p>
+              </div>
+            </div>
+            <div class="ecosystem-link-item">
+              <span class="icon">⚖️</span>
+              <div>
+                <strong>Missing Key Solo Units?</strong>
+                <p>Trade for Glitch Cameraman or UTCM using the <a href="/values/">Interactive Trade Calculator & Value List</a>.</p>
+              </div>
+            </div>
+            <div class="ecosystem-link-item">
+              <span class="icon">💬</span>
+              <div>
+                <strong>Looking for Co-op Squads?</strong>
+                <p>Find experienced nightmare partners and discuss map placements on the <a href="/discord/">Official Discord Community Hub</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- SECTION 7: EVIDENCE DOSSIER -->
         <section id="evidence-dossier" style="margin-top: 3.5rem;">
@@ -468,5 +496,70 @@ const jsonLd = [
     color: #94a3b8;
     font-size: 0.85rem;
     font-style: italic;
+  }
+
+  .unit-check-list a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+  .unit-check-list a:hover {
+    text-decoration: underline;
+  }
+
+  /* Tactical Ecosystem Box */
+  .tactical-ecosystem-box {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .ecosystem-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.5rem;
+  }
+  .ecosystem-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .ecosystem-links-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ecosystem-link-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .ecosystem-link-item .icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+  .ecosystem-link-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #f1f5f9;
+    margin-bottom: 0.25rem;
+  }
+  .ecosystem-link-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .ecosystem-link-item a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+  .ecosystem-link-item a:hover {
+    text-decoration: underline;
   }
 </style>
