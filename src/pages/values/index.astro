@@ -8,7 +8,7 @@ import valuesData from "../../data/values.json";
 
 const tocHeadings = [
   { depth: 2, slug: "trade-calculator", text: "Interactive Trade Calculator" },
-  { depth: 2, slug: "value-table", text: "Unit Trading Value Table" },
+  { depth: 2, slug: "value-table", text: "CTD Values List (Update 4)" },
   { depth: 2, slug: "fairness-methodology", text: "Fairness Band Methodology" },
   { depth: 2, slug: "evidence-dossier", text: "Source Dossier" },
 ];
@@ -276,8 +276,15 @@ const jsonLd = [
         <!-- SECTION 2: VALUE TABLE -->
         <section id="value-table" style="margin-top: 3.5rem;">
           <div class="section-title-wrap">
-            <h2>Complete Unit Trading Value Table</h2>
-            <p class="section-desc">Search units, filter by rarity tier, and inspect official liquidity and demand ratings benchmarked after Update 4.</p>
+            <h2>CTD Values List & Vaulted Values Directory</h2>
+            <p class="section-desc">Complete CTD values list benchmarked against Vaulted Values X for Cameraman Tower Defense Update 4. Search 39 units, filter by rarity, and check live trading demand ratings.</p>
+          </div>
+
+          <div class="vaulted-values-intel-banner">
+            <div class="intel-banner-badge">VAULTED VALUES X TIERS</div>
+            <p>
+              Trading values in Roblox Cameraman Tower Defense follow strict community demand brackets. Godly and top Exclusive carries command multi-thousand point valuations with high trade demand, while standard Mythics and rebalanced Legendaries serve as liquid bridge units. Click <strong>+You</strong> or <strong>+Them</strong> on any unit to populate the trade calculator.
+            </p>
           </div>
 
           <VideoEmbed
@@ -380,13 +387,13 @@ const jsonLd = [
             <div class="method-card">
               <h3>Fairness Band (±10%)</h3>
               <p>
-                Roblox Cameraman Tower Defense item liquidity fluctuates based on summon crates and patch notes. A trade within <strong>±10% net point parity</strong> is considered mutually equitable (Fair Trade).
+                Roblox Cameraman Tower Defense item liquidity fluctuates based on summon crates and patch notes. A trade within <strong>±10% net point parity</strong> is considered mutually equitable (Fair Trade) on the CTD values list.
               </p>
             </div>
             <div class="method-card">
               <h3>Win / Big Win Thresholds</h3>
               <p>
-                Trades yielding a <strong>+10% to +30% profit margin</strong> qualify as a <strong>Win (W)</strong>. Any exchange yielding <strong>&gt; +30%</strong> represents an overwhelming <strong>Big Win (BW)</strong>.
+                Trades yielding a <strong>+10% to +30% profit margin</strong> qualify as a <strong>Win (W)</strong>. Any exchange yielding <strong>&gt; +30%</strong> represents an overwhelming <strong>Big Win (BW)</strong> on Vaulted Values benchmarks.
               </p>
             </div>
             <div class="method-card">
@@ -1024,6 +1031,31 @@ const jsonLd = [
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
     line-height: 1.5;
+  }
+
+  .vaulted-values-intel-banner {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .intel-banner-badge {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .vaulted-values-intel-banner p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .vaulted-values-intel-banner strong {
+    color: #f1f5f9;
   }
 
   .verdict-banner {

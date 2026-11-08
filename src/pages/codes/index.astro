@@ -9,6 +9,7 @@ const tocHeadings = [
   { depth: 2, slug: "active-codes", text: "Active Working Codes" },
   { depth: 2, slug: "redemption-steps", text: "How to Redeem (3-Win Rule)" },
   { depth: 2, slug: "expired-codes", text: "Expired Codes Archive" },
+  { depth: 2, slug: "ecosystem-links", text: "Next Tactical Steps" },
   { depth: 2, slug: "evidence-dossier", text: "Official Verification Ledger" },
 ];
 
@@ -206,7 +207,37 @@ const jsonLd = [
           </div>
         </section>
 
-        <!-- SECTION 4: EVIDENCE DOSSIER -->
+        <!-- SECTION 4: TACTICAL ECOSYSTEM LINKS -->
+        <section id="ecosystem-links" style="margin-top: 3.5rem;">
+          <div class="codes-ecosystem-box">
+            <div class="ecosystem-title">TACTICAL PROGRESSION // AFTER REDEEMING CODES</div>
+            <div class="ecosystem-links-grid">
+              <div class="ecosystem-link-item">
+                <span class="icon">⚖️</span>
+                <div>
+                  <strong>Trade Valuation & Calculator</strong>
+                  <p>Check market point values and trade parity for pulled units on our <a href="/values/">CTD Values List & Trade Calculator</a>.</p>
+                </div>
+              </div>
+              <div class="ecosystem-link-item">
+                <span class="icon">📊</span>
+                <div>
+                  <strong>Meta Tier List Rankings</strong>
+                  <p>See where your crate drops rank across S to D tiers in the <a href="/tier-list/">CTD Meta Tier List</a>.</p>
+                </div>
+              </div>
+              <div class="ecosystem-link-item">
+                <span class="icon">⚔️</span>
+                <div>
+                  <strong>Unlock 3-Win Requirement</strong>
+                  <p>Need your 3 match victories to unlock code redemption? Follow our <a href="/how-to-solo-nightmare-mode/">Nightmare Mode Solo Guide</a>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: EVIDENCE DOSSIER -->
         <section id="evidence-dossier" style="margin-top: 3.5rem;">
           <h2>Official Verification Ledger & Dossier</h2>
           <div class="evidence-box">
@@ -502,5 +533,62 @@ const jsonLd = [
     color: #94a3b8;
     font-size: 0.85rem;
     font-style: italic;
+  }
+
+  /* Tactical Ecosystem Box */
+  .codes-ecosystem-box {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .ecosystem-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.5rem;
+  }
+  .ecosystem-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .ecosystem-links-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ecosystem-link-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .ecosystem-link-item .icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+  .ecosystem-link-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #f1f5f9;
+    margin-bottom: 0.25rem;
+  }
+  .ecosystem-link-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .ecosystem-link-item a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+  .ecosystem-link-item a:hover {
+    text-decoration: underline;
   }
 </style>
