@@ -281,10 +281,16 @@ const jsonLd = [
           </div>
 
           <div class="vaulted-values-intel-banner">
-            <div class="intel-banner-badge">VAULTED VALUES X TIERS</div>
+            <div class="intel-banner-badge">VAULTED VALUES X TIERS & CTD VALUES BENCHMARKS</div>
             <p>
               Trading values in Roblox Cameraman Tower Defense follow strict community demand brackets. Godly and top Exclusive carries command multi-thousand point valuations with high trade demand, while standard Mythics and rebalanced Legendaries serve as liquid bridge units. Click <strong>+You</strong> or <strong>+Them</strong> on any unit to populate the trade calculator.
             </p>
+            <div class="intel-tier-pills">
+              <span class="intel-pill"><strong>Godly Benchmark:</strong> UTCM (3,500 pts)</span>
+              <span class="intel-pill"><strong>Top Exclusive:</strong> Engineer (6,300 pts)</span>
+              <span class="intel-pill"><strong>Top Mythic:</strong> Chaos (4,200 pts)</span>
+              <span class="intel-pill"><strong>Legendary Baseline:</strong> 5 pts each</span>
+            </div>
           </div>
 
           <VideoEmbed
@@ -1056,6 +1062,23 @@ const jsonLd = [
   }
   .vaulted-values-intel-banner strong {
     color: #f1f5f9;
+  }
+  .intel-tier-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .intel-pill {
+    background: #1e293b;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 4px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+  }
+  .intel-pill strong {
+    color: #38bdf8;
   }
 
   .verdict-banner {

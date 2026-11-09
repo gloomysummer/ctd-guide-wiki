@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import DualSidebar from "../../components/DualSidebar.astro";
+import AdSlot from "../../components/AdSlot.astro";
 import { siteConfig } from "../../config/site.config";
 
 const tocHeadings = [
@@ -8,6 +9,7 @@ const tocHeadings = [
   { depth: 2, slug: "trading-channels", text: "Community Trading Channels" },
   { depth: 2, slug: "trade-verification-rules", text: "Scam Prevention & Trade Rules" },
   { depth: 2, slug: "developer-announcements", text: "Patch Notes & Code Giveaways" },
+  { depth: 2, slug: "ecosystem-links", text: "Community Hub Progression" },
   { depth: 2, slug: "evidence-dossier", text: "Official Coordinates Ledger" },
 ];
 
@@ -111,6 +113,9 @@ const jsonLd = [
           </div>
         </div>
 
+        <!-- 广告位 1/2：Hero 卡片下方、正文之前。468x60 在窄屏由 AdSlot scoped CSS 隐藏，避免裁切；页尾第二位由 BaseLayout 统一挂载。 -->
+        <AdSlot zone="banner-468x60" />
+
         <!-- SECTION 1: OVERVIEW -->
         <section id="discord-overview" style="margin-top: 3rem;">
           <h2>Aligators Games Discord Overview</h2>
@@ -159,7 +164,37 @@ const jsonLd = [
           </p>
         </section>
 
-        <!-- SECTION 5: EVIDENCE DOSSIER -->
+        <!-- SECTION 5: TACTICAL ECOSYSTEM LINKS -->
+        <section id="ecosystem-links" style="margin-top: 3.5rem;">
+          <div class="discord-ecosystem-box">
+            <div class="ecosystem-title">TACTICAL PROGRESSION // COMMUNITY ECOSYSTEM</div>
+            <div class="ecosystem-links-grid">
+              <div class="ecosystem-link-item">
+                <span class="icon">⚖️</span>
+                <div>
+                  <strong>Trade Value Calculator</strong>
+                  <p>Check live point values and verify fair trade margins before agreeing on deals in Discord trading channels on our <a href="/values/">CTD Values List</a>.</p>
+                </div>
+              </div>
+              <div class="ecosystem-link-item">
+                <span class="icon">🎁</span>
+                <div>
+                  <strong>Active Promo Codes</strong>
+                  <p>Never miss developer coin giveaways announced in #announcements: copy verified drops on our <a href="/codes/">CTD Codes Tracker</a>.</p>
+                </div>
+              </div>
+              <div class="ecosystem-link-item">
+                <span class="icon">📊</span>
+                <div>
+                  <strong>Meta Tier Rankings</strong>
+                  <p>Consult the post-buff Update 4 unit hierarchy to know which units to trade for in the <a href="/tier-list/">CTD Meta Tier List</a>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: EVIDENCE DOSSIER -->
         <section id="evidence-dossier" style="margin-top: 3.5rem;">
           <h2>Verified Official Coordinates Dossier</h2>
           <div class="evidence-box">
@@ -325,5 +360,62 @@ const jsonLd = [
     color: #94a3b8;
     font-size: 0.85rem;
     font-style: italic;
+  }
+
+  /* Tactical Ecosystem Box */
+  .discord-ecosystem-box {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .ecosystem-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.5rem;
+  }
+  .ecosystem-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .ecosystem-links-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ecosystem-link-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .ecosystem-link-item .icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+  .ecosystem-link-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #f1f5f9;
+    margin-bottom: 0.25rem;
+  }
+  .ecosystem-link-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  .ecosystem-link-item a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+  .ecosystem-link-item a:hover {
+    text-decoration: underline;
   }
 </style>
