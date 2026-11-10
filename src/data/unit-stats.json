@@ -95,6 +95,12 @@
       "maxDps": 7000,
       "range": 30,
       "note": "Area damage; handles shields."
+    },
+    "upgraded-titan-tv-man": {
+      "placeCost": 1500,
+      "maxDps": 30000,
+      "range": 20,
+      "note": "Card reading: 1,500 coins to place, listed 30,000 DPS at range 20, maximum single-hit damage 36,000 on a 3-second cooldown. Community damage panels report 18,000 DPS in-match (10,500 TV attack + 7,500 core attack), which is below the card figure."
     }
   },
   "singleSource": {

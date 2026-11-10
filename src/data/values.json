@@ -1,20 +1,39 @@
 [
   {
+    "id": "upgraded-titan-tv-man",
+    "name": "Upgraded Titan TV Man",
+    "rarity": "Godly",
+    "tier": "S",
+    "value": 5425,
+    "valueStatus": "published",
+    "demand": 0,
+    "trend": "Stable",
+    "category": "Titan",
+    "description": "Holds 5,425 on the 10 November list, one week after arriving with Update 5 on 4 Nov. The most valuable Godly currently listed, and the only unit in the game whose card advertises 30,000 DPS.",
+    "source": {
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
+      "refVideoId": "7QBiS599euI",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Read from the live list on 2026-11-10; the unit entered the game on 2026-11-04 with Update 5.",
+      "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
+    }
+  },
+  {
     "id": "tv-spider",
     "name": "TV Spider",
     "rarity": "Exclusive",
     "tier": "S",
-    "value": 10000,
+    "value": 15000,
     "valueStatus": "published",
     "demand": 9,
     "trend": "Stable",
     "category": "Unit",
-    "description": "Top of the 4 November list at 10,000 with 9/10 demand, up from 8,000 on Oct 25. Listed at 6,000 on release, peaked near 8,800.",
+    "description": "Top of the 10 November list at 15,000 with 9/10 demand, up from 8,000 on Oct 25. Listed at 6,000 on release, peaked near 8,800.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -23,17 +42,17 @@
     "name": "Chaos Cameraman",
     "rarity": "Mythic",
     "tier": "S",
-    "value": 4200,
+    "value": 3800,
     "valueStatus": "published",
     "demand": 8,
     "trend": "Dropping",
     "category": "Unit",
-    "description": "Holds 4,200 on the 4 November list after dropping from 7,000 on Oct 25. Listed at 7,500 on launch, peaked at 10,000.",
+    "description": "Holds 3,800 on the 10 November list after dropping from 7,000 on Oct 25. Listed at 7,500 on launch, peaked at 10,000.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -42,17 +61,17 @@
     "name": "Engineer Cameraman",
     "rarity": "Exclusive",
     "tier": "S",
-    "value": 6300,
+    "value": 6800,
     "valueStatus": "published",
     "demand": 8,
     "trend": "Rising",
     "category": "Unit",
-    "description": "Holds 6,300 with 8/10 demand. Climbed from 3,500 to a 4,200 peak on Oct 22.",
+    "description": "Holds 6,800 with 8/10 demand. Climbed from 3,500 to a 4,200 peak on Oct 22.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -61,17 +80,17 @@
     "name": "Executioner TV Man",
     "rarity": "Exclusive",
     "tier": "S",
-    "value": 1350,
+    "value": 1500,
     "valueStatus": "published",
     "demand": 3.5,
-    "trend": "Dropping",
+    "trend": "Rising",
     "category": "Unit",
-    "description": "Holds 1,350 on the 4 November list with 3.5/10 demand. Listed at 5,000 on Oct 20 and fell to 3,200 on Oct 25.",
+    "description": "Holds 1,500 on the 10 November list with 3.5/10 demand. Listed at 5,000 on Oct 20 and fell to 3,200 on Oct 25.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -80,17 +99,17 @@
     "name": "Upgraded Titan Cameraman",
     "rarity": "Godly",
     "tier": "S",
-    "value": 3500,
+    "value": 3100,
     "valueStatus": "published",
     "demand": 7,
     "trend": "Stable",
     "category": "Titan",
-    "description": "The godly, holding 3,500 on the 4 November list. Listed at 3,500, dropped to 2,500 within 14 hours, and stood at 2,850 on Oct 25.",
+    "description": "The godly, holding 3,100 on the 10 November list. Listed at 3,500, dropped to 2,500 within 14 hours, and stood at 2,850 on Oct 25.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -99,17 +118,17 @@
     "name": "Headless TV Man",
     "rarity": "Mythic",
     "tier": "S",
-    "value": 525,
+    "value": 400,
     "valueStatus": "published",
     "demand": 2,
     "trend": "Dropping",
     "category": "Unit",
-    "description": "Holds 525 on the 4 November list with 2/10 demand. Listed at 4,000 and fell to 1,900 on Oct 25.",
+    "description": "Holds 400 on the 10 November list with 2/10 demand. Listed at 4,000 and fell to 1,900 on Oct 25.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -125,10 +144,10 @@
     "category": "Titan",
     "description": "Holds 315 on the 4 November list with 8/10 demand; previously rose from 330 to 460 on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -137,17 +156,17 @@
     "name": "TV Woman",
     "rarity": "Mythic",
     "tier": "B",
-    "value": 450,
+    "value": 235,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Dropping",
     "category": "Unit",
-    "description": "Slid from 680 before Update 4 to 450, dropping just under Titan Cinemaman on Oct 25.",
+    "description": "Slid from 680 before Update 4 to 450 on Oct 25 and 235 on the 10 November list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -156,17 +175,17 @@
     "name": "Jetpack Cameraman",
     "rarity": "Exclusive",
     "tier": "A",
-    "value": 570,
+    "value": 450,
     "valueStatus": "published",
     "demand": 0,
-    "trend": "Rising",
+    "trend": "Dropping",
     "category": "Unit",
-    "description": "Holds 570 on the 4 November list, up from 400 on Oct 25 and 280 before Update 4.",
+    "description": "Holds 450 on the 10 November list, up from 400 on Oct 25 and 280 before Update 4.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -182,10 +201,10 @@
     "category": "Unit",
     "description": "Lost a fifth to a quarter of its value since Update 4.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -194,17 +213,17 @@
     "name": "Upgraded Titan Speakerman",
     "rarity": "Mythic",
     "tier": "A",
-    "value": 200,
+    "value": 160,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Dropping",
     "category": "Titan",
-    "description": "The cheapest mythic on the list. Equals 40 old legendaries at 5 points each.",
+    "description": "The cheapest mythic on the list. Equals 80 of the 2-point old legendaries.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -213,17 +232,17 @@
     "name": "Large Scientist Cameraman",
     "rarity": "Exclusive",
     "tier": "C",
-    "value": 575,
+    "value": 400,
     "valueStatus": "published",
     "demand": 8,
-    "trend": "Rising",
+    "trend": "Dropping",
     "category": "Unit",
-    "description": "Holds 575 on the 4 November list with 8/10 demand, rising further after doubling from 125 to 250 on Oct 25.",
+    "description": "Holds 400 on the 10 November list with 8/10 demand, after doubling from 125 to 250 on Oct 25.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -232,17 +251,17 @@
     "name": "Pumpkin Farmer",
     "rarity": "Epic",
     "tier": "B",
-    "value": 65,
+    "value": 30,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Unstable",
     "category": "Unit",
-    "description": "Holds 65 on the 4 November list; marked unstable on the Oct 25 list.",
+    "description": "Holds 30 on the 10 November list; marked unstable on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -251,17 +270,17 @@
     "name": "Camera Repair Drone",
     "rarity": "Epic",
     "tier": "B",
-    "value": 35,
+    "value": 25,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Dropping",
     "category": "Unit",
-    "description": "Holds 35 on the 4 November list. First listed at 120 and was down to 50 on Oct 25.",
+    "description": "Holds 25 on the 10 November list. First listed at 120 and was down to 50 on Oct 25.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -270,17 +289,17 @@
     "name": "Dragon Cameraman",
     "rarity": "Legendary",
     "tier": "A",
-    "value": 13,
+    "value": 5,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Dropping",
     "category": "Unit",
-    "description": "Halloween crate unit, holding 13 on the 4 November list. Went from 120 to 325 before collapsing to 40 on Oct 25.",
+    "description": "Halloween crate unit, holding 5 on the 10 November list. Went from 120 to 325 before collapsing to 40 on Oct 25.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -289,17 +308,17 @@
     "name": "Scientist Cameraman",
     "rarity": "Exclusive",
     "tier": "B",
-    "value": 50,
+    "value": 30,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Volatile",
     "category": "Unit",
-    "description": "Holds 50 on the 4 November list. Swung from 30 to 60 and back to 35 across two days on the Oct 25 list.",
+    "description": "Holds 30 on the 10 November list. Swung from 30 to 60 and back to 35 across two days on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -315,10 +334,10 @@
     "category": "Unit",
     "description": "Holds 15 on the 4 November list, down from 70 before Update 4.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -327,17 +346,17 @@
     "name": "Titan TV Man",
     "rarity": "Legendary",
     "tier": "C",
-    "value": 5,
+    "value": 2,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Stable",
     "category": "Titan",
-    "description": "One of the old legendaries valued at 5 points each on the Oct 25 list.",
+    "description": "Holds 2 on the 10 November list, down from the flat 5 points the older legendaries were pegged at on Oct 25. Bundling currency, not a value play.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Re-synced to the live Vaulted Values X list on 2026-11-10 (https://cameraman-td.vaultedvaluesx.com/trade-calculator); previously Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -346,17 +365,17 @@
     "name": "Titan Cameraman",
     "rarity": "Legendary",
     "tier": "B",
-    "value": 5,
+    "value": 2,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Stable",
     "category": "Titan",
-    "description": "One of the old legendaries valued at 5 points each on the Oct 25 list.",
+    "description": "One of the old legendaries, at 2 points on the 10 November list after the tier sat at 5 points each on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -365,17 +384,17 @@
     "name": "Titan Speakerman",
     "rarity": "Legendary",
     "tier": "C",
-    "value": 5,
+    "value": 1,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Stable",
     "category": "Titan",
-    "description": "One of the old legendaries valued at 5 points each on the Oct 25 list.",
+    "description": "One of the old legendaries, at 1 point on the 10 November list after the tier sat at 5 points each on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -384,17 +403,17 @@
     "name": "Ninja Cameraman",
     "rarity": "Legendary",
     "tier": "C",
-    "value": 5,
+    "value": 2,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Stable",
     "category": "Unit",
-    "description": "One of the old legendaries valued at 5 points each on the Oct 25 list.",
+    "description": "One of the old legendaries, at 2 points on the 10 November list after the tier sat at 5 points each on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -403,17 +422,17 @@
     "name": "Laser Cameraman Car",
     "rarity": "Legendary",
     "tier": "B",
-    "value": 5,
+    "value": 2,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Stable",
     "category": "Unit",
-    "description": "One of the old legendaries valued at 5 points each on the Oct 25 list.",
+    "description": "One of the old legendaries, at 2 points on the 10 November list after the tier sat at 5 points each on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -429,10 +448,10 @@
     "category": "Unit",
     "description": "Lost a fifth to a quarter of its value since Update 4; the source gives no absolute number.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -448,10 +467,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -460,17 +479,17 @@
     "name": "Speakerwoman",
     "rarity": "Legendary",
     "tier": "B",
-    "value": 8,
+    "value": 3,
     "valueStatus": "published",
     "demand": 0,
     "trend": "Unknown",
     "category": "Unit",
-    "description": "Holding 8 points on the live list; was unvalued on the Oct 25 list.",
+    "description": "Holding 3 points on the 10 November list; was unvalued on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -486,10 +505,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -505,10 +524,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -524,10 +543,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -543,10 +562,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -562,10 +581,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -581,10 +600,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -600,10 +619,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -619,10 +638,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -638,10 +657,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -657,10 +676,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -676,10 +695,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -695,10 +714,10 @@
     "category": "Unit",
     "description": "The starter unit. The Oct 25 list explicitly leaves commons, uncommons and rares without values.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -714,10 +733,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   },
@@ -733,10 +752,10 @@
     "category": "Unit",
     "description": "No value published on the Oct 25 list.",
     "source": {
-      "platform": "Vaulted Values X — Value List (After Update 4)",
+      "platform": "Vaulted Values X — Live Value List (read 2026-11-10)",
       "refVideoId": "7QBiS599euI",
-      "retrievedAt": "2026-11-04",
-      "notes": "Trade values between units, not gem prices. Read from the Oct 25 2026 list as stated in the video.",
+      "retrievedAt": "2026-11-10",
+      "notes": "Trade values between units, not gem prices. Re-synced to the live list on 2026-11-10 (Update 5 is live since 2026-11-04); the previous snapshot was read from the 2026-10-25 video list.",
       "url": "https://cameraman-td.vaultedvaluesx.com/trade-calculator"
     }
   }

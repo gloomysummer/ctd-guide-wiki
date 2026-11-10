@@ -90,6 +90,30 @@ def main() -> int:
 
     print(f"  ✓ 基础 Schema 校验通过: 共 {len(codes_list)} 个码 ({active_count} active, {expired_count} expired)")
 
+    # 双写一致性：页面上渲染的是 activeCodes / expiredCodes，而门禁校验的是 codes。
+    # 两者不同步时，一个码可以"通过校验"却永远不显示在页面上（2026-11-10 UTTVM 就是这样漏掉的）。
+    render_active = {c.get("code", "").strip().upper() for c in data.get("activeCodes", [])}
+    render_expired = {c.get("code", "").strip().upper() for c in data.get("expiredCodes", [])}
+    if render_active or render_expired:
+        data_active = {c["code"].strip().upper() for c in codes_list if c.get("status", "").lower() == "active"}
+        data_expired = {c["code"].strip().upper() for c in codes_list if c.get("status", "").lower() == "expired"}
+        problems = []
+        for label, rendered, declared in (
+            ("activeCodes", render_active, data_active),
+            ("expiredCodes", render_expired, data_expired),
+        ):
+            missing = declared - rendered
+            ghost = rendered - declared
+            if missing:
+                problems.append(f"{label} 漏渲染 {sorted(missing)}（codes 里是该状态，页面上不会出现）")
+            if ghost:
+                problems.append(f"{label} 多渲染 {sorted(ghost)}（codes 里没有该状态）")
+        if problems:
+            for p in problems:
+                print(f"❌ check-codes 双写不一致: {p}", file=sys.stderr)
+            return 1
+        print(f"  ✓ codes / activeCodes / expiredCodes 三处一致")
+
     # 检查 dist/ 中 codes 页面上的码是否均在登记表中
     codes_page_dist = DIST_DIR / "codes" / "index.html"
     if codes_page_dist.exists():

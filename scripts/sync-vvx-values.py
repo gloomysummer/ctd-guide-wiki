@@ -64,15 +64,32 @@ UNCERTAIN_ALIASES = {
 }
 
 ITEM_RE = re.compile(
-    r'\{"id":"[0-9a-f-]{36}","slug":"item-[0-9a-f-]{36}","name":"([^"]*)","category":"([^"]*)"'
+    r'\{"id":"[0-9a-f-]{36}","slug":"item-(?:[a-z]+-)?[0-9a-f-]{36}","name":"([^"]*)","category":"([^"]*)"'
 )
 VALUE_RE = re.compile(r'"displayFields":\[\{"id":"value","label":"Value","value":([0-9]+)')
+
+# The app-router payload is shipped as a run of `self.__next_f.push([1,"..."])`
+# calls, and the publisher's serialiser splits strings wherever it likes — a
+# single item's `{"id":"<uuid>"` header can be torn across two calls. Unescaping
+# the raw HTML without stitching the chunks back together silently loses those
+# items (2026-11-10: it dropped Titan TV Man entirely and left Upgraded Titan TV
+# Man pinned to the priceless duplicate, so the one unit the whole sync existed
+# for came back with value None).
+FLIGHT_RE = re.compile(r'self\.__next_f\.push\(\[1,("(?:[^"\\]|\\.)*")\]\)')
 
 
 def fetch(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": "ctd-guide-wiki/1.0 (+value-audit)"})
     with urllib.request.urlopen(req, timeout=60) as resp:
         return resp.read().decode("utf-8", errors="ignore")
+
+
+def payload(html: str) -> str:
+    """Reassemble the flight chunks into one JSON-ish string before parsing."""
+    parts = FLIGHT_RE.findall(html)
+    if not parts:
+        return html.replace('\\"', '"')
+    return "".join(json.loads(p) for p in parts)
 
 
 def parse(html: str) -> list[dict]:
@@ -83,7 +100,7 @@ def parse(html: str) -> list[dict]:
     greedy regex pairs one item's name with the next item's number, which is
     exactly how a "Chaos = 3,650" reading appeared in one audit pass.
     """
-    unescaped = html.replace('\\"', '"')
+    unescaped = payload(html)
     chunks = re.split(r'(?=\{"id":"[0-9a-f-]{36}","slug":"item-)', unescaped)
     items = []
     for chunk in chunks[1:]:

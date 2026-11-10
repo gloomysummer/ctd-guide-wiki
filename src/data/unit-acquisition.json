@@ -25,6 +25,12 @@
       "name": "Woman Crate",
       "cost": "Not purchasable — win drop only",
       "odds": "Drops 10% of the time on Insane and 2% on Easy"
+    },
+    "mythic": {
+      "name": "Mythic Crate",
+      "cost": "900 coins per summon, 8,100 for a ten-pull",
+      "odds": "Published pool tables disagree with each other, so only the Godly rate is reproduced here.",
+      "note": "Two community readings both put Upgraded Titan TV Man at 0.1%; one separately lists a 0.01% chance from the Basic Crate that the other does not corroborate."
     }
   },
   "units": {
@@ -47,6 +53,11 @@
     },
     "tv-woman": {
       "crate": "woman"
+    },
+    "upgraded-titan-tv-man": {
+      "crate": "mythic",
+      "odds": "0.1%",
+      "extra": "At 0.1% with discounted ten-pulls, the average cost of one copy is roughly 810,000 coins. A 2.5x luck boost lifts the displayed rate to about 0.3%."
     }
   },
   "byRarity": {

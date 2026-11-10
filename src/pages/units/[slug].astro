@@ -20,6 +20,13 @@ const { unit } = Astro.props;
 const unitId = unit.id;
 const editorial = unitEditorialData[unitId] || {};
 
+// Dates on this page are read off the data, never typed by hand. The page used to
+// print a hardcoded "list dated 2026-10-25" while the hero above it showed a
+// re-synced value from a newer list, so every unit page carried two dates and two
+// prices for the same number.
+const currentValuesDate = unit.source?.retrievedAt ?? "unknown";
+const historyListDate = unitPriceHistoryData.source.listDate;
+
 // Dataset Lookups
 const statVerified = unitStatsData.verified[unitId] || null;
 const statSingleSource = unitStatsData.singleSource[unitId] || null;
@@ -272,7 +279,7 @@ const jsonLd = [
               </p>
             )}
             <div class="source-citation">
-              <span>Source: Vaulted Values X, list dated 2026-10-25</span>
+              <span>Source: Vaulted Values X, live list read {currentValuesDate}. Timeline benchmarks from the list dated {historyListDate}.</span>
             </div>
           </section>
         )}
@@ -391,10 +398,10 @@ const jsonLd = [
           <div class="evidence-box">
             <div class="evidence-header">
               <span class="evidence-shield">DATED SOURCE RECORD</span>
-              <span class="evidence-status">LAST UPDATED: 2026-11-01</span>
+              <span class="evidence-status">LAST UPDATED: {currentValuesDate}</span>
             </div>
             <div class="evidence-body">
-              <p><strong>Primary Valuation Anchor:</strong> Vaulted Values X (Video ID: {unitPriceHistoryData.source.videoId}), list dated {unitPriceHistoryData.source.listDate}.</p>
+              <p><strong>Primary Valuation Anchor:</strong> Vaulted Values X live list, read {currentValuesDate}. Historical benchmarks in the timeline come from the {historyListDate} list (Video ID: {unitPriceHistoryData.source.videoId}).</p>
               {hasStats ? (
                 <p><strong>Combat Stat Reference:</strong> RoboLibrary community stat cards, reading dated {unitStatsData.source.checkedAt} ({statVerificationType}).</p>
               ) : (

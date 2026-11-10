@@ -89,8 +89,11 @@ def main() -> int:
     new_units = {u["id"]: u for u in load(None, "values.json")}
     editorial = load(None, "unit-editorial.json")
 
+    # A unit that did not exist at the base ref cannot have "moved"; its old price
+    # is None. Reading old_units[uid] directly crashed the whole gate the first
+    # time a new unit shipped (2026-11-10, Upgraded Titan TV Man).
     moved = [
-        (uid, old_units[uid]["value"], u["value"])
+        (uid, old_units.get(uid, {}).get("value"), u["value"])
         for uid, u in new_units.items()
         if old_units.get(uid, {}).get("value") != u["value"]
     ]

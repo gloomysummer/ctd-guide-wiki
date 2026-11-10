@@ -12,7 +12,7 @@ const tocHeadings = [
   { depth: 2, slug: "a-tier-breakdown", text: "A-Tier: High DPS Specialists" },
   { depth: 2, slug: "b-tier-breakdown", text: "B-Tier: Solid Support & Mid-Game" },
   { depth: 2, slug: "c-d-tier-breakdown", text: "C & D-Tier: Niche & Starters" },
-  { depth: 2, slug: "patch-analysis", text: "Update 4 Balance Analysis" },
+  { depth: 2, slug: "patch-analysis", text: "Balance History: Update 4 to 5" },
   { depth: 2, slug: "evidence-dossier", text: "Source Ledger" },
 ];
 
@@ -21,13 +21,14 @@ const aTier = valuesData.filter(u => u.tier === 'A');
 const bTier = valuesData.filter(u => u.tier === 'B');
 const cTier = valuesData.filter(u => u.tier === 'C');
 const dTier = valuesData.filter(u => u.tier === 'D');
+const tierUnitCount = valuesData.length;
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "ItemPage",
-    "name": "Cameraman Tower Defense Tier List (Update 4)",
-    "description": "Cameraman Tower Defense meta tier list ranking all 39 units following the Halloween Update 4 balance patch.",
+    "name": "Cameraman Tower Defense Tier List (Update 5)",
+    "description": `Cameraman Tower Defense meta tier list ranking all ${tierUnitCount} units after the Update 5 (UTTVM) patch of 4 November 2026.`,
     "url": `${siteConfig.siteUrl}/tier-list/`,
   },
   {
@@ -42,8 +43,8 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title="CTD Tier List (Update 4) | Cameraman Tower Defense"
-  description="Comprehensive CTD tier list for Update 4. Discover S-Tier meta rankings, best DPS carries, economy units, and boss counters in Cameraman Tower Defense."
+  title="CTD Tier List (Update 5) | Cameraman Tower Defense"
+  description={`Cameraman Tower Defense tier list for Update 5 (4 Nov 2026). S-Tier carries, best DPS, economy units and boss counters, updated for Upgraded Titan TV Man.`}
   canonical="/tier-list/"
   jsonLd={jsonLd}
 >
@@ -58,11 +59,11 @@ const jsonLd = [
       <div class="guide-badges">
         <span class="badge" style="background: rgba(244, 63, 94, 0.15); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3);">UPDATE 4 PATCH</span>
         <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">NOVEMBER 2026 META</span>
-        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">39 UNITS RANKED</span>
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">{tierUnitCount} UNITS RANKED</span>
       </div>
       <h1>CTD Meta Tier List: Cameraman Tower Defense</h1>
       <p class="guide-lead">
-        Comprehensive CTD tier list rankings for all 39 units in Roblox Cameraman Tower Defense. Evaluated on DPS-to-cost efficiency, wave-clearing radius, boss damage, and solo Nightmare mode utility.
+        Comprehensive CTD tier list rankings for all {tierUnitCount} units in Roblox Cameraman Tower Defense. Evaluated on DPS-to-cost efficiency, wave-clearing radius, boss damage, and solo Nightmare mode utility.
       </p>
     </header>
 
@@ -90,9 +91,9 @@ const jsonLd = [
 
         <!-- Patch Meta Notice -->
         <div class="patch-notice-bar">
-          <span class="patch-badge">PATCH STAMP // 2026-11-01</span>
+          <span class="patch-badge">PATCH STAMP // 2026-11-10</span>
           <p>
-            Rankings reflect the <strong>Halloween Update 4</strong> on Roblox Universe <code>10762636904</code>. The UTTVM update is scheduled for November 4, 2026. Includes recent damage buffs to Executioner TV Man and slight stun adjustments to TV Woman.
+            Rankings reflect <strong>Update 5 (the UTTVM update)</strong>, live since 4 November 2026 on Roblox Universe <code>10762636904</code>: new Godly Upgraded Titan TV Man from the Mythic Crate, plus Halloween Town, Path of Honor and a new map. Still carrying forward from Update 4: the Executioner TV Man damage buff and the TV Woman stun adjustments.
           </p>
         </div>
 
@@ -267,7 +268,7 @@ const jsonLd = [
 
         <!-- SECTION 6: PATCH ANALYSIS -->
         <section id="patch-analysis" style="margin-top: 3.5rem;">
-          <h2>Update 4 Balance Analysis</h2>
+          <h2>Balance History: Update 4 to 5</h2>
           <div class="patch-breakdown-grid">
             <div class="breakdown-card">
               <h3>Executioner TV Man Buff</h3>
@@ -279,7 +280,7 @@ const jsonLd = [
             </div>
             <div class="breakdown-card">
               <h3>Cheap Mythics Replaced Expensive Legendaries</h3>
-              <p>After Update 4 the old legendaries — Titan Cameraman, Titan Speakerman, Titan TV Man, Ninja Cameraman and Laser Cameraman Car — were all cut to 5 trade points each, while the cheapest Mythic (Upgraded Titan Speakerman) settled at 250. A single Mythic now equals fifty of those legendaries.</p>
+              <p>After Update 4 the old legendaries — Titan Cameraman, Titan Speakerman, Titan TV Man, Ninja Cameraman and Laser Cameraman Car — were cut to a flat 5 trade points each. The 10 November reading pushes them to a floor of 1–2 points, while the cheapest Mythic (Upgraded Titan Speakerman) sits at 160. One budget Mythic now outweighs more than eighty of those legendaries.</p>
             </div>
           </div>
         </section>

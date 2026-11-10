@@ -28,7 +28,7 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Cameraman Tower Defense Units Database",
-    "description": "Comprehensive roster and value directory for all 39 units in Cameraman Tower Defense on Roblox.",
+    "description": `Complete roster and stat directory for all ${totalCount} units in Cameraman Tower Defense on Roblox.`,
     "url": `${siteConfig.siteUrl}/units/`,
   },
   {
@@ -43,8 +43,8 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title="Cameraman Tower Defense Units Roster & Stats"
-  description="Complete Cameraman Tower Defense units database. Compare trade value, demand and tier placement across all 39 Godly, Mythic, Legendary and Epic units."
+  title={`Cameraman Tower Defense Units: All ${totalCount} Stats`}
+  description={`Every Cameraman Tower Defense unit with base DPS, attack range, placement cost and crate drop source. ${totalCount} units, live trade values on the value list page.`}
   canonical="/units/"
   jsonLd={jsonLd}
 >
@@ -61,9 +61,9 @@ const jsonLd = [
         <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">{totalCount} UNITS INDEXED</span>
         <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">UPDATE 4 EXPANSION</span>
       </div>
-      <h1>Cameraman Tower Defense Units Database (39 Units)</h1>
+      <h1>Cameraman Tower Defense Units: Complete {totalCount}-Unit Database</h1>
       <p class="guide-lead">
-        Browse the verified roster of all 38 playable units in Roblox Cameraman Tower Defense. Compare DPS scaling, attack range, trading values, and summon mechanics.
+        Browse the verified roster of all {totalCount} playable units in Roblox Cameraman Tower Defense. Compare DPS scaling, attack range, placement cost and summon mechanics.
       </p>
     </header>
 
@@ -98,7 +98,7 @@ const jsonLd = [
         <section id="roster-overview">
           <h2>Units Roster Overview</h2>
           <p>
-            While early launch wikis only listed 31 units, the in-game unit index expanded to <strong>39 units</strong> following the Spider update and Halloween 2026 event. This comprehensive directory covers all active summons, event crates, and starter units.
+            While early launch wikis only listed 31 units, the in-game unit index expanded to <strong>{totalCount} units</strong> following the Spider update, the Halloween 2026 event and the Update 5 (UTTVM) patch. This comprehensive directory covers all active summons, event crates, and starter units.
           </p>
         </section>
 
@@ -272,11 +272,11 @@ const jsonLd = [
           <div class="evidence-box">
             <div class="evidence-header">
               <span class="evidence-shield">🛡️ IN-GAME INDEX VALIDATION</span>
-              <span class="evidence-status">INDEXED: 39 UNITS</span>
+              <span class="evidence-status">INDEXED: {totalCount} UNITS</span>
             </div>
             <div class="evidence-body">
               <p><strong>Audited Game:</strong> Roblox Universe ID <code>10762636904</code> (Cameraman Tower Defense by Aligators Games).</p>
-              <p><strong>Verification Standard:</strong> Empirical audit confirming 38 total distinct units (excluding duplicate non-playable NPCs).</p>
+              <p><strong>Verification Standard:</strong> Empirical audit confirming {totalCount} total distinct units (excluding duplicate non-playable NPCs).</p>
               <blockquote>
                 <em>"Early community wikis reporting 31 units overlooked the 7 additions from the Spider Crate and Halloween 2026 event rotation (Pumpkin Farmer, Headless TV Man, Werewolf Speakerman, Clown Speakerman, Camera Repair Drone)."</em>
               </blockquote>

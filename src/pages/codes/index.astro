@@ -5,6 +5,17 @@ import DualSidebar from "../../components/DualSidebar.astro";
 import { siteConfig } from "../../config/site.config";
 import codesData from "../../data/verified-codes.json";
 
+// Freshness signals are derived, never hand-typed: a page that hardcodes its own
+// "last checked" date quietly starts lying the moment the data file moves.
+const lastCheckedIso = codesData.updatedAt.slice(0, 10);
+const lastCheckedLabel = new Date(`${lastCheckedIso}T00:00:00Z`).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
+const activeCount = codesData.activeCodes.length;
+
 const tocHeadings = [
   { depth: 2, slug: "active-codes", text: "Active Working Codes" },
   { depth: 2, slug: "redemption-steps", text: "How to Redeem (3-Win Rule)" },
@@ -47,13 +58,13 @@ const jsonLd = [
 
     <header class="guide-header">
       <div class="guide-badges">
-        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">NOVEMBER 2026 VERIFIED</span>
-        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">DAILY AUDITED</span>
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">LAST CHECKED {lastCheckedLabel}</span>
+        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">{activeCount} ACTIVE CODES</span>
         <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">3-WIN GATE</span>
       </div>
       <h1>CTD Codes: Cameraman Tower Defense (November 2026)</h1>
       <p class="guide-lead">
-        Copy all working CTD codes (Cameraman Tower Defense) for free coins. Manually audited on Roblox server <strong>Universe 10762636904</strong> with the mandatory 3-win unlock guide.
+        Copy all working CTD codes (Cameraman Tower Defense) for free coins. Last checked <strong>{lastCheckedLabel}</strong>: {activeCount} active codes, including <strong>UTTVM</strong> and <strong>PathOfHonor</strong> from the 4 November Update 5 patch. Manually audited on Roblox server <strong>Universe 10762636904</strong> with the mandatory 3-win unlock guide.
       </p>
     </header>
 

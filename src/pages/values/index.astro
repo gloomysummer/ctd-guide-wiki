@@ -64,8 +64,8 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title="CTD Values List: Vaulted Values & Calculator | CTD Guide"
-  description="Authoritative CTD values list and trade calculator based on Vaulted Values for Cameraman Tower Defense. Check 39 unit values, demand, and Win/Fair/Lose parity."
+  title="Cameraman Tower Defense Values & CTD Value List"
+  description={`Cameraman Tower Defense values list and CTD trade calculator, read from the live Vaulted Values X list on ${snapshotDate ?? "11 November 2026"}. ${totalUnits} units, demand ratings, Win/Fair/Lose parity.`}
   canonical="/values/"
   jsonLd={jsonLd}
 >
@@ -82,9 +82,9 @@ const jsonLd = [
         <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">UPDATE 4 VALUE INDEX</span>
         <span class="badge" style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3);">{totalUnits} UNITS INDEXED</span>
       </div>
-      <h1>CTD Values List & Vaulted Values Calculator</h1>
+      <h1>Cameraman Tower Defense Values: Full CTD Value List & Trade Calculator</h1>
       <p class="guide-lead">
-        Audit real-time CTD values list points based on Vaulted Values X, calculate Win / Fair / Lose trade balance across 4 offer slots, and reference demand ratings for all 39 units in Roblox Cameraman Tower Defense.
+        Cameraman Tower Defense trade values read live from the Vaulted Values X list on <strong>{snapshotDate ?? "an unrecorded date"}</strong>. Check any offer across 4 slots for Win / Fair / Lose parity, and compare demand ratings for all {totalUnits} units.
       </p>
       <p class="value-provenance">
         Point values read from the <a href="https://cameraman-td.vaultedvaluesx.com/value-list" target="_blank" rel="noopener">Vaulted Values X</a> list on <strong>{snapshotDate ?? "a date not recorded"}</strong>. That list is revised after every patch, so treat these figures as indicative rather than a quote — the calculator is for sanity-checking an offer, not for pricing a trade you have already agreed.
@@ -277,7 +277,7 @@ const jsonLd = [
         <section id="value-table" style="margin-top: 3.5rem;">
           <div class="section-title-wrap">
             <h2>CTD Values List & Vaulted Values Directory</h2>
-            <p class="section-desc">Complete CTD values list benchmarked against Vaulted Values X for Cameraman Tower Defense Update 4. Search 39 units, filter by rarity, and check live trading demand ratings.</p>
+            <p class="section-desc">Complete CTD values list benchmarked against the live Vaulted Values X list after Update 5. Search {totalUnits} units, filter by rarity, and check live trading demand ratings.</p>
           </div>
 
           <div class="vaulted-values-intel-banner">
@@ -417,12 +417,12 @@ const jsonLd = [
           <div class="evidence-box">
             <div class="evidence-header">
               <span class="evidence-shield">🛡️ OFFICIAL AUDIT LEDGER</span>
-              <span class="evidence-status">SOURCE DATED 2026-10-25</span>
+              <span class="evidence-status">SOURCE READ {snapshotDate ?? "unknown"}</span>
             </div>
             <div class="evidence-body">
-              <p><strong>Primary Valuation Source:</strong> Vaulted Values X Index (Update 4) & Aligators Games Official Trading Discord.</p>
-              <p><strong>Cross-Verification Video Anchor:</strong> <a href="https://www.youtube.com/watch?v=7QBiS599euI" target="_blank" rel="noopener">YouTube (Vaulted Values X Update 4 Valuation Ledger, ID: 7QBiS599euI)</a>.</p>
-              <p><strong>Patch Alignment:</strong> Values reflect the community list dated <code>2026-10-25</code> (Update 4). The UTTVM update was moved to November 4, 2026 and is not reflected here.</p>
+              <p><strong>Primary Valuation Source:</strong> Vaulted Values X live value list, read {snapshotDate ?? "an unrecorded date"}.</p>
+              <p><strong>Cross-Verification Video Anchor:</strong> <a href="https://www.youtube.com/watch?v=7QBiS599euI" target="_blank" rel="noopener">YouTube (Vaulted Values X Update 4 Valuation Ledger, ID: 7QBiS599euI)</a> — the 25 October archive the price-history timelines are built on.</p>
+              <p><strong>Patch Alignment:</strong> Values reflect the live list after <strong>Update 5 (UTTVM, live 4 November 2026)</strong>. The timeline benchmarks on each unit page are anchored to the earlier <code>2026-10-25</code> list, which is why a unit's history and its current value differ by a revision.</p>
               <blockquote>
                 <em>"Trading point valuations are anchored to spin pity equivalents, crate drop rates (0.01% Godly, 0.1% Mythic), and active secondary market exchange ratios."</em>
               </blockquote>

@@ -21,7 +21,7 @@ const activeCodesCount = codesData.activeCodes.length;
 const CHANNEL_CARDS: Record<string, { image: string; alt: string }> = {
   values: { image: "/images/cards/card_values.webp", alt: "Cameraman Tower Defense Trade Calculator & Value List" },
   codes: { image: "/images/cards/card_codes.webp", alt: "Cameraman Tower Defense Promo Codes November 2026" },
-  units: { image: "/images/cards/card_units.webp", alt: "Cameraman Tower Defense 39 Units Roster & Database" },
+  units: { image: "/images/cards/card_units.webp", alt: `Cameraman Tower Defense ${totalUnitsCount} Units Roster & Database` },
   "tier-list": { image: "/images/cards/card_tier_list.webp", alt: "Cameraman Tower Defense Meta Tier List Ranking" },
   guides: { image: "/images/cards/card_nightmare.webp", alt: "How to Solo Nightmare Mode in Cameraman Tower Defense" },
 };
@@ -29,7 +29,7 @@ const CHANNEL_CARDS: Record<string, { image: string; alt: string }> = {
 const CHANNEL_SUMMARIES: Record<string, string> = {
   values: "Real-time trading point valuations, 4-slot Win/Fair/Lose balance calculator, and liquidity demand ratings.",
   codes: "Daily verified working coin codes, one-click copy, and the mandatory 3-win redemption gate explanation.",
-  units: "Complete stat index, summon drop rates, and trade values for all 39 Godly, Mythic, Legendary and Epic units.",
+  units: `Complete stat index, summon drop rates, and trade values for all ${totalUnitsCount} Godly, Mythic, Legendary and Epic units.`,
   "tier-list": "Comprehensive S-to-D meta tier list ranked after the Halloween Update 4 buffs.",
   guides: "Proven tactical blueprints for clearing 50-wave Nightmare mode solo, official Discord links, and shop guides.",
 };
@@ -48,7 +48,7 @@ const faqItems = [
   },
   {
     question: "What is the newest unit in the latest update?",
-    answer: "Update 4 (Halloween 2026) rebalanced the meta: Chaos Cameraman and Headless TV Man arrived as new Mythics, and the old legendaries were cut to 5 points each. The next content drop, the UTTVM update, is scheduled for November 4, 2026.",
+    answer: "Update 5 (the UTTVM update) went live on 4 November 2026 and added Upgraded Titan TV Man, a Godly unit from the new Mythic Crate at a 0.1% drop rate, plus Halloween Town, Path of Honor and a new map. Update 4 (Halloween 2026) had already rebalanced the meta: Chaos Cameraman and Headless TV Man arrived as new Mythics, and the old legendaries were cut to a flat floor price.",
   },
   {
     question: "How does the Cameraman Tower Defense trade calculator work?",
@@ -57,7 +57,7 @@ const faqItems = [
   },
   {
     question: "Where can I find the official Cameraman Tower Defense value list?",
-    answer: "The official Cameraman Tower Defense value list is maintained on our dedicated Values directory, referencing community market transactions and Vaulted Values X data. It indexes point values, liquidity demand scores (1-10), and market stability trends across all 39 units.",
+    answer: `The official Cameraman Tower Defense value list is maintained on our dedicated Values directory, referencing community market transactions and Vaulted Values X data. It indexes point values, liquidity demand scores (1-10), and market stability trends across all ${totalUnitsCount} units.`,
     cta: { text: "Browse the full CTD value list", href: "/values/#value-table" },
   },
   {
@@ -70,7 +70,7 @@ const faqItems = [
   },
   {
     question: "How many total units are currently in the game?",
-    answer: "Following the Halloween and Spider content patches, Cameraman Tower Defense lists 39 distinct units ranging from Basic starters up to the Godly Upgraded Titan Cameraman (UTCM). The Upgraded Titan TV Man (UTTVM) is scheduled for the November 4 update and is not yet obtainable.",
+    answer: `Following the Update 5 (UTTVM) patch on 4 November 2026, Cameraman Tower Defense lists ${totalUnitsCount} distinct units ranging from Basic starters up to the Godly Upgraded Titan TV Man (UTTVM) and Upgraded Titan Cameraman (UTCM). UTTVM is obtainable from the Mythic Crate at a 0.1% drop rate.`,
   },
 ];
 
@@ -103,8 +103,8 @@ const websiteJsonLd = {
 ---
 
 <BaseLayout
-  title="CTD Guide | Cameraman Tower Defense Calculator"
-  description="Authoritative Cameraman Tower Defense wiki and CTD calculator. Compare trade values, compute Win/Fair/Lose parity, redeem active codes, and check unit stats."
+  title="Cameraman Tower Defense Wiki, Values & Codes"
+  description="Cameraman Tower Defense wiki: live CTD value list and trade calculator, working codes, tier list and unit stats. Every figure is dated to the list it was read from."
   canonical="/"
   jsonLd={[websiteJsonLd, faqJsonLd]}
 >
@@ -128,7 +128,7 @@ const websiteJsonLd = {
           </h1>
 
           <p class="hero-lead">
-            The definitive wiki and trade calculator for <strong>{dynamicGameName}</strong> by {developerName}. Compute 4-slot Win/Fair/Lose trade parity, copy verified codes, and inspect the full 39-unit roster.
+            The definitive wiki and trade calculator for <strong>{dynamicGameName}</strong> by {developerName}. Compute 4-slot Win/Fair/Lose trade parity, copy verified codes, and inspect the full {totalUnitsCount}-unit roster.
           </p>
 
           <!-- Triple CTA Matrix -->
@@ -265,7 +265,7 @@ const websiteJsonLd = {
           </div>
           <div class="card-body">
             <h3><a href="/values/" class="stretched-link">Cameraman Tower Defense Trade Calculator & Values</a></h3>
-            <p>Compute 4-slot trade equity, analyze Win/Fair/Lose profit margins, and inspect current demand benchmarks across all 39 units.</p>
+            <p>Compute 4-slot trade equity, analyze Win/Fair/Lose profit margins, and inspect current demand benchmarks across all {totalUnitsCount} units.</p>
             <div class="card-footer">
               <span class="card-action">Launch Calculator →</span>
               <span class="card-meta">Update 4 Index</span>
@@ -310,7 +310,7 @@ const websiteJsonLd = {
             <span>⚖️ Open 4-Slot Trade Calculator</span>
           </a>
           <a href="/values/#value-table" class="calc-action-btn secondary">
-            <span>📋 Browse 39-Unit Value List</span>
+            <span>📋 Browse {totalUnitsCount}-Unit Value List</span>
           </a>
           <a href="/values/#fairness-methodology" class="calc-action-btn outline">
             <span>📐 Valuation Methodology</span>
@@ -384,10 +384,10 @@ const websiteJsonLd = {
             <span class="card-tag">FULL ROSTER</span>
           </div>
           <div class="card-body">
-            <h3><a href="/units/" class="stretched-link">Complete 39 Units Roster & Index</a></h3>
+            <h3><a href="/units/" class="stretched-link">Complete {totalUnitsCount} Units Roster & Index</a></h3>
             <p>Explore all Godly, Mythic, Legendary, Epic, Rare, and Basic units with DPS, range, and unlock methods.</p>
             <div class="card-footer">
-              <span class="card-action">Explore All 39 Units →</span>
+              <span class="card-action">Explore All {totalUnitsCount} Units →</span>
             </div>
           </div>
         </article>
@@ -442,7 +442,7 @@ const websiteJsonLd = {
           </div>
           <div class="card-body">
             <h3><a href="/tier-list/" class="stretched-link">Cameraman Tower Defense Meta Tier List (Update 4)</a></h3>
-            <p>Evaluates DPS-to-cost efficiency, boss shredding utility, and crowd control across S, A, B, C, and D tiers for all 39 units.</p>
+            <p>Evaluates DPS-to-cost efficiency, boss shredding utility, and crowd control across S, A, B, C, and D tiers for all {totalUnitsCount} units.</p>
             <div class="card-footer">
               <span class="card-action">View Tier List Rankings →</span>
               <span class="card-meta">Patch Update 4</span>

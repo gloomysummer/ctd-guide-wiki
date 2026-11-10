@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T06:40:00Z",
+  "updatedAt": "2026-11-10T09:40:00Z",
   "gameName": "Cameraman Tower Defense",
   "monthlyVariant": "November 2026",
   "redemptionRules": {
@@ -13,6 +13,22 @@
     ]
   },
   "codes": [
+    {
+      "code": "UTTVM",
+      "rewards": "50 Coins",
+      "status": "active",
+      "lastVerified": "2026-11-10",
+      "sourceUrl": "https://www.dexerto.com/roblox/cameraman-tower-defense-codes-3422503/",
+      "note": "Added with the Update 5 (UTTVM) patch on 2026-11-04. Confirmed by Dexerto, Destructoid, GamesRadar and Pro Game Guides."
+    },
+    {
+      "code": "PathOfHonor",
+      "rewards": "50 Coins",
+      "status": "active",
+      "lastVerified": "2026-11-10",
+      "sourceUrl": "https://www.dexerto.com/roblox/cameraman-tower-defense-codes-3422503/",
+      "note": "Added with the Update 5 (UTTVM) patch on 2026-11-04. Confirmed by Dexerto, Destructoid, GamesRadar and Pro Game Guides."
+    },
     {
       "code": "LStriderSpeaker",
       "rewards": "50 Free Coins",
@@ -85,6 +101,20 @@
     }
   ],
   "activeCodes": [
+    {
+      "code": "UTTVM",
+      "reward": "50 Coins",
+      "verifiedDate": "2026-11-10",
+      "status": "ACTIVE",
+      "description": "Update 5 launch code. Added 2026-11-04 alongside the Upgraded Titan TV Man patch."
+    },
+    {
+      "code": "PathOfHonor",
+      "reward": "50 Coins",
+      "verifiedDate": "2026-11-10",
+      "status": "ACTIVE",
+      "description": "Update 5 launch code. Added 2026-11-04 alongside the Upgraded Titan TV Man patch."
+    },
     {
       "code": "LStriderSpeaker",
       "reward": "50 Free Coins",
