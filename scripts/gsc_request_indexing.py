@@ -33,6 +33,7 @@ HOME = f"https://search.google.com/search-console?resource_id={SITE_PARAM}"
 INPUT = 'input[aria-label="Inspect any URL in ctd-guide.wiki"]'
 
 URLS = [
+    "https://ctd-guide.wiki/units/upgraded-titan-tv-man/",
     "https://ctd-guide.wiki/values/",
     "https://ctd-guide.wiki/codes/",
     "https://ctd-guide.wiki/tier-list/",
@@ -142,7 +143,9 @@ async def main():
 
     cst = timezone(timedelta(hours=8))
     stamp = datetime.now(cst).strftime("%Y-%m-%d")
-    STATE.mkdir(exist_ok=True)
+    # Alt: mkdir(exist_ok=True) raises EEXIST under the sandbox brokers shim
+    if not STATE.exists():
+        STATE.mkdir(parents=True)
     out = STATE / f"gsc-index-requests-{stamp}.json"
     out.write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
 
