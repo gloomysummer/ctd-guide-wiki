@@ -48,8 +48,8 @@ def main() -> int:
     for d in other_public_dirs:
         print(f"   • {d.parent.name}")
 
-    # 建立存量站点哈希索引（排除纯文本通用配置文件如 robots.txt / _redirects）
-    EXCLUDE_FILENAMES = {"robots.txt", "_redirects", ".DS_Store"}
+    # 建立存量站点哈希索引（排除纯文本通用配置文件如 robots.txt / _redirects / .assetsignore）
+    EXCLUDE_FILENAMES = {"robots.txt", "_redirects", ".DS_Store", ".assetsignore"}
     hash_index: dict[str, list[str]] = {}
     for op in other_public_dirs:
         site_name = op.parent.name

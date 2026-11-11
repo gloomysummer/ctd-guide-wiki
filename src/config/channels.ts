@@ -63,10 +63,17 @@ export const CHANNELS: Channel[] = [
     guides: [
       {
         id: "all-units-index",
-        title: "Complete 39 Units Roster & Index",
+        title: "Complete 40 Units Roster & Index",
         url: "/units/",
-        description: "Full index of all 39 Godly, Mythic, Legendary, Epic, Rare, and Basic units.",
+        description: "Full index of all 40 Godly, Mythic, Legendary, Epic, Rare, and Basic units.",
         tag: "P1 ROSTER"
+      },
+      {
+        id: "upgraded-titan-tv-man",
+        title: "Upgraded Titan TV Man (UTTVM)",
+        url: "/units/upgraded-titan-tv-man/",
+        description: "Apex Godly titan holding 5,425 trade points with 30,000 advertised card DPS.",
+        tag: "GODLY"
       },
       {
         id: "upgraded-titan-cameraman",
@@ -100,9 +107,9 @@ export const CHANNELS: Channel[] = [
     guides: [
       {
         id: "meta-tier-list",
-        title: "Cameraman Tower Defense Meta Tier List (Update 4)",
+        title: "Cameraman Tower Defense Meta Tier List (Update 5)",
         url: "/tier-list/",
-        description: "Complete S-to-D tier rankings across all 39 units based on DPS, cost, and Nightmare utility.",
+        description: "Complete S-to-D tier rankings across all 40 units based on DPS, cost, and Nightmare utility.",
         tag: "P1 META"
       }
     ]
