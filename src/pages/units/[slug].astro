@@ -200,7 +200,7 @@ const jsonLd = [
         </div>
 
         <!-- 广告位 1/3：英雄卡之后、正文之前。
-             39 个单位页是本站的 SEO 主力，每页结构相同 → 同一尺寸跨页复用，
+             40 个单位页是本站的 SEO 主力，每页结构相同 → 同一尺寸跨页复用，
              靠"每页同一位置"攒曝光样本，这是 160x300 那类尺寸能验出 CPM 的前提。 -->
         <AdSlot zone="banner-300x250" />
 
@@ -374,7 +374,7 @@ const jsonLd = [
 
         <!-- 广告位 2/3 在侧栏：DualSidebar 自带一个 sticky 160x600。
              这里不再插第二个 160x600 —— 同页同尺寸重复贴脸是明令禁止的，
-             而且 39 个页面结构一致，重复会被放大 39 倍。 -->
+             而且 40 个页面结构一致，重复会被放大 40 倍。 -->
 
         <!-- SECTION 6: WHAT WE DON'T KNOW (All units) -->
         <section id="what-we-dont-know" class="guide-section" style="margin-top: 3.5rem;">
@@ -411,6 +411,41 @@ const jsonLd = [
             </div>
           </div>
         </section>
+
+        <!-- Tactical Navigation Ecosystem -->
+        <div class="unit-ecosystem-box" style="margin-top: 3.5rem;">
+          <div class="ecosystem-title">TACTICAL NAVIGATION & META ECOSYSTEM</div>
+          <div class="ecosystem-links-grid">
+            <div class="ecosystem-link-item">
+              <span class="icon">⚖️</span>
+              <div>
+                <strong>Check Trade Parity</strong>
+                <p>Calculate 4-slot trade equity for {unit.name} on the <a href="/values/">Interactive Trade Calculator & Value List</a>.</p>
+              </div>
+            </div>
+            <div class="ecosystem-link-item">
+              <span class="icon">📊</span>
+              <div>
+                <strong>Meta Tier Placement</strong>
+                <p>Inspect where {unit.name} ranks among all 40 towers in the <a href="/tier-list/">CTD Meta Tier List</a>.</p>
+              </div>
+            </div>
+            <div class="ecosystem-link-item">
+              <span class="icon">🏆</span>
+              <div>
+                <strong>Nightmare Strategy</strong>
+                <p>Learn 50-wave solo placements and boss tactics in the <a href="/how-to-solo-nightmare-mode/">Nightmare Mode Walkthrough</a>.</p>
+              </div>
+            </div>
+            <div class="ecosystem-link-item">
+              <span class="icon">🎁</span>
+              <div>
+                <strong>Free Summon Coins</strong>
+                <p>Redeem active developer promo codes on our daily-updated <a href="/codes/">CTD Codes Tracker</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </article>
 
       <!-- Sidebar -->
@@ -699,5 +734,63 @@ const jsonLd = [
     font-size: 0.875rem;
     color: #cbd5e1;
     margin: 0.4rem 0;
+  }
+
+  /* Tactical Ecosystem Box */
+  .unit-ecosystem-box {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .ecosystem-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #38bdf8;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 0.5rem;
+  }
+  .ecosystem-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .ecosystem-links-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .ecosystem-link-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .ecosystem-link-item .icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+  .ecosystem-link-item strong {
+    display: block;
+    color: #f1f5f9;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  .ecosystem-link-item p {
+    color: #94a3b8;
+    font-size: 0.825rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .ecosystem-link-item a {
+    color: #38bdf8;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .ecosystem-link-item a:hover {
+    color: #7dd3fc;
   }
 </style>

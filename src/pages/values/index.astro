@@ -17,8 +17,8 @@ const totalUnits = valuesData.length;
 const godlyUnits = valuesData.filter(u => u.rarity === 'Godly').length;
 const mythicUnits = valuesData.filter(u => u.rarity === 'Mythic').length;
 
-// Only the 22 units with a published point value can participate in arithmetic.
-// The other 17 are real units with no sourced value — treating them as "worth
+// Only the 24 units with a published point value can participate in arithmetic.
+// The other 16 are real units with no sourced value — treating them as "worth
 // zero" silently is what makes a calculator give a confident wrong answer, so
 // they are passed separately and disclosed in the UI instead.
 const pricedUnits = valuesData.filter(u => u.value > 0);
