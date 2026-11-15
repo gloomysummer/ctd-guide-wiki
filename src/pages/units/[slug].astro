@@ -268,6 +268,11 @@ const jsonLd = [
                 {editorial.marketAnalysis}
               </p>
             )}
+            {!hasStats && editorial.combatAnalysis && (
+              <p class="section-subtext" style="margin-top: 0.8rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+                {editorial.combatAnalysis}
+              </p>
+            )}
             {!hasStats && editorial.metaSynergy && (
               <p class="section-subtext" style="margin-top: 0.8rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
                 {editorial.metaSynergy}
