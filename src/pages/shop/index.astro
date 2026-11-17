@@ -7,6 +7,7 @@ const tocHeadings = [
   { depth: 2, slug: "shop-systems-overview", text: "In-Game Shop Systems Overview" },
   { depth: 2, slug: "summon-crates-drop-rates", text: "Summon Crates & Drop Rates" },
   { depth: 2, slug: "gamepasses-and-vip", text: "VIP Pass & Robux Gamepasses" },
+  { depth: 2, slug: "trading-vs-summoning", text: "Trading vs Summoning Protocol" },
   { depth: 2, slug: "f2p-spending-strategy", text: "F2P Currency Spending Strategy" },
   { depth: 2, slug: "evidence-dossier", text: "Verified Economy Dossier" },
 ];
@@ -31,8 +32,8 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title="Cameraman Tower Defense Shop & Crates Guide"
-  description="Cameraman Tower Defense shop and economy guide. Audit summon crates, drop rates, VIP multipliers, gamepasses, and coin vs gem spending advice."
+  title="CTD Shop & Trading Guide | Cameraman Tower Defense"
+  description="Cameraman Tower Defense shop and trading guide: crate drop rates, Robux gamepasses, trading plaza protocols, and coin vs gem economy spending strategy."
   canonical="/shop/"
   jsonLd={jsonLd}
 >
@@ -172,7 +173,54 @@ const jsonLd = [
           </div>
         </section>
 
-        <!-- SECTION 4: F2P SPENDING STRATEGY -->
+        <!-- SECTION 4: TRADING VS SUMMONING -->
+        <section id="trading-vs-summoning" style="margin-top: 3.5rem;">
+          <h2>Trading vs Summoning Protocol</h2>
+          <p>
+            In Cameraman Tower Defense, experienced players avoid sinking all currency into primary gacha rolls once early-game foundations are secured. The peer-to-peer trading plaza operates on an open secondary market where units are exchanged according to community-tracked point values rather than raw summon odds.
+          </p>
+
+          <div class="trading-intel-card">
+            <div class="intel-header">
+              <span class="intel-badge">TACTICAL TRADE PARITY</span>
+              <h3>Why Trade Instead of Rolling Crates?</h3>
+            </div>
+            <p>
+              Pulling a Godly tier unit like <em>Upgraded Titan Cameraman (UTCM)</em> from standard crates carries a minuscule 0.01% drop probability—requiring an expected 10,000 rolls. In contrast, accumulating liquid Legendaries and high-demand Epics allows traders to negotiate multi-slot trade bundles that secure target titans deterministically.
+            </p>
+
+            <div class="trading-rules-grid">
+              <div class="rule-item">
+                <span class="rule-icon">⚖️</span>
+                <div>
+                  <strong>Check Value Margins First</strong>
+                  <p>Never lock a trade blind. Benchmark offers against our live 4-slot Win/Fair/Lose balance calculator to verify if an exchange falls within the ±10% fair trade band.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-icon">🛡️</span>
+                <div>
+                  <strong>Verify Unit Liquidity Demand</strong>
+                  <p>High point valuations mean little if trader demand is low. Assets with 7/10+ demand scores exchange rapidly, whereas niche exclusives require sweetener adds.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-icon">💬</span>
+                <div>
+                  <strong>Trade via Verified Hubs</strong>
+                  <p>Coordinate peer-to-peer trades with verified community members in the official community Discord channels to avoid public server trade scam lobbies.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="trading-actions-bar">
+              <a href="/values/" class="btn-trade-calc">Open Live Trade Calculator →</a>
+              <a href="/discord/" class="btn-trade-hub">Join Discord Trading Hub →</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: F2P SPENDING STRATEGY -->
         <section id="f2p-spending-strategy" style="margin-top: 3.5rem;">
           <h2>F2P Currency Spending Strategy</h2>
           <p>
@@ -348,5 +396,105 @@ const jsonLd = [
     color: #94a3b8;
     font-size: 0.85rem;
     font-style: italic;
+  }
+
+  /* Trading Intel Card */
+  .trading-intel-card {
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.25rem;
+  }
+  .intel-header {
+    margin-bottom: 0.75rem;
+  }
+  .intel-badge {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    font-family: var(--font-mono, monospace);
+    margin-bottom: 0.5rem;
+  }
+  .intel-header h3 {
+    margin: 0;
+    color: #f8fafc;
+    font-size: 1.2rem;
+  }
+  .trading-intel-card > p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .trading-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .rule-item {
+    display: flex;
+    gap: 0.75rem;
+    background: #090e18;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    padding: 1rem;
+  }
+  .rule-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .rule-item strong {
+    display: block;
+    color: #f1f5f9;
+    font-size: 0.88rem;
+    margin-bottom: 0.25rem;
+  }
+  .rule-item p {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin: 0;
+  }
+  .trading-actions-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #1e293b;
+  }
+  .btn-trade-calc {
+    background: #0284c7;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-trade-calc:hover {
+    background: #0369a1;
+  }
+  .btn-trade-hub {
+    background: #1e293b;
+    color: #38bdf8;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    transition: background 0.15s;
+  }
+  .btn-trade-hub:hover {
+    background: #334155;
   }
 </style>
